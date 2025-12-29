@@ -122,6 +122,11 @@ compare: $(roms) $(patches)
 tools:
 	$(MAKE) -C tools/
 
+gold_debug:
+	tools/free_space.awk BANK=all pokegold_debug.map
+
+silver_debug:
+	tools/free_space.awk BANK=all pokesilver_debug.map
 
 RGBASMFLAGS += -Q8 -P includes.asm
 # Create a sym/map for debug purposes if `make` run with `DEBUG=1`
