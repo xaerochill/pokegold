@@ -39,8 +39,10 @@ InitClock:
 	call .ClearScreen
 	call WaitBGMap
 	call RotateFourPalettesRight
+if !DEF(_DEBUG)
 	ld hl, OakTimeWokeUpText
 	call PrintText
+endc
 	ld hl, wTimeSetBuffer
 	ld bc, wTimeSetBufferEnd - wTimeSetBuffer
 	xor a

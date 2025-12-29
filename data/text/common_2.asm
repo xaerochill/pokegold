@@ -1145,6 +1145,7 @@ _OakText1::
 	text "Hello! Sorry to"
 	line "keep you waiting!"
 
+if !DEF(_DEBUG)
 	para "Welcome to the"
 	line "world of #MON!"
 
@@ -1152,6 +1153,8 @@ _OakText1::
 
 	para "People call me the"
 	line "#MON PROF."
+
+	endc
 	prompt
 
 _OakText2::
@@ -1199,6 +1202,7 @@ _OakText7::
 	text "<PLAYER>, are you"
 	line "ready?"
 
+if !DEF(_DEBUG)
 	para "Your very own"
 	line "#MON story is"
 	cont "about to unfold."
@@ -1215,6 +1219,8 @@ _OakText7::
 
 	para "I'll be seeing you"
 	line "later!"
+
+	endc
 	done
 
 _ClockTimeMayBeWrongText::
