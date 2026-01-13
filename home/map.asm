@@ -293,7 +293,6 @@ LoadMapGraphics::
 	xor a
 	ldh [hTileAnimFrame], a
 	farcall RefreshSprites
-	call LoadFontsExtra
 	ret
 
 LoadMapPalettes::
