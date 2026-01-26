@@ -169,9 +169,6 @@ Route11_Blocks:
 Route15_Blocks:
 	INCBIN "maps/Route15.blk"
 
-Route19_Blocks:
-	INCBIN "maps/Route19.blk"
-
 Route10South_Blocks:
 	INCBIN "maps/Route10South.blk"
 
@@ -196,9 +193,6 @@ PewterCity_Blocks:
 Route12_Blocks:
 	INCBIN "maps/Route12.blk"
 
-Route20_Blocks:
-	INCBIN "maps/Route20.blk"
-
 CeladonCity_Blocks:
 	INCBIN "maps/CeladonCity.blk"
 
@@ -210,9 +204,6 @@ Route2_Blocks:
 
 FuchsiaCity_Blocks:
 	INCBIN "maps/FuchsiaCity.blk"
-
-CinnabarIsland_Blocks:
-	INCBIN "maps/CinnabarIsland.blk"
 
 Route4_Blocks:
 	INCBIN "maps/Route4.blk"
@@ -228,9 +219,6 @@ Route13_Blocks:
 
 Route17_Blocks:
 	INCBIN "maps/Route17.blk"
-
-Route21_Blocks:
-	INCBIN "maps/Route21.blk"
 
 VermilionCity_Blocks:
 	INCBIN "maps/VermilionCity.blk"
@@ -793,9 +781,6 @@ DiglettsCave_Blocks:
 MountMoon_Blocks:
 	INCBIN "maps/MountMoon.blk"
 
-SeafoamGym_Blocks:
-	INCBIN "maps/SeafoamGym.blk"
-
 MrPokemonsHouse_Blocks:
 	INCBIN "maps/MrPokemonsHouse.blk"
 
@@ -854,6 +839,33 @@ DragonsDenB1F_Blocks:
 TohjoFalls_Blocks:
 	INCBIN "maps/TohjoFalls.blk"
 
+SeafoamGym_Blocks: ; beginning cinnabar blocks
+	INCBIN "maps/SeafoamGym.blk"
+
+Route19_Blocks:
+	INCBIN "maps/Route19.blk"
+
+Route20_Blocks:
+	INCBIN "maps/Route20.blk"
+
+Route21_Blocks:
+	INCBIN "maps/Route21.blk"
+
+CinnabarIsland_Blocks:
+	INCBIN "maps/CinnabarIsland.blk"
+
+CinnabarPokemonLabHallway_Blocks:
+	INCBIN "maps/CinnabarPokemonLabHallway.blk"
+
+CinnabarPokemonLabRoom1_Blocks:
+	INCBIN "maps/CinnabarPokemonLabRoom1.blk"
+
+CinnabarPokemonLabRoom2_Blocks:
+	INCBIN "maps/CinnabarPokemonLabRoom2.blk"
+
+CinnabarPokemonLabRoom3_Blocks:
+	INCBIN "maps/CinnabarPokemonLabRoom3.blk"
+
 ENDSECTION
 
 
@@ -867,18 +879,6 @@ BetaPewterMuseumOfScience1F_Blocks: ; unreferenced
 
 BetaPewterMuseumOfScience2F_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaPewterMuseumOfScience2F.blk"
-
-BetaCinnabarPokemonLabHallway_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCinnabarPokemonLabHallway.blk"
-
-BetaCinnabarPokemonLabRoom1_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCinnabarPokemonLabRoom1.blk"
-
-BetaCinnabarPokemonLabRoom2_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCinnabarPokemonLabRoom2.blk"
-
-BetaCinnabarPokemonLabRoom3_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCinnabarPokemonLabRoom3.blk"
 
 BetaHouse_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaHouse.blk"

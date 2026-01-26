@@ -23,7 +23,7 @@
 	tilecoll WALL, WALL, WALL, WALL ; 16
 	tilecoll WALL, WALL, FLOOR, FLOOR ; 17
 	tilecoll WALL, WALL, FLOOR, FLOOR ; 18
-	tilecoll WALL, WALL, WALL_LEFT, WALL_RIGHT ; 19
+	tilecoll WALL, WALL, LEFT_WALL, RIGHT_WALL ; 19
 	tilecoll WALL, WALL, WALL, FLOOR ; 1a
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 1b
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 1c
@@ -43,7 +43,7 @@
 	tilecoll FLOOR, FLOOR, WALL, FLOOR ; 2a
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 2b
 	tilecoll FLOOR, FLOOR, WALL, FLOOR ; 2c
-	tilecoll WALL_LEFT, WALL_RIGHT, FLOOR, FLOOR ; 2d
+	tilecoll LEFT_WALL, RIGHT_WALL, FLOOR, FLOOR ; 2d
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 2e
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 2f
 	tilecoll DOOR, WALL, FLOOR, FLOOR ; 30

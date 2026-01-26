@@ -675,3 +675,7 @@ ENDM
 	map_attributes Route30BerryHouse, ROUTE_30_BERRY_HOUSE, $00, 0
 	map_attributes MrPokemonsHouse, MR_POKEMONS_HOUSE, $00, 0
 	map_attributes Route31VioletGate, ROUTE_31_VIOLET_GATE, $00, 0
+	map_attributes CinnabarPokemonLabHallway, CINNABAR_POKEMON_LAB_HALLWAY, $00, 0
+	map_attributes CinnabarPokemonLabRoom1, CINNABAR_POKEMON_LAB_ROOM_1, $00, 0
+	map_attributes CinnabarPokemonLabRoom2, CINNABAR_POKEMON_LAB_ROOM_2, $00, 0
+	map_attributes CinnabarPokemonLabRoom3, CINNABAR_POKEMON_LAB_ROOM_3, $00, 0

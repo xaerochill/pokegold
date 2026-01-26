@@ -181,6 +181,10 @@ ENDM
 	map_const ROUTE_20,                                    50,  9 ;  6
 	map_const ROUTE_21,                                    10, 45 ;  7
 	map_const CINNABAR_ISLAND,                             10,  9 ;  8
+	map_const CINNABAR_POKEMON_LAB_HALLWAY,                 9,  4 ;  9
+	map_const CINNABAR_POKEMON_LAB_ROOM_1,                  4,  4 ; 10
+	map_const CINNABAR_POKEMON_LAB_ROOM_2,                  4,  4 ; 11
+	map_const CINNABAR_POKEMON_LAB_ROOM_3,                  4,  4 ; 12
 	endgroup
 
 	newgroup CERULEAN                                             ;  7
