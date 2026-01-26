@@ -11,6 +11,12 @@ ENDM
 TilesetKantoPalMap:
 INCLUDE "gfx/tilesets/kanto_palette_map.asm"
 
+TilesetKantoModernPalMap:
+INCLUDE "gfx/tilesets/kanto_modern_palette_map.asm"
+
+TilesetPlateauPalMap:
+INCLUDE "gfx/tilesets/plateau_palette_map.asm"
+
 Tileset0PalMap:
 TilesetJohtoPalMap:
 INCLUDE "gfx/tilesets/johto_palette_map.asm"

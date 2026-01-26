@@ -39,15 +39,12 @@ ROMX $04
 	"bank4"
 ROMX $05
 	"bank5"
-ROMX $06
-	"Tileset Data 1"
+;ROMX $06
 ROMX $07
 	"Roofs"
-	"Tileset Data 2"
 	"Extra Songs 1"
 ROMX $08
 	"Clock Reset"
-	"Tileset Data 3"
 	"Catch Tutorial"
 	"Egg Moves"
 ROMX $09
@@ -56,8 +53,7 @@ ROMX $0a
 	"bankA"
 ROMX $0b
 	"bankB"
-ROMX $0c
-	"Tileset Data 4"
+;ROMX $0c
 ROMX $0d
 	"Effect Commands"
 ROMX $0e
@@ -73,6 +69,7 @@ ROMX $12
 	org $4000
 	"Pic Pointers"
 	"Pics 1"
+;ROMX $13
 ROMX $14
 	"bank14"
 	"Egg Pic"
@@ -106,6 +103,7 @@ ROMX $20
 ROMX $21
 	"bank21"
 	"Credits"
+;ROMX $22
 ROMX $23
 	"bank23"
 ROMX $24
@@ -115,14 +113,12 @@ ROMX $25
 	"Events"
 ROMX $26
 	"Title Screen"
-ROMX $2a
-	"Map Blocks 1"
-ROMX $2b
-	"Map Blocks 2"
+;ROMX $27 - $2d
 ROMX $2e
 	"Pics 14"
 	org $6300
 	"bank2E"
+;ROMX $2f
 ROMX $30
 	"Sprites 1"
 ROMX $31
@@ -135,11 +131,11 @@ ROMX $32
 ROMX $33
 	"Move Animations"
 	"Extra Songs 2"
+;ROMX $34
+;ROMX $35
 ROMX $36
 	"Font Inversed"
-ROMX $37
-	"Map Blocks 3"
-	"Tileset Data 5"
+;ROMX $37
 ROMX $38
 	"bank38"
 ROMX $39
@@ -211,6 +207,7 @@ ROMX $56
 	"Map Scripts 21"
 ROMX $57
 	"Map Scripts 22"
+;ROMX $58
 ROMX $59
 	"Map Scripts 23"
 ROMX $5a
@@ -231,12 +228,14 @@ ROMX $61
 	"Map Scripts 31"
 ROMX $62
 	"Map Scripts 32"
+;ROMX $63
 ROMX $64
 	"Text 1"
 ROMX $65
 	"Text 2"
 ROMX $66
 	"Text 3"
+;ROMX $67
 ROMX $68
 	"Pokedex Entries 001-064"
 ROMX $69
@@ -251,12 +250,35 @@ ROMX $6d
 	"Move Descriptions"
 ROMX $6e
 	"Item Descriptions"
+;ROMX $6f
 ROMX $70
 	"bank70"
-	"Tileset Data 6"
 	"bank70_2"
 	"Pokégear GFX"
 	"Credits Strings"
+ROMX $71
+	"Tileset Data 1"
+ROMX $72
+	"Tileset Data 2"
+ROMX $73
+	"Tileset Data 3"
+ROMX $74
+	"Tileset Data 4"
+ROMX $75
+	"Tileset Data 5"
+ROMX $76
+	"Tileset Data 6"
+ROMX $77
+	"Tileset Data 7"
+ROMX $78
+	"Map Blocks 1"
+ROMX $79
+	"Map Blocks 2"
+ROMX $7a
+	"Map Blocks 3"
+ROMX $7b
+	"Map Blocks 4"
+;ROMX $7c - $7e
 ROMX $7f
 	org $7df8
 	"Stadium 2 Checksums"

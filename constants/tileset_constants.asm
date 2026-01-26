@@ -28,6 +28,8 @@
 	const TILESET_ICE_PATH             ; 1a
 	const TILESET_DARK_CAVE            ; 1b
 	const TILESET_FOREST               ; 1c
+	const TILESET_KANTO_MODERN         ; 1d
+	const TILESET_PLATEAU              ; 1e
 DEF NUM_TILESETS EQU const_value - 1
 
 ; wTileset struct size

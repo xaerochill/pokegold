@@ -42,4 +42,6 @@ Tilesets::
 	tileset TilesetIcePath
 	tileset TilesetDarkCave
 	tileset TilesetForest
+	tileset TilesetKantoModern
+	tileset TilesetPlateau
 	assert_table_length NUM_TILESETS + 1
