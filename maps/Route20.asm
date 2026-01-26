@@ -46,9 +46,6 @@ TrainerSwimmermCameron:
 	closetext
 	end
 
-CinnabarGymSign:
-	jumptext CinnabarGymSignText
-
 SwimmerfNicoleSeenText:
 	text "I feel so much"
 	line "lighter in water."
@@ -102,26 +99,16 @@ SwimmermCameronAfterBattleText:
 	cont "ponds and rivers."
 	done
 
-CinnabarGymSignText:
-	text "What does this"
-	line "sign say?"
-
-	para "CINNABAR GYM"
-	line "LEADER: BLAINE"
-	done
-
 Route20_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event 38,  7, SEAFOAM_GYM, 1
 
 	def_coord_events
 
 	def_bg_events
-	bg_event 37, 11, BGEVENT_READ, CinnabarGymSign
 
 	def_object_events
-	object_event 52,  8, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
-	object_event 45, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
+	object_event 69, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
+	object_event 39, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
 	object_event 12, 13, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCameron, -1

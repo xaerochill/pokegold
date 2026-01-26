@@ -32,6 +32,9 @@ CinnabarIslandSign:
 CinnabarIslandPokecenterSign:
 	jumpstd PokecenterSignScript
 
+CinnabarGymSign:
+	jumptext CinnabarGymSignText
+
 CinnabarIslandHiddenRareCandy:
 	hiddenitem RARE_CANDY, EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY
 
@@ -125,19 +128,29 @@ CinnabarIslandSignText:
 	line "Burning Desire"
 	done
 
+CinnabarGymSignText:
+	text "What does this"
+	line "sign say?"
+
+	para "CINNABAR GYM"
+	line "LEADER: BLAINE"
+	done
+
 CinnabarIsland_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
 	warp_event 11, 11, CINNABAR_POKECENTER_1F, 1
+	warp_event 18,  3, SEAFOAM_GYM, 1
 
 	def_coord_events
 
 	def_bg_events
 	bg_event 12, 11, BGEVENT_READ, CinnabarIslandPokecenterSign
-	bg_event  9, 11, BGEVENT_READ, CinnabarIslandGymSign
-	bg_event  7,  7, BGEVENT_READ, CinnabarIslandSign
-	bg_event  9,  1, BGEVENT_ITEM, CinnabarIslandHiddenRareCandy
+	bg_event 13,  3, BGEVENT_READ, CinnabarIslandGymSign
+	bg_event  9, 11, BGEVENT_READ, CinnabarIslandSign
+	bg_event  9, 10, BGEVENT_ITEM, CinnabarIslandHiddenRareCandy
+	bg_event  9,  5, BGEVENT_READ, CinnabarGymSign
 
 	def_object_events
-	object_event  9,  6, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	object_event 12,  6, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

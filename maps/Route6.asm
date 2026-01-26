@@ -31,13 +31,13 @@ Route6_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event 17,  3, ROUTE_6_UNDERGROUND_PATH_ENTRANCE, 1
-	warp_event  6,  1, ROUTE_6_SAFFRON_GATE, 3
+	warp_event 17, 13, ROUTE_6_UNDERGROUND_PATH_ENTRANCE, 1
+	warp_event 10,  7, ROUTE_6_SAFFRON_GATE, 3
 
 	def_coord_events
 
 	def_bg_events
-	bg_event 19,  5, BGEVENT_READ, Route6UndergroundPathSign
+	bg_event 19, 15, BGEVENT_READ, Route6UndergroundPathSign
 
 	def_object_events
-	object_event 17,  4, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 2, Route6PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	object_event 17, 14, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 2, Route6PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH

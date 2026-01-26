@@ -77,13 +77,13 @@ Route10South_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event  6,  1, ROCK_TUNNEL_1F, 2
+	warp_event  9,  3, ROCK_TUNNEL_1F, 2
 
 	def_coord_events
 
 	def_bg_events
-	bg_event  5,  3, BGEVENT_READ, Route10Sign
+	bg_event  7,  5, BGEVENT_READ, Route10Sign
 
 	def_object_events
-	object_event 17,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerJim, -1
-	object_event  4, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanmRobert, -1
+	object_event  9, 13, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerHikerJim, -1
+	object_event 14, 15, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerPokefanmRobert, -1

@@ -48,7 +48,7 @@ Route19FuchsiaGate_MapEvents:
 
 	def_warp_events
 	warp_event  4,  0, FUCHSIA_CITY, 10
-	warp_event  5,  0, FUCHSIA_CITY, 11
+	warp_event  5,  0, FUCHSIA_CITY, 12
 	warp_event  4,  7, ROUTE_19, 1
 	warp_event  5,  7, ROUTE_19, 1
 
