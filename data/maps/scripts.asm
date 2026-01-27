@@ -121,14 +121,12 @@ INCLUDE "maps/EcruteakCity.asm"
 INCLUDE "maps/MahoganyTown.asm"
 INCLUDE "maps/LakeOfRage.asm"
 INCLUDE "maps/BlackthornCity.asm"
-INCLUDE "maps/SilverCaveOutside.asm"
 
 
 SECTION "Map Scripts 9", ROMX
 
 INCLUDE "maps/Route26.asm"
 INCLUDE "maps/Route27.asm"
-INCLUDE "maps/Route28.asm"
 INCLUDE "maps/Route29.asm"
 INCLUDE "maps/Route30.asm"
 INCLUDE "maps/Route31.asm"
@@ -200,7 +198,6 @@ INCLUDE "maps/Route4.asm"
 INCLUDE "maps/Route8.asm"
 INCLUDE "maps/Route10North.asm"
 INCLUDE "maps/Route10South.asm"
-INCLUDE "maps/Route23.asm"
 
 
 SECTION "Map Scripts 16", ROMX
@@ -330,18 +327,6 @@ INCLUDE "maps/RedsHouse2F.asm"
 INCLUDE "maps/BluesHouse.asm"
 INCLUDE "maps/OaksLab.asm"
 
-
-SECTION "Map Scripts 24", ROMX
-
-INCLUDE "maps/IndigoPlateauPokecenter1F.asm"
-INCLUDE "maps/WillsRoom.asm"
-INCLUDE "maps/KogasRoom.asm"
-INCLUDE "maps/BrunosRoom.asm"
-INCLUDE "maps/KarensRoom.asm"
-INCLUDE "maps/LancesRoom.asm"
-INCLUDE "maps/HallOfFame.asm"
-
-
 SECTION "Map Scripts 25", ROMX
 
 INCLUDE "maps/OlivinePort.asm"
@@ -368,8 +353,6 @@ INCLUDE "maps/FuchsiaPokecenter1F.asm"
 INCLUDE "maps/FuchsiaPokecenter2FBeta.asm"
 INCLUDE "maps/SafariZoneWardensHome.asm"
 INCLUDE "maps/Route15FuchsiaGate.asm"
-INCLUDE "maps/SilverCavePokecenter1F.asm"
-INCLUDE "maps/Route28SteelWingHouse.asm"
 INCLUDE "maps/Pokecenter2F.asm"
 INCLUDE "maps/TradeCenter.asm"
 INCLUDE "maps/Colosseum.asm"
@@ -502,3 +485,19 @@ INCLUDE "maps/PewterPokecenter2FBeta.asm"
 INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
 INCLUDE "maps/PewterMuseumOfScience1F.asm"
 INCLUDE "maps/PewterMuseumOfScience2F.asm"
+
+SECTION "Map Scripts Indigo", ROMX ; 16
+INCLUDE "maps/Route23.asm"
+INCLUDE "maps/IndigoPlateauPokecenter1F.asm"
+INCLUDE "maps/WillsRoom.asm"
+INCLUDE "maps/KogasRoom.asm"
+INCLUDE "maps/BrunosRoom.asm"
+INCLUDE "maps/KarensRoom.asm"
+INCLUDE "maps/LancesRoom.asm"
+INCLUDE "maps/HallOfFame.asm"
+
+SECTION "Map Scripts Silver", ROMX ; 19
+INCLUDE "maps/Route28.asm"
+INCLUDE "maps/SilverCaveOutside.asm"
+INCLUDE "maps/SilverCavePokecenter1F.asm"
+INCLUDE "maps/Route28SteelWingHouse.asm"

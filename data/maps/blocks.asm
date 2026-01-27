@@ -43,9 +43,6 @@ Route36_Blocks:
 Route44_Blocks:
 	INCBIN "maps/Route44.blk"
 
-Route28_Blocks:
-	INCBIN "maps/Route28.blk"
-
 ElmsHouse_Blocks:
 	INCBIN "maps/ElmsHouse.blk"
 
@@ -433,9 +430,6 @@ LakeOfRage_Blocks:
 BlackthornCity_Blocks:
 	INCBIN "maps/BlackthornCity.blk"
 
-SilverCaveOutside_Blocks:
-	INCBIN "maps/SilverCaveOutside.blk"
-
 Route6_Blocks:
 	INCBIN "maps/Route6.blk"
 
@@ -568,22 +562,6 @@ TeamRocketBaseB2F_Blocks:
 
 TeamRocketBaseB3F_Blocks:
 	INCBIN "maps/TeamRocketBaseB3F.blk"
-
-IndigoPlateauPokecenter1F_Blocks:
-	INCBIN "maps/IndigoPlateauPokecenter1F.blk"
-
-WillsRoom_Blocks:
-	INCBIN "maps/WillsRoom.blk"
-
-KogasRoom_Blocks:
-	INCBIN "maps/KogasRoom.blk"
-
-BrunosRoom_Blocks:
-	INCBIN "maps/BrunosRoom.blk"
-
-KarensRoom_Blocks:
-	INCBIN "maps/KarensRoom.blk"
-
 AzaleaGym_Blocks:
 	INCBIN "maps/AzaleaGym.blk"
 
@@ -797,15 +775,6 @@ Route39Barn_Blocks:
 VictoryRoad_Blocks:
 	INCBIN "maps/VictoryRoad.blk"
 
-Route23_Blocks:
-	INCBIN "maps/Route23.blk"
-
-LancesRoom_Blocks:
-	INCBIN "maps/LancesRoom.blk"
-
-HallOfFame_Blocks:
-	INCBIN "maps/HallOfFame.blk"
-
 CopycatsHouse1F_Blocks:
 	INCBIN "maps/CopycatsHouse1F.blk"
 
@@ -830,7 +799,7 @@ DragonsDenB1F_Blocks:
 TohjoFalls_Blocks:
 	INCBIN "maps/TohjoFalls.blk"
 
-SeafoamGym_Blocks: ; beginning cinnabar blocks
+SeafoamGym_Blocks: ; 6
 	INCBIN "maps/SeafoamGym.blk"
 
 Route19_Blocks:
@@ -857,7 +826,7 @@ CinnabarPokemonLabRoom2_Blocks:
 CinnabarPokemonLabRoom3_Blocks:
 	INCBIN "maps/CinnabarPokemonLabRoom3.blk"
 
-Route3_Blocks: ; beginning pewter blocks
+Route3_Blocks: ; 14
 	INCBIN "maps/Route3.blk"
 
 PewterCity_Blocks:
@@ -871,6 +840,36 @@ PewterMuseumOfScience1F_Blocks:
 
 PewterMuseumOfScience2F_Blocks:
 	INCBIN "maps/PewterMuseumOfScience2F.blk"
+
+Route23_Blocks: ; 16
+	INCBIN "maps/Route23.blk"
+
+IndigoPlateauPokecenter1F_Blocks:
+	INCBIN "maps/IndigoPlateauPokecenter1F.blk"
+
+WillsRoom_Blocks:
+	INCBIN "maps/WillsRoom.blk"
+
+KogasRoom_Blocks:
+	INCBIN "maps/KogasRoom.blk"
+
+BrunosRoom_Blocks:
+	INCBIN "maps/BrunosRoom.blk"
+
+KarensRoom_Blocks:
+	INCBIN "maps/KarensRoom.blk"
+
+LancesRoom_Blocks:
+	INCBIN "maps/LancesRoom.blk"
+
+HallOfFame_Blocks:
+	INCBIN "maps/HallOfFame.blk"
+
+Route28_Blocks: ; 19
+	INCBIN "maps/Route28.blk"
+
+SilverCaveOutside_Blocks:
+	INCBIN "maps/SilverCaveOutside.blk"
 
 ENDSECTION
 

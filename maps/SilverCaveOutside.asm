@@ -26,7 +26,7 @@ SilverCaveOutside_MapEvents:
 
 	def_warp_events
 	warp_event 23, 19, SILVER_CAVE_POKECENTER_1F, 1
-	warp_event 18, 11, SILVER_CAVE_ROOM_1, 1
+	warp_event 19, 11, SILVER_CAVE_ROOM_1, 1
 
 	def_coord_events
 
