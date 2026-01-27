@@ -880,33 +880,6 @@ SECTION "Map Blocks 4", ROMX
 BetaLakeOfRage_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaLakeOfRage.blk"
 
-BetaHouse_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaHouse.blk"
-
-BetaUnionCave_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaUnionCave.blk"
-
-BetaCapsuleHouse_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCapsuleHouse.blk"
-
-BetaRuinsOfAlphUnsolvedPuzzleRoom_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaRuinsOfAlphUnsolvedPuzzleRoom.blk"
-	
-BetaSproutTowerCutOut1_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTowerCutOut1.blk"
-
-BetaSproutTowerCutOut2_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTowerCutOut2.blk"
-
-BetaSproutTowerCutOut3_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTowerCutOut3.blk"
-
-BetaElevator_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaElevator.blk"
-
-BetaCaveTestMap_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCaveTestMap.blk"
-
 BetaRocketHideoutB2F_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaRocketHideoutB2F.blk"
 
@@ -919,23 +892,8 @@ BetaRocketHideout1F_Blocks: ; unreferenced
 BetaRocketHideoutB3F_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaRocketHideoutB3F.blk"
 
-BetaRoute23_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaRoute23.blk"
-
 BetaUnknownGym_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaUnknownGym.blk"
-
-BetaSlowpokeWell1F_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSlowpokeWell1F.blk"
-
-BetaFastShipInsideCutOut_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaFastShipInsideCutOut.blk"
-
-BetaCeladonMansion1F_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCeladonMansion1F.blk"
-
-BetaCeladonMansion2F_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaCeladonMansion2F.blk"
 
 BetaVioletCity_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaVioletCity.blk"
@@ -943,32 +901,14 @@ BetaVioletCity_Blocks: ; unreferenced
 BetaSilverCaveOutside_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaSilverCaveOutside.blk"
 
-BetaSproutTower2_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTower2.blk"
-
 BetaGoldenrodCity_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaGoldenrodCity.blk"
-
-BetaSproutTower6_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTower6.blk"
 
 BetaPokecenter_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaPokecenter.blk"
 
 BetaCianwoodCity_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaCianwoodCity.blk"
-
-BetaPlayersHouse2F_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaPlayersHouse2F.blk"
-
-BetaSproutTower1_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTower1.blk"
-
-BetaSproutTower5_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTower5.blk"
-
-BetaSproutTower9_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTower9.blk"
 
 BetaBlackthornCity_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaBlackthornCity.blk"
@@ -979,11 +919,29 @@ BetaEcruteakCity_Blocks: ; unreferenced
 BetaCherrygroveCity_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaCherrygroveCity.blk"
 
+BetaSproutTower1_Blocks: ; unreferenced
+	INCBIN "maps/unused/BetaSproutTower1.blk"
+
+BetaSproutTower2_Blocks: ; unreferenced
+	INCBIN "maps/unused/BetaSproutTower2.blk"
+
 BetaSproutTower3_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaSproutTower3.blk"
 
+BetaSproutTower5_Blocks: ; unreferenced
+	INCBIN "maps/unused/BetaSproutTower5.blk"
+
+BetaSproutTower6_Blocks: ; unreferenced
+	INCBIN "maps/unused/BetaSproutTower6.blk"
+
 BetaSproutTower7_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaSproutTower7.blk"
+
+BetaSproutTower8_Blocks: ; unreferenced
+	INCBIN "maps/unused/BetaSproutTower8.blk"
+
+BetaSproutTower9_Blocks: ; unreferenced
+	INCBIN "maps/unused/BetaSproutTower9.blk"
 
 BetaMahoganyTown_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaMahoganyTown.blk"
@@ -996,8 +954,5 @@ BetaNewBarkTown_Blocks: ; unreferenced
 
 BetaAzaleaTown_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaAzaleaTown.blk"
-
-BetaSproutTower8_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTower8.blk"
 
 ENDSECTION
