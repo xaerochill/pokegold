@@ -159,7 +159,6 @@ INCLUDE "maps/Route43.asm"
 INCLUDE "maps/Route44.asm"
 INCLUDE "maps/Route45.asm"
 INCLUDE "maps/Route46.asm"
-INCLUDE "maps/PewterCity.asm"
 INCLUDE "maps/Route2.asm"
 
 
@@ -197,7 +196,6 @@ SECTION "Map Scripts 15", ROMX
 INCLUDE "maps/Route9.asm"
 INCLUDE "maps/Route24.asm"
 INCLUDE "maps/Route25.asm"
-INCLUDE "maps/Route3.asm"
 INCLUDE "maps/Route4.asm"
 INCLUDE "maps/Route8.asm"
 INCLUDE "maps/Route10North.asm"
@@ -335,12 +333,6 @@ INCLUDE "maps/OaksLab.asm"
 
 SECTION "Map Scripts 24", ROMX
 
-INCLUDE "maps/PewterNidoranSpeechHouse.asm"
-INCLUDE "maps/PewterGym.asm"
-INCLUDE "maps/PewterMart.asm"
-INCLUDE "maps/PewterPokecenter1F.asm"
-INCLUDE "maps/PewterPokecenter2FBeta.asm"
-INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
 INCLUDE "maps/IndigoPlateauPokecenter1F.asm"
 INCLUDE "maps/WillsRoom.asm"
 INCLUDE "maps/KogasRoom.asm"
@@ -485,8 +477,6 @@ INCLUDE "maps/Route30BerryHouse.asm"
 INCLUDE "maps/MrPokemonsHouse.asm"
 INCLUDE "maps/Route31VioletGate.asm"
 
-ENDSECTION
-
 SECTION "Map Scripts Cinnabar", ROMX ; 6
 INCLUDE "maps/CinnabarPokecenter1F.asm"
 INCLUDE "maps/CinnabarPokecenter2FBeta.asm"
@@ -500,3 +490,15 @@ INCLUDE "maps/CinnabarPokemonLabHallway.asm"
 INCLUDE "maps/CinnabarPokemonLabRoom1.asm"
 INCLUDE "maps/CinnabarPokemonLabRoom2.asm"
 INCLUDE "maps/CinnabarPokemonLabRoom3.asm"
+
+SECTION "Map Scripts Pewter", ROMX ; 14
+INCLUDE "maps/Route3.asm"
+INCLUDE "maps/PewterCity.asm"
+INCLUDE "maps/PewterNidoranSpeechHouse.asm"
+INCLUDE "maps/PewterGym.asm"
+INCLUDE "maps/PewterMart.asm"
+INCLUDE "maps/PewterPokecenter1F.asm"
+INCLUDE "maps/PewterPokecenter2FBeta.asm"
+INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
+INCLUDE "maps/PewterMuseumOfScience1F.asm"
+INCLUDE "maps/PewterMuseumOfScience2F.asm"

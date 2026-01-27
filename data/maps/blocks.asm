@@ -184,12 +184,6 @@ Route25_Blocks:
 Route24_Blocks:
 	INCBIN "maps/Route24.blk"
 
-Route3_Blocks:
-	INCBIN "maps/Route3.blk"
-
-PewterCity_Blocks:
-	INCBIN "maps/PewterCity.blk"
-
 Route12_Blocks:
 	INCBIN "maps/Route12.blk"
 
@@ -760,9 +754,6 @@ DayCare_Blocks:
 SoulHouse_Blocks:
 	INCBIN "maps/SoulHouse.blk"
 
-PewterGym_Blocks:
-	INCBIN "maps/PewterGym.blk"
-
 CeladonGym_Blocks:
 	INCBIN "maps/CeladonGym.blk"
 
@@ -866,6 +857,21 @@ CinnabarPokemonLabRoom2_Blocks:
 CinnabarPokemonLabRoom3_Blocks:
 	INCBIN "maps/CinnabarPokemonLabRoom3.blk"
 
+Route3_Blocks: ; beginning pewter blocks
+	INCBIN "maps/Route3.blk"
+
+PewterCity_Blocks:
+	INCBIN "maps/PewterCity.blk"
+
+PewterGym_Blocks:
+	INCBIN "maps/PewterGym.blk"
+
+PewterMuseumOfScience1F_Blocks:
+	INCBIN "maps/PewterMuseumOfScience1F.blk"
+
+PewterMuseumOfScience2F_Blocks:
+	INCBIN "maps/PewterMuseumOfScience2F.blk"
+
 ENDSECTION
 
 
@@ -873,12 +879,6 @@ SECTION "Map Blocks 4", ROMX
 
 BetaLakeOfRage_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaLakeOfRage.blk"
-
-BetaPewterMuseumOfScience1F_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaPewterMuseumOfScience1F.blk"
-
-BetaPewterMuseumOfScience2F_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaPewterMuseumOfScience2F.blk"
 
 BetaHouse_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaHouse.blk"
