@@ -21,6 +21,7 @@ HiddenPowerGuy:
 	closetext
 	end
 .AlreadyGotItem:
+	special SetDVs
 	writetext HiddenPowerGuyText3
 	waitbutton
 .Done:
@@ -50,15 +51,19 @@ HiddenPowerGuyText1:
 HiddenPowerGuyText2:
 	text "Do you see it? It"
 	line "is HIDDEN POWER!"
+	
+	para "I can also alter"
+	line "your HIDDEN"
+	cont "POWER for you."
 
-	para "It draws out the"
-	line "power of #MON"
-	cont "for attacking."
+	para "Be wary! Changing"
+	line "HIDDEN POWER can"
+	cont "take a toll."
 
-	para "Remember this: its"
-	line "type and power de-"
-	cont "pend on the #-"
-	cont "MON using it."
+	para "If your #MON"
+	line "has a special"
+	cont "color, it will"
+	cont "lose it…"
 	done
 
 HiddenPowerGuyText3:

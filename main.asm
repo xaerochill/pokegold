@@ -14,6 +14,7 @@ INCLUDE "engine/overworld/npc_movement.asm"
 INCLUDE "engine/events/happiness_egg.asm"
 INCLUDE "engine/events/shuckle.asm"
 INCLUDE "engine/events/haircut.asm"
+INCLUDE "engine/events/setdvs.asm"
 
 
 SECTION "bank2", ROMX
