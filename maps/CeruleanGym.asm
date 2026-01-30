@@ -64,7 +64,7 @@ CeruleanGymMistyScript:
 	writetext MistyIntroText
 	waitbutton
 	closetext
-	winlosstext MistyWinLossText, 0
+	winlosstext MistyWinText, MistyLossText
 	loadtrainer MISTY, MISTY1
 	startbattle
 	reloadmapafterbattle
@@ -78,13 +78,38 @@ CeruleanGymMistyScript:
 	waitsfx
 	setflag ENGINE_CASCADEBADGE
 .FightDone:
-	writetext MistyFightDoneText
+	checktmhm TM_BUBBLEBEAM
+	iftrue .Rematch
+	writetext MistyCascadeBadgeText
+	promptbutton
+	verbosegivetmhm TM_BUBBLEBEAM
+	writetext MistyTMBubblebeamText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
+	end
+
+.Rematch
+	writetext MistyFightDoneText
+	yesorno
+	iffalse .End
+	writetext MistyRematchText
+	waitbutton
+	closetext
+	winlosstext MistyWinText, MistyLossText
+	loadtrainer MISTY, MISTY1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 TrainerSwimmerfDiana:
-	trainer SWIMMERF, DIANA, EVENT_BEAT_SWIMMERF_DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, 0, .Script
+	trainer SWIMMERF, DIANA, EVENT_BEAT_SWIMMERF_DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, SwimmerfDianaWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -95,7 +120,7 @@ TrainerSwimmerfDiana:
 	end
 
 TrainerSwimmerfBriana:
-	trainer SWIMMERF, BRIANA, EVENT_BEAT_SWIMMERF_BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, 0, .Script
+	trainer SWIMMERF, BRIANA, EVENT_BEAT_SWIMMERF_BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, SwimmerfBrianaWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -106,7 +131,7 @@ TrainerSwimmerfBriana:
 	end
 
 TrainerSwimmermParker:
-	trainer SWIMMERM, PARKER, EVENT_BEAT_SWIMMERM_PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, 0, .Script
+	trainer SWIMMERM, PARKER, EVENT_BEAT_SWIMMERM_PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, SwimmermParkerWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -250,24 +275,58 @@ MistyIntroText:
 	line "better not take me"
 	cont "too lightly."
 
-	para "My water-type"
-	line "#MON are tough!"
+	para "Trainers who want"
+	line "to turn pro have"
+	cont "to have a policy"
+	cont "about #MON!"
+
+	para "What is your"
+	line "approach when you"
+	cont "catch #MON?"
+
+	para "My policy is an"
+	line "all-out offensive"
+	cont "with water-type"
+	cont "#MON!"
 	done
 
-MistyWinLossText:
+MistyWinText:
 	text "MISTY: You really"
 	line "are good…"
 
 	para "I'll admit that"
 	line "you are skilled…"
+	done
 
-	para "Here you go. It's"
+MistyLossText:
+	text "See! This is the"
+	line "Water-type tough-"
+	cont "ness I was"
+	cont "talking about!"
+
+ReceivedCascadeBadgeText:
+	text "All right!"
+
+	para "You can have the"
+	line "CASCADEBADGE to"
+	cont "show you beat me!"
+	
+	para "<PLAYER> received"
 	line "CASCADEBADGE."
 	done
 
-ReceivedCascadeBadgeText:
-	text "<PLAYER> received"
-	line "CASCADEBADGE."
+MistyCascadeBadgeText:
+	text "Here is another"
+	line "memento from this"
+	cont "battle. Take it!"
+	done
+
+MistyTMBubblebeamText:
+	text "TM11 teaches"
+	line "BUBBLEBEAM!"
+
+	para "Use it on an"
+	line "aquatic #MON!"
 	done
 
 MistyFightDoneText:
@@ -281,7 +340,19 @@ MistyFightDoneText:
 
 	para "I can battle some"
 	line "skilled trainers."
+
+	para "Let me test again"
+	line "how good you are!"
 	done
+
+MistyRematchText:
+	text "I've heard a lot"
+	line "of good things"
+	cont "about you since"
+	
+	para "our last battle,"
+	line "don't make me wait!"
+	done 
 
 SwimmerfDianaSeenText:
 	text "Sorry about being"
@@ -292,6 +363,11 @@ SwimmerfDianaSeenText:
 SwimmerfDianaBeatenText:
 	text "I give up! You're"
 	line "the winner!"
+	done
+
+SwimmerfDianaWonText:
+	text "Look at this!"
+	line "I am a winner!"
 	done
 
 SwimmerfDianaAfterBattleText:
@@ -308,6 +384,11 @@ SwimmerfBrianaSeenText:
 SwimmerfBrianaBeatenText:
 	text "Ooh, you calmly"
 	line "disposed of me…"
+	done
+
+SwimmerfBrianaWonText:
+	text "Getting under your"
+	line "skin was easy…"
 	done
 
 SwimmerfBrianaAfterBattleText:
@@ -328,6 +409,10 @@ SwimmermParkerSeenText:
 
 SwimmermParkerBeatenText:
 	text "This can't be…"
+	done
+
+SwimmermParkerWonText:
+	text "Yes! I knew it!"
 	done
 
 SwimmermParkerAfterBattleText:

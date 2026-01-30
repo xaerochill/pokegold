@@ -29,20 +29,20 @@ BlackthornGym1FBouldersCallback:
 BlackthornGymClairScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_RISINGBADGE
-	iftrue .AlreadyGotBadge
+	checktmhm TM_DRAGONBREATH
+	iftrue .Rematch
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .FightDone
 	writetext ClairIntroText
 	waitbutton
 	closetext
-	winlosstext ClairWinText, 0
+	winlosstext ClairWinText, ClairLossText
 	loadtrainer CLAIR, CLAIR1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR
 	opentext
-	writetext ClairText_GoToDragonsDen
+	writetext ClairDragonsDenText
 	waitbutton
 	closetext
 	setevent EVENT_BEAT_COOLTRAINERM_PAUL
@@ -53,41 +53,30 @@ BlackthornGymClairScript:
 	clearevent EVENT_MAHOGANY_MART_OWNERS
 	setevent EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
 	clearevent EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
-	end
-
 .FightDone:
-	checkitem DRAGON_FANG
-	iftrue .HasDragonFang
-	writetext ClairText_WhatsTheMatter
+	writetext ClairTooMuchText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-.HasDragonFang:
-	writetext BlackthornGymClairText_Cheat
+.Rematch:
+	writetext ClairFightDoneText
+	yesorno
+	iffalse .End
+	writetext ClairRematchText
 	waitbutton
 	closetext
+	winlosstext ClairWinText, ClairLossText
+	loadtrainer CLAIR, CLAIR1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
 	end
 
-.AlreadyGotBadge:
-	checkevent EVENT_GOT_TM24_DRAGONBREATH
-	iftrue .GotTM24
-	writetext BlackthornGymClairText_YouKeptMeWaiting
-	promptbutton
-	verbosegiveitem TM_DRAGONBREATH
-	iffalse .BagFull
-	setevent EVENT_GOT_TM24_DRAGONBREATH
-	writetext BlackthornGymClairText_DescribeTM24
-	waitbutton
+.End:
 	closetext
-	end
-
-.GotTM24:
-	writetext BlackthornGymClairText_League
-	waitbutton
-
-.BagFull:
-	closetext
+	turnobject PLAYER, DOWN
 	end
 
 TrainerCooltrainermPaul:
@@ -148,9 +137,10 @@ BlackthornGymStatue:
 	jumpstd GymStatue2Script
 
 ClairIntroText:
-	text "I am CLAIR. I'm"
-	line "the world's best"
-	cont "dragon master."
+	text "I am CLAIR."
+
+	para "The world's best"
+	line "dragon master."
 
 	para "I can hold my own"
 	line "against even the"
@@ -164,8 +154,8 @@ ClairIntroText:
 	para "…Fine."
 	line "Let's do it!"
 
-	para "As a trainer, I"
-	line "will use my full"
+	para "As a GYM LEADER,"
+	line "I will use my full"
 
 	para "power against any"
 	line "opponent!"
@@ -179,7 +169,13 @@ ClairWinText:
 	cont "some mistake…"
 	done
 
-ClairText_GoToDragonsDen:
+ClairLossText:
+	text "Come on! You've"
+	line "got to get"
+	cont "tougher than this!"
+	done
+
+ClairDragonsDenText:
 	text "I won't admit"
 	line "this."
 
@@ -197,108 +193,42 @@ ClairText_GoToDragonsDen:
 	line "a place called"
 	cont "DRAGON'S DEN."
 
-	para "Go and bring me"
-	line "the DRAGON FANG"
+	para "There is a small"
+	line "shrine at its"
 
-	para "from deep inside"
-	line "the DEN."
+	para "center."
+	line "Go there."
 
-	para "That is the test"
-	line "to be accepted as"
+	para "If you can prove"
+	line "that you've lost"
 
-	para "a true dragon"
-	line "user."
+	para "your lazy ideals,"
+	line "I will recognize"
 
-	para "If you can do"
-	line "that, I will ac-"
-	cont "cept you as a"
-	cont "worthy trainer."
-
-	para "Until then, I"
-	line "won't give you a"
-	cont "BADGE."
+	para "you as a trainer"
+	line "worthy of a GYM"
+	cont "BADGE!"
 	done
 
-ClairText_WhatsTheMatter:
-	text "CLAIR: What's"
-	line "the matter?"
+ClairTooMuchText:
+	text "What's the matter?"
 
-	para "This errand won't"
-	line "be hard for you,"
-
-	para "unless your vic-"
-	line "tory was a fluke."
+	para "Is it too much to"
+	line "expect of you?"
 	done
 
-BlackthornGymClairText_Cheat:
-	text "CLAIR: You did"
-	line "not get that at"
-	cont "DRAGON'S DEN."
-
-	para "Trying to cheat"
-	line "like that…"
-
-	para "I'm disappointed"
-	line "in you."
+ClairFightDoneText:
+	text "… You are here."
+	line "Now let's battle!"
 	done
 
-BlackthornGymClairText_YouKeptMeWaiting:
-	text "CLAIR: You have"
-	line "proven yourself to"
-	cont "me."
-
-	para "I want you to have"
-	line "this TM."
-	done
-
-BlackthornGymText_ReceivedTM24: ; unreferenced
-	text "<PLAYER> received"
-	line "TM24."
-	done
-
-BlackthornGymClairText_DescribeTM24:
-	text "That contains"
-	line "DRAGONBREATH."
-
-	para "No, it doesn't"
-	line "have anything to"
-	cont "do with my breath."
-
-	para "If you don't want"
-	line "it, you don't have"
-	cont "to take it."
-	done
-
-BlackthornGymClairText_League:
-	text "So you've col-"
-	line "lected all the"
-	cont "BADGES."
-
-	para "Your destination"
-	line "is the #MON"
-
-	para "LEAGUE in INDIGO"
-	line "PLATEAU."
-
-	para "Do you know how to"
-	line "get there?"
-
-	para "From here, go to"
-	line "NEW BARK TOWN."
-
-	para "Then SURF east."
-	line "The route there is"
-	cont "very tough."
-
-	para "Don't you dare"
-	line "lose at the #-"
-	cont "MON LEAGUE!"
-
-	para "If you do, I'll"
-	line "feel even worse"
-
-	para "about having lost"
-	line "to you!"
+ClairRematchText:
+	text "What I was missing"
+	line "until now…"
+	
+	para "Battling with you"
+	line "made me realize"
+	cont "what it is."
 	done
 
 CooltrainermPaulSeenText:
@@ -310,15 +240,21 @@ CooltrainermPaulSeenText:
 	done
 
 CooltrainermPaulBeatenText:
-	text "I'm disappointed."
+	text "My dragon #MON"
+	line "lost?"
+	done
+
+CooltrainermPaulWonText:
+	text "My dragon #MON"
+	line "are the toughest!"
 	done
 
 CooltrainermPaulAfterBattleText:
-	text "You've met LANCE,"
-	line "the dragon master?"
+	text "LANCE told you"
+	line "that he'd like to"
 
-	para "That just can't be"
-	line "true."
+	para "see you again?"
+	line "Not a chance!"
 	done
 
 CooltrainermMikeSeenText:
@@ -329,6 +265,10 @@ CooltrainermMikeSeenText:
 
 CooltrainermMikeBeatenText:
 	text "That's odd."
+	done
+
+CooltrainermMikeWonText:
+	text "Quick maths!"
 	done
 
 CooltrainermMikeAfterBattleText:
@@ -355,6 +295,10 @@ CooltrainerfLolaSeenText:
 
 CooltrainerfLolaBeatenText:
 	text "Way to go!"
+	done
+
+CooltrainerfLolaWonText:
+	text "That was close!"
 	done
 
 CooltrainerfLolaAfterBattleText:
@@ -420,8 +364,8 @@ BlackthornGym1F_MapEvents:
 	bg_event  6, 15, BGEVENT_READ, BlackthornGymStatue
 
 	def_object_events
-	object_event  5,  3, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
-	object_event  6,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
-	object_event  1, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
-	object_event  9,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1
+	object_event  5,  3, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
+	object_event  6,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
+	object_event  1, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
+	object_event  9,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1
 	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornGymGuideScript, -1

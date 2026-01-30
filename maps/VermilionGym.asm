@@ -15,10 +15,10 @@ VermilionGymSurgeScript:
 	opentext
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .FightDone
-	writetext LtSurgeIntroText
+	writetext LtSurgeBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext LtSurgeWinLossText, 0
+	winlosstext LtSurgeWinText, LtSurgeLossText
 	loadtrainer LT_SURGE, LT_SURGE1
 	startbattle
 	reloadmapafterbattle
@@ -31,15 +31,35 @@ VermilionGymSurgeScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_THUNDERBADGE
+.FightDone:
+	checktmhm TM_THUNDERBOLT
+	iftrue .Rematch
 	writetext LtSurgeThunderBadgeText
+	promptbutton
+	verbosegivetmhm TM_THUNDERBOLT
+	writetext LtSurgeTMThunderboltText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-.FightDone:
-	writetext LtSurgeFightDoneText
+.Rematch
+	writetext LtSurgeAfterBattleText
+	yesorno
+	iffalse .End
+	writetext LtSurgeRematchText
 	waitbutton
 	closetext
+	winlosstext LtSurgeWinText, LtSurgeLossText
+	loadtrainer LT_SURGE, LT_SURGE1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 TrainerGentlemanGregory:
@@ -102,61 +122,90 @@ VermilionGymStatue:
 	gettrainername STRING_BUFFER_4, LT_SURGE, LT_SURGE1
 	jumpstd GymStatue2Script
 
-LtSurgeIntroText:
-	text "SURGE: Hey, little"
-	line "boy!"
+LtSurgeBeforeBattleText:
+	text "Hey, kid! What do"
+	line "you think you're"
+	cont "doing here?"
 
-	para "I have to hand it"
-	line "to you. It may not"
+	para "You won't live"
+	line "long in combat!"
+	cont "That's for sure!"
 
-	para "be very smart to"
-	line "challenge me, but"
-	cont "it takes guts!"
+	para "I tell you kid,"
+	line "electric #MON"
+	cont "saved me during"
+	cont "the war!"
 
-	para "When it comes to"
-	line "electric #MON,"
-	cont "I'm number one!"
+	para "They zapped my"
+	line "enemies into"
+	cont "paralysis!"
 
-	para "I've never lost on"
-	line "the battlefield."
-
-	para "I'll zap you just"
-	line "like I did my"
-	cont "enemies in war!"
+	para "The same as I'll"
+	line "do to you!"
 	done
 
-LtSurgeWinLossText:
+LtSurgeWinText:
 	text "SURGE: Arrrgh!"
 	line "You are strong!"
+	done
 
-	para "OK, boy. You get"
-	line "THUNDERBADGE!"
+LtSurgeLossText:
+	text "SURGE: Oh yeah!"
+	line "I'm strong!"
 	done
 
 ReceivedThunderBadgeText:
-	text "<PLAYER> received"
+	text "Whoa!"
+
+	para "You're the real"
+	line "deal, kid!"
+
+	para "Fine then, take"
+	line "the THUNDERBADGE!"
+	
+	para "<PLAYER> received"
 	line "THUNDERBADGE."
 	done
 
 LtSurgeThunderBadgeText:
-	text "SURGE: THUNDER-"
-	line "BADGE increases"
-	cont "#MON's speed. "
-
-	para "Consider it proof"
+	text "Consider it proof"
 	line "that you defeated"
 
 	para "me. You wear it"
 	line "proudly, hear?"
+
+	para "You're special,"
+	line "kid! Take this!"
 	done
 
-LtSurgeFightDoneText:
-	text "SURGE: Hey, boy!"
+LtSurgeTMThunderboltText:
+	text "TM24 contains"
+	line "THUNDERBOLT! Teach"
+	cont "it to an electric"
+	cont "#MON!"
+	done
+
+LtSurgeAfterBattleText:
+	text "SURGE: Hey, kid!"
 	line "Still slugging and"
 	cont "chugging away?"
 
 	para "My #MON and I"
 	line "are still at it!"
+
+	para "Hey! The promise"
+	line "we made! Let's"
+	cont "battle again!"
+	done
+
+LtSurgeRematchText:
+	text "SURGE: No need for"
+	line "introductions"
+	cont "this time!"
+	
+	para "Trainers like us"
+	line "have no need for"
+	cont "words! Let's go!"
 	done
 
 GentlemanGregorySeenText:

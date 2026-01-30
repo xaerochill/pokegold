@@ -17,44 +17,55 @@ MahoganyGymPryceScript:
 	opentext
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .FightDone
-	writetext PryceText_Intro
+	writetext PryceIntroText
 	waitbutton
 	closetext
-	winlosstext PryceText_Impressed, 0
+	winlosstext PryceWinText, PryceLossText
 	loadtrainer PRYCE, PRYCE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
 	opentext
-	writetext Text_ReceivedGlacierBadge
+	writetext ReceivedGlacierBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_GLACIERBADGE
 	readvar VAR_BADGES
 	scall MahoganyGymActivateRockets
 .FightDone:
-	checkevent EVENT_GOT_TM16_ICY_WIND
-	iftrue PryceScript_Defeat
+	checktmhm TM_ICY_WIND
+	iftrue .Rematch
 	setevent EVENT_BEAT_SKIER_ROXANNE
 	setevent EVENT_BEAT_SKIER_CLARISSA
 	setevent EVENT_BEAT_BOARDER_RONALD
 	setevent EVENT_BEAT_BOARDER_BRAD
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
-	writetext PryceText_GlacierBadgeSpeech
+	writetext PryceGlacierBadgeText
 	promptbutton
-	verbosegiveitem TM_ICY_WIND
-	iffalse MahoganyGym_NoRoomForIcyWind
-	setevent EVENT_GOT_TM16_ICY_WIND
-	writetext PryceText_IcyWindSpeech
+	verbosegivetmhm TM_ICY_WIND
+	writetext PryceTMIcyWindText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-PryceScript_Defeat:
-	writetext PryceText_CherishYourPokemon
+.Rematch:
+	writetext PryceFightDoneText
+	yesorno
+	iffalse .End
+	writetext PryceRematchText
 	waitbutton
-MahoganyGym_NoRoomForIcyWind:
 	closetext
+	winlosstext PryceWinText, PryceLossText
+	loadtrainer PRYCE, PRYCE1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End:
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 MahoganyGymActivateRockets:
@@ -69,7 +80,7 @@ MahoganyGymActivateRockets:
 	jumpstd RadioTowerRocketsScript
 
 TrainerSkierRoxanne:
-	trainer SKIER, ROXANNE, EVENT_BEAT_SKIER_ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, .Script
+	trainer SKIER, ROXANNE, EVENT_BEAT_SKIER_ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, SkierRoxanneWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -80,7 +91,7 @@ TrainerSkierRoxanne:
 	end
 
 TrainerSkierClarissa:
-	trainer SKIER, CLARISSA, EVENT_BEAT_SKIER_CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, .Script
+	trainer SKIER, CLARISSA, EVENT_BEAT_SKIER_CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, SkierClarissaWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -91,7 +102,7 @@ TrainerSkierClarissa:
 	end
 
 TrainerBoarderRonald:
-	trainer BOARDER, RONALD, EVENT_BEAT_BOARDER_RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, .Script
+	trainer BOARDER, RONALD, EVENT_BEAT_BOARDER_RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, BoarderRonaldWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -102,7 +113,7 @@ TrainerBoarderRonald:
 	end
 
 TrainerBoarderBrad:
-	trainer BOARDER, BRAD, EVENT_BEAT_BOARDER_BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, .Script
+	trainer BOARDER, BRAD, EVENT_BEAT_BOARDER_BRAD, BoarderBradSeenText, BoarderBradBeatenText, BoarderBradWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -113,7 +124,7 @@ TrainerBoarderBrad:
 	end
 
 TrainerBoarderDouglas:
-	trainer BOARDER, DOUGLAS, EVENT_BEAT_BOARDER_DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, .Script
+	trainer BOARDER, DOUGLAS, EVENT_BEAT_BOARDER_DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, BoarderDouglasWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -147,7 +158,7 @@ MahoganyGymStatue:
 	gettrainername STRING_BUFFER_4, PRYCE, PRYCE1
 	jumpstd GymStatue2Script
 
-PryceText_Intro:
+PryceIntroText:
 	text "#MON have many"
 	line "experiences in"
 
@@ -178,7 +189,7 @@ PryceText_Intro:
 	line "my power!"
 	done
 
-PryceText_Impressed:
+PryceWinText:
 	text "Ah, I am impressed"
 	line "by your prowess."
 
@@ -187,22 +198,23 @@ PryceText_Impressed:
 
 	para "will overcome all"
 	line "life's obstacles."
-
-	para "You are worthy of"
-	line "this BADGE!"
 	done
 
-Text_ReceivedGlacierBadge:
-	text "<PLAYER> received"
+PryceLossText:
+	text "Just as I"
+	line "envisioned."
+	done
+
+ReceivedGlacierBadgeText:
+	text "You are worthy of"
+	line "this BADGE!"
+	
+	para "<PLAYER> received"
 	line "GLACIERBADGE."
 	done
 
-PryceText_GlacierBadgeSpeech:
-	text "That BADGE will"
-	line "raise the SPECIAL"
-	cont "stats of #MON."
-
-	para "It also lets your"
+PryceGlacierBadgeText:
+	text "It lets your"
 	line "#MON use WHIRL-"
 	cont "POOL to get across"
 	cont "real whirlpools."
@@ -211,7 +223,7 @@ PryceText_GlacierBadgeSpeech:
 	line "a gift from me!"
 	done
 
-PryceText_IcyWindSpeech:
+PryceTMIcyWindText:
 	text "That TM contains"
 	line "ICY WIND."
 
@@ -223,7 +235,7 @@ PryceText_IcyWindSpeech:
 	cont "winter."
 	done
 
-PryceText_CherishYourPokemon:
+PryceFightDoneText:
 	text "When the ice and"
 	line "snow melt, spring"
 	cont "arrives."
@@ -236,6 +248,21 @@ PryceText_CherishYourPokemon:
 
 	para "Cherish your time"
 	line "together!"
+
+	para "This must have"
+	line "some purpose that"
+	cont "we meet again."
+	
+	para "Why not fight now?"
+	done
+
+PryceRematchText:
+	text "Finally."
+	line "No need for words."
+	
+	para "A #MON battle"
+	line "is the way for us"
+	cont "to communicate."
 	done
 
 BoarderRonaldSeenText:
@@ -246,6 +273,11 @@ BoarderRonaldSeenText:
 
 BoarderRonaldBeatenText:
 	text "Darn. I couldn't"
+	line "do a thing."
+	done
+
+BoarderRonaldWonText:
+	text "Ha! You couldn't"
 	line "do a thing."
 	done
 
@@ -274,6 +306,11 @@ BoarderBradBeatenText:
 	line "serious we are?"
 	done
 
+BoarderBradWonText:
+	text "You need to be"
+	line "serious here!"
+	done
+
 BoarderBradAfterBattleText:
 	text "This GYM is great."
 	line "I love boarding"
@@ -288,6 +325,11 @@ BoarderDouglasSeenText:
 BoarderDouglasBeatenText:
 	text "OK. I'll tell you"
 	line "PRYCE's secret."
+	done
+
+BoarderDouglasWonText:
+	text "But I will not"
+	line "tell it to you!"
 	done
 
 BoarderDouglasAfterBattleText:
@@ -314,6 +356,11 @@ SkierRoxanneBeatenText:
 	line "you in skiing!"
 	done
 
+SkierRoxanneWonText:
+	text "Pay more attention"
+	line "next time!"
+	done
+
 SkierRoxanneAfterBattleText:
 	text "If you don't skate"
 	line "with precision,"
@@ -330,6 +377,11 @@ SkierClarissaSeenText:
 SkierClarissaBeatenText:
 	text "No! You made me"
 	line "wipe out!"
+	done
+
+SkierClarissaWonText:
+	text "Yay! This is how"
+	line "you do it!"
 	done
 
 SkierClarissaAfterBattleText:

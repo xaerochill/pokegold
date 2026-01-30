@@ -12,15 +12,15 @@ FuchsiaGym_MapScripts:
 	def_callbacks
 
 FuchsiaGymJanineScript:
+	faceplayer
+	opentext
 	checkflag ENGINE_SOULBADGE
 	iftrue .FightDone
 	applymovement FUCHSIAGYM_JANINE, Movement_NinjaSpin
-	faceplayer
-	opentext
-	writetext JanineText_DisappointYou
+	writetext JanineBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext JanineText_ToughOne, 0
+	winlosstext JanineWinText, JanineLossText
 	loadtrainer JANINE, JANINE1
 	startbattle
 	reloadmapafterbattle
@@ -35,26 +35,39 @@ FuchsiaGymJanineScript:
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special LoadUsedSpritesGFX
 	opentext
-	writetext Text_ReceivedSoulBadge
+	writetext ReceivedSoulBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_SOULBADGE
-	sjump .AfterBattle
 .FightDone:
-	faceplayer
-	opentext
-.AfterBattle:
-	checkevent EVENT_GOT_TM06_TOXIC
-	iftrue .AfterTM
-	writetext JanineText_ToxicSpeech
+	checktmhm TM_TOXIC
+	iftrue .Rematch
+	writetext JasmineSoulBadgeText
 	promptbutton
-	verbosegiveitem TM_TOXIC
-	iffalse .AfterTM
-	setevent EVENT_GOT_TM06_TOXIC
-.AfterTM:
-	writetext JanineText_ApplyMyself
+	verbosegivetmhm TM_TOXIC
+	writetext JasmineTMToxicText
 	waitbutton
 	closetext
+	turnobject PLAYER, UP
+	end
+
+.Rematch
+	writetext JanineAfterBattleText
+	yesorno
+	iffalse .End
+	writetext JanineRematchText
+	waitbutton
+	closetext
+	winlosstext JanineWinText, JanineLossText
+	loadtrainer JANINE, JANINE1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, UP
+	end
+
+.End
+	closetext
+	turnobject PLAYER, UP
 	end
 
 LassAliceScript:
@@ -69,10 +82,10 @@ LassAliceScript:
 	opentext
 	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue .AliceAfterScript
-	writetext LassAliceBeforeText
+	writetext LassAliceBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext LassAliceBeatenText, 0
+	winlosstext LassAliceBeatenText, LassAliceWonText
 	loadtrainer LASS, ALICE
 	startbattle
 	iftrue .AliceBecomesJanine
@@ -86,7 +99,7 @@ LassAliceScript:
 	end
 
 .AliceAfterScript:
-	writetext LassAliceAfterText
+	writetext LassAliceAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -103,10 +116,10 @@ LassLindaScript:
 	opentext
 	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue .LindaAfterScript
-	writetext LassLindaBeforeText
+	writetext LassLindaBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext LassLindaBeatenText, 0
+	winlosstext LassLindaBeatenText, LassLindaWonText
 	loadtrainer LASS, LINDA
 	startbattle
 	iftrue .LindaBecomesJanine
@@ -120,7 +133,7 @@ LassLindaScript:
 	end
 
 .LindaAfterScript:
-	writetext LassLindaAfterText
+	writetext LassLindaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -137,10 +150,10 @@ PicnickerCindyScript:
 	opentext
 	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue .CindyAfterScript
-	writetext PicnickerCindyBeforeText
+	writetext PicnickerCindyBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext PicnickerCindyBeatenText, 0
+	winlosstext PicnickerCindyBeatenText, PicnickerCindyWonText
 	loadtrainer PICNICKER, CINDY
 	startbattle
 	iftrue .CindyBecomesJanine
@@ -154,7 +167,7 @@ PicnickerCindyScript:
 	end
 
 .CindyAfterScript:
-	writetext PicnickerCindyAfterText
+	writetext PicnickerCindyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -171,10 +184,10 @@ CamperBarryScript:
 	opentext
 	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue .BarryAfterScript
-	writetext CamperBarryBeforeText
+	writetext CamperBarryBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext CamperBarryBeatenText, 0
+	winlosstext CamperBarryBeatenText, CamperBarryWonText
 	loadtrainer CAMPER, BARRY
 	startbattle
 	iftrue .BarryBecomesJanine
@@ -188,7 +201,7 @@ CamperBarryScript:
 	end
 
 .BarryAfterScript:
-	writetext CamperBarryAfterText
+	writetext CamperBarryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -233,7 +246,7 @@ Movement_NinjaSpin:
 	turn_head DOWN
 	step_end
 
-JanineText_DisappointYou:
+JanineBeforeBattleText:
 	text "Fufufufu…"
 
 	para "I'm sorry to dis-"
@@ -247,33 +260,27 @@ JanineText_DisappointYou:
 	line "GYM, that's me!"
 	done
 
-JanineText_ToughOne:
+JanineWinText:
 	text "JANINE: You're a"
 	line "tough one. You"
 	cont "definitely won…"
-
-	para "Here's SOULBADGE."
-	line "Take it."
 	done
 
-Text_ReceivedSoulBadge:
-	text "<PLAYER> received"
+JanineLossText:
+	text "JANINE: I am"
+	line "Janine! Remember"
+	cont "this name!"
+	done
+
+ReceivedSoulBadgeText:
+	text "Here's SOULBADGE."
+	line "Take it."
+
+	para "<PLAYER> received"
 	line "SOULBADGE."
 	done
 
-JanineText_ToxicSpeech:
-	text "JANINE: You're so"
-	line "tough! I have a"
-	cont "special gift!"
-
-	para "It's TOXIC, a pow-"
-	line "erful poison that"
-
-	para "steadily saps the"
-	line "victim's HP."
-	done
-
-JanineText_ApplyMyself:
+JasmineSoulBadgeText:
 	text "JANINE: I'm going"
 	line "to really apply"
 
@@ -285,7 +292,46 @@ JanineText_ApplyMyself:
 	cont "Father and you!"
 	done
 
-LassAliceBeforeText:
+JasmineTMToxicText:
+	text "JANINE: You're so"
+	line "tough! I have a"
+	cont "special gift!"
+
+	para "It's TOXIC, a pow-"
+	line "erful poison that"
+
+	para "steadily saps the"
+	line "victim's HP."
+	done
+
+JanineAfterBattleText:
+	text "While I admire"
+	line "your victory, I'm"
+	cont "disappointed that"
+	cont "I lost…"
+	
+	para "I'm still not"
+	line "a full-fledged"
+	cont "Trainer yet."
+	
+	para "I need to really"
+	line "apply myself and"
+	line "improve my skills."
+
+	para "I want to become"
+	line "better than both"
+	cont "Father and you!"
+
+	para "Let#s battle"
+	line "here again!"
+	done
+
+JanineRematchText:
+	text "I am going to"
+	line "avenge our honor!"
+	done
+
+LassAliceBeforeBattleText:
 	text "Fufufu!"
 
 	para "I'm JANINE, the"
@@ -299,13 +345,18 @@ LassAliceBeatenText:
 	text "I had you fooled…"
 	done
 
-LassAliceAfterText:
+LassAliceWonText:
+	text "Gotcha again,"
+	line "sucker!"
+	done
+
+LassAliceAfterBattleText:
 	text "How will you dis-"
 	line "tinguish our real"
 	cont "LEADER?"
 	done
 
-LassLindaBeforeText:
+LassLindaBeforeBattleText:
 	text "Fooled you!"
 	line "Hahaha!"
 	done
@@ -315,12 +366,17 @@ LassLindaBeatenText:
 	line "You're not weak…"
 	done
 
-LassLindaAfterText:
+LassLindaWonText:
+	text "Hahaha!"
+	line "That was fun!"
+	done
+
+LassLindaAfterBattleText:
 	text "Well? Wasn't my"
 	line "disguise perfect?"
 	done
 
-PicnickerCindyBeforeText:
+PicnickerCindyBeforeBattleText:
 	text "I'm JANINE!"
 
 	para "How did you know I"
@@ -334,15 +390,20 @@ PicnickerCindyBeatenText:
 	line "I wanted to win!"
 	done
 
-PicnickerCindyAfterText:
+PicnickerCindyWonText:
+	text "Nice try but you"
+	line "are no good!"
+	done
+
+PicnickerCindyAfterBattleText:
 	text "You must be"
 	line "getting tired."
 	done
 
-CamperBarryBeforeText:
+CamperBarryBeforeBattleText:
 	text "Wahahaha!"
 
-	para "You betcha, dude."
+	para "You betcha!"
 	line "I'm JANINE!"
 	done
 
@@ -351,8 +412,13 @@ CamperBarryBeatenText:
 	line "right on! Dang!"
 	done
 
-CamperBarryAfterText:
-	text "Hey, dude. Was my"
+CamperBarryWonText:
+	text "My mental was"
+	line "right on!"
+	done
+
+CamperBarryAfterBattleText:
+	text "Hey, you. Was my"
 	line "disguise cute or"
 	cont "what, huh?"
 	done
@@ -395,6 +461,6 @@ FuchsiaGym_MapEvents:
 	object_event  1, 10, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
 	object_event  5,  7, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassAliceScript, -1
 	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
-	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
-	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
+	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
+	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
 	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuideScript, -1

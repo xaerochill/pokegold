@@ -19,13 +19,13 @@ EcruteakGymMortyScript:
 	writetext MortyIntroText
 	waitbutton
 	closetext
-	winlosstext MortyWinLossText, 0
+	winlosstext MortyWinText, MortyLossText
 	loadtrainer MORTY, MORTY1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
 	opentext
-	writetext Text_ReceivedFogBadge
+	writetext ReceivedFogBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_FOGBADGE
@@ -33,27 +33,38 @@ EcruteakGymMortyScript:
 	scall EcruteakGymActivateRockets
 	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 .FightDone:
-	checkevent EVENT_GOT_TM30_SHADOW_BALL
-	iftrue .GotShadowBall
+	checktmhm TM_SHADOW_BALL
+	iftrue .Rematch
 	setevent EVENT_BEAT_SAGE_JEFFREY
 	setevent EVENT_BEAT_SAGE_PING
 	setevent EVENT_BEAT_MEDIUM_MARTHA
 	setevent EVENT_BEAT_MEDIUM_GRACE
-	writetext MortyText_FogBadgeSpeech
+	writetext MortyFogBadgeText
 	promptbutton
-	verbosegiveitem TM_SHADOW_BALL
-	iffalse .NoRoomForShadowBall
-	setevent EVENT_GOT_TM30_SHADOW_BALL
-	writetext MortyText_ShadowBallSpeech
+	verbosegivetmhm TM_SHADOW_BALL
+	writetext MortyTMShadowBallText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-.GotShadowBall:
+.Rematch:
 	writetext MortyFightDoneText
+	yesorno
+	iffalse .End
+	writetext MortyRematchText
 	waitbutton
-.NoRoomForShadowBall:
 	closetext
+	winlosstext MortyWinText, MortyLossText
+	loadtrainer MORTY, MORTY1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End:
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 EcruteakGymActivateRockets:
@@ -143,12 +154,14 @@ MortyIntroText:
 	line "#MON have been"
 	cont "revered."
 
-	para "It's said that"
-	line "legendary #MON"
+	para "It's said that a"
+	line "rainbow-colored"
 
-	para "will appear to the"
-	line "truly powerful"
-	cont "trainers."
+	para "#MON will come"
+	line "down to appear"
+
+	para "before a truly"
+	line "powerful trainer."
 
 	para "I believed that"
 	line "tale, so I have"
@@ -166,45 +179,55 @@ MortyIntroText:
 	line "more, I could see"
 
 	para "a future in which"
-	line "I meet the legen-"
-	cont "dary #MON."
+	line "I meet the #MON"
+	cont "of rainbow colors."
 
 	para "You're going to"
 	line "help me reach that"
 	cont "level!"
 	done
 
-MortyWinLossText:
+MortyWinText:
 	text "I'm not good"
 	line "enough yet…"
-
-	para "All right. This"
-	line "BADGE is yours."
 	done
 
-Text_ReceivedFogBadge:
-	text "<PLAYER> received"
+MortyLossText:
+	text "I moved… one step"
+	line "ahead again."
+	done
+
+ReceivedFogBadgeText:
+	text  "I see…"
+
+	para "Your journey has"
+	line "taken you to far-"
+	cont "away places."
+
+	para "And you have wit-"
+	line "nessed much more"
+	cont "than I."
+	
+	para "All right. This"
+	line "BADGE is yours."
+	
+	para "<PLAYER> received"
 	line "FOGBADGE."
 	done
 
-MortyText_FogBadgeSpeech:
+MortyFogBadgeText:
 	text "By having FOG-"
-	line "BADGE, #MON up"
+	line "BADGE, #MON"
+	line "knowing SURF will"
 
-	para "to L50 will obey"
-	line "you."
-
-	para "Also, #MON that"
-	line "know SURF will be"
-
-	para "able to use that"
-	line "move anytime."
+	para "be able to use"
+	line "that move anytime."
 
 	para "I want you to have"
 	line "this too."
 	done
 
-MortyText_ShadowBallSpeech:
+MortyTMShadowBallText:
 	text "It's SHADOW BALL."
 	line "It causes damage"
 
@@ -216,18 +239,21 @@ MortyText_ShadowBallSpeech:
 	done
 
 MortyFightDoneText:
-	text "I see…"
+	text "If I fight with"
+	line "you next time, I"
+	cont "will be able to"
+	cont "see something new"
+	cont "again… I look"
+	cont "forward to it."
 
-	para "Your journey has"
-	line "taken you to far-"
-	cont "away places."
+	para "Let's try that"
+	line "one more time."
+	done
 
-	para "And you have wit-"
-	line "nessed much more"
-	cont "than I."
-
-	para "I envy you for"
-	line "that…"
+MortyRematchText:
+	text "The time has come"
+	line "to test the fruits"
+	cont "of my training…"
 	done
 
 SageJeffreySeenText:
@@ -249,9 +275,31 @@ SageJeffreyBeatenText:
 	line "experienced both."
 	done
 
+SageJeffreyWonText:
+	text "All we have to"
+	line "decide is what to"
+	cont "do with the time"
+	cont "given to us."
+	done
+
 SageJeffreyAfterBattleText:
 	text "Where did #MON"
-	line "come from?"
+	line "come from? Where"
+	cont "do they go after"
+	cont "they die?"
+
+	para "I think I know"
+	line "which #MON died"
+	cont "when the BRASS"
+	cont "TOWER burnt down"
+	cont "150 years ago:"
+
+	para "FLAREON, JOLTEON"
+	line "and VAPOREON."
+
+	para "I can sense their"
+	line "spirits but they"
+	cont "are different…"
 	done
 
 SagePingSeenText:
@@ -264,6 +312,10 @@ SagePingBeatenText:
 	text "Ah! Well done!"
 	done
 
+SagePingWonText:
+	text "Ah! Nice try!"
+	done
+
 SagePingAfterBattleText:
 	text "We use only ghost-"
 	line "type #MON."
@@ -271,6 +323,16 @@ SagePingAfterBattleText:
 	para "No normal-type"
 	line "attack can harm"
 	cont "them!"
+
+	para "They are deeply"
+	line "connected with"
+	cont "ECRUTEAK CITY's"
+	cont "history…"
+
+	para "Even before the"
+	line "BRASS TOWER was"
+	cont "built over 650"
+	cont "years ago!"
 	done
 
 MediumMarthaSeenText:
@@ -281,9 +343,21 @@ MediumMarthaBeatenText:
 	text "I, I, I lost!"
 	done
 
+MediumMarthaWonText:
+	text "I have no words."
+	done
+
 MediumMarthaAfterBattleText:
 	text "The one who wants"
 	line "to win most--will!"
+
+	para "Just like we did"
+	line "during the war…"
+
+	para "Without us or"
+	line "OKERA, all of"
+	cont "JOHTO would have"
+	cont "been doomed!"
 	done
 
 MediumGraceSeenText:
@@ -298,6 +372,11 @@ MediumGraceBeatenText:
 	text "Wha-what?"
 	done
 
+MediumGraceWonText:
+	text "If only your"
+	line "eyes could see."
+	done
+
 MediumGraceAfterBattleText:
 	text "Fine. I shall tell"
 	line "you the secret of"
@@ -307,6 +386,17 @@ MediumGraceAfterBattleText:
 
 	para "The path is right"
 	line "before our eyes!"
+
+	para "We mustn't stray"
+	line "stray from it!"
+
+	para "They destroyed so"
+	line "much in GOLDENROD"
+	cont "CITY when they"
+	cont "tore down our old"
+	cont "alluring buildings"
+	cont "to build their"
+	cont "monstrosities…"
 	done
 
 EcruteakGymGuideText:
@@ -328,6 +418,16 @@ EcruteakGymGuideWinText:
 	para "I was cowering in"
 	line "the corner out of"
 	cont "pure terror!"
+	done
+
+EcruteakGymClosedText:
+	text "MORTY, the GYM"
+	line "LEADER, is absent."
+
+	para "Sorry, but you'll"
+	line "have to leave."
+
+	para "Hohohoho."
 	done
 
 EcruteakGym_MapEvents:

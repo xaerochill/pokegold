@@ -19,7 +19,7 @@ CeladonGymErikaScript:
 	writetext ErikaBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext ErikaBeatenText, 0
+	winlosstext ErikaWinText, ErikaLossText
 	loadtrainer ERIKA, ERIKA1
 	startbattle
 	reloadmapafterbattle
@@ -29,26 +29,43 @@ CeladonGymErikaScript:
 	setevent EVENT_BEAT_BEAUTY_JULIA
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
 	opentext
-	writetext PlayerReceivedRainbowBadgeText
+	writetext ReceivedRainbowBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
 .FightDone:
-	checkevent EVENT_GOT_TM19_GIGA_DRAIN
-	iftrue .GotGigaDrain
-	writetext ErikaExplainTMText
+	checktmhm TM_GIGA_DRAIN
+	iftrue .Rematch
+	writetext ErikaRainbowBadgeText
 	promptbutton
-	verbosegiveitem TM_GIGA_DRAIN
-	iffalse .GotGigaDrain
-	setevent EVENT_GOT_TM19_GIGA_DRAIN
-.GotGigaDrain:
-	writetext ErikaAfterBattleText
+	verbosegivetmhm TM_GIGA_DRAIN
+	writetext ErikaTMGigaDrainText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
+	end
+
+.Rematch
+	writetext ErikaAfterBattleText
+	yesorno
+	iffalse .End
+	writetext ErikaRematchText
+	waitbutton
+	closetext
+	winlosstext ErikaWinText, ErikaLossText
+	loadtrainer ERIKA, ERIKA1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 TrainerLassMichelle:
-	trainer LASS, MICHELLE, EVENT_BEAT_LASS_MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, .Script
+	trainer LASS, MICHELLE, EVENT_BEAT_LASS_MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, LassMichelleWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -59,7 +76,7 @@ TrainerLassMichelle:
 	end
 
 TrainerPicnickerTanya:
-	trainer PICNICKER, TANYA, EVENT_BEAT_PICNICKER_TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, 0, .Script
+	trainer PICNICKER, TANYA, EVENT_BEAT_PICNICKER_TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, PicnickerTanyaWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -70,7 +87,7 @@ TrainerPicnickerTanya:
 	end
 
 TrainerBeautyJulia:
-	trainer BEAUTY, JULIA, EVENT_BEAT_BEAUTY_JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, 0, .Script
+	trainer BEAUTY, JULIA, EVENT_BEAT_BEAUTY_JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, BeautyJuliaWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -81,7 +98,7 @@ TrainerBeautyJulia:
 	end
 
 TrainerTwinsJoAndZoe1:
-	trainer TWINS, JOANDZOE1, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe1SeenText, TwinsJoAndZoe1BeatenText, 0, .Script
+	trainer TWINS, JOANDZOE1, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe1SeenText, TwinsJoAndZoe1BeatenText, TwinsJoAndZoe1WonText, .Script
 
 .Script:
 	endifjustbattled
@@ -92,7 +109,7 @@ TrainerTwinsJoAndZoe1:
 	end
 
 TrainerTwinsJoAndZoe2:
-	trainer TWINS, JOANDZOE2, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe2SeenText, TwinsJoAndZoe2BeatenText, 0, .Script
+	trainer TWINS, JOANDZOE2, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe2SeenText, TwinsJoAndZoe2BeatenText, TwinsJoAndZoe2WonText, .Script
 
 .Script:
 	endifjustbattled
@@ -138,30 +155,37 @@ ErikaBeforeBattleText:
 	line "shall not lose."
 	done
 
-ErikaBeatenText:
+ErikaWinText:
 	text "ERIKA: Oh!"
 	line "I concede defeat…"
 
 	para "You are remarkably"
 	line "strong…"
-
-	para "I shall give you"
-	line "RAINBOWBADGE…"
 	done
 
-PlayerReceivedRainbowBadgeText:
-	text "<PLAYER> received"
+ErikaLossText:
+	text "ERIKA: I feared"
+	line "I would doze off."
+	done
+
+ReceivedRainbowBadgeText:
+	text "I shall give you"
+	line "RAINBOWBADGE…"
+	
+	para "<PLAYER> received"
 	line "RAINBOWBADGE."
 	done
 
-ErikaExplainTMText:
+ErikaRainbowBadgeText:
 	text "ERIKA: That was a"
 	line "delightful match."
 
 	para "I felt inspired."
 	line "Please, I wish you"
 	cont "to have this TM."
+	done
 
+ErikaTMGigaDrainText:
 	para "It is GIGA DRAIN."
 
 	para "It is a wonderful"
@@ -187,24 +211,30 @@ ErikaAfterBattleText:
 	line "to do better…"
 	done
 
+ErikaRematchText:
+	text "How are you? Good"
+	line "to see you again!"
+	
+	para "Let's battle!"
+	done
+
 LassMichelleSeenText:
-	text "Wait! Only girls"
-	line "are allowed here!"
+	text "Do you think a"
+	line "girls-only GYM"
+	cont "is rare?"
 	done
 
 LassMichelleBeatenText:
 	text "Oh, bleah!"
 	done
 
+LassMichelleWonText:
+	text "Oh, yeah!"
+	done
+
 LassMichelleAfterBattleText:
-	text "We don't dislike"
-	line "boys or anything."
-
-	para "But there are"
-	line "certain subjects"
-
-	para "that only girls"
-	line "can talk about."
+	text "I just got care-"
+	line "less, that's all!"
 	done
 
 PicnickerTanyaSeenText:
@@ -215,6 +245,11 @@ PicnickerTanyaSeenText:
 
 PicnickerTanyaBeatenText:
 	text "Oh, that's it?"
+	done
+
+PicnickerTanyaWonText:
+	text "Oh, that's"
+	line "all you got?"
 	done
 
 PicnickerTanyaAfterBattleText:
@@ -235,6 +270,10 @@ BeautyJuliaBeatenText:
 	text "How annoying!"
 	done
 
+BeautyJuliaWonText:
+	text "How charming!"
+	done
+
 BeautyJuliaAfterBattleText:
 	text "How do I go about"
 	line "becoming ladylike"
@@ -251,6 +290,10 @@ TwinsJoAndZoe1BeatenText:
 	text "Oh… We lost…"
 	done
 
+TwinsJoAndZoe1WonText:
+	text "Hey, we won!"
+	done
+
 TwinsJoAndZoe1AfterBattleText:
 	text "ERIKA will get you"
 	line "back for us!"
@@ -263,6 +306,11 @@ TwinsJoAndZoe2SeenText:
 
 TwinsJoAndZoe2BeatenText:
 	text "We couldn't win…"
+	done
+
+TwinsJoAndZoe2WonText:
+	text "You could"
+	line "never win!"
 	done
 
 TwinsJoAndZoe2AfterBattleText:
@@ -285,8 +333,8 @@ CeladonGym_MapEvents:
 
 	def_object_events
 	object_event  5,  3, SPRITE_ERIKA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGymErikaScript, -1
-	object_event  7,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassMichelle, -1
-	object_event  2,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTanya, -1
-	object_event  3,  5, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBeautyJulia, -1
-	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe1, -1
-	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe2, -1
+	object_event  9,  5, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 4, TrainerLassMichelle, -1
+	object_event  4,  3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerPicnickerTanya, -1
+	object_event  0,  5, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 4, TrainerBeautyJulia, -1
+	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe1, -1
+	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe2, -1

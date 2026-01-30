@@ -16,15 +16,12 @@ SeafoamGymBlaineScript:
 	opentext
 	checkflag ENGINE_VOLCANOBADGE
 	iftrue .FightDone
-	writetext BlaineIntroText
+	writetext BlaineBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext BlaineWinLossText, 0
+	winlosstext BlaineWinText, BlaineLossText
 	loadtrainer BLAINE, BLAINE1
 	startbattle
-	iftrue .ReturnAfterBattle
-	appear SEAFOAMGYM_GYM_GUIDE
-.ReturnAfterBattle:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLAINE
 	opentext
@@ -32,15 +29,35 @@ SeafoamGymBlaineScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_VOLCANOBADGE
-	writetext BlaineAfterBattleText
+.FightDone:
+	checktmhm TM_FIRE_BLAST
+	iftrue .Rematch
+	writetext BlaineVolcanoBadgeText
+	promptbutton
+	verbosegivetmhm TM_FIRE_BLAST
+	writetext BlaineTMFireBlastText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-.FightDone:
-	writetext BlaineFightDoneText
+.Rematch
+	writetext BlaineAfterBattleText
+	yesorno
+	iffalse .End
+	writetext BlaineRematchText
 	waitbutton
 	closetext
+	winlosstext BlaineWinText, BlaineLossText
+	loadtrainer BLAINE, BLAINE1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 SeafoamGymGuideScript:
@@ -60,67 +77,88 @@ SeafoamGymGuideScript:
 	closetext
 	end
 
-BlaineIntroText:
-	text "BLAINE: Waaah!"
+BlaineBeforeBattleText:
+	text "BLAINE: Hah!"
 
-	para "My GYM in CINNABAR"
-	line "burned down."
+	para "I am BLAINE! I"
+	line "am the LEADER of"
+	cont "CINNABAR GYM!"
 
-	para "My fire-breathing"
-	line "#MON and I are"
+	para "My fiery #MON"
+	line "will incinerate"
+	cont "all challengers!"
 
-	para "homeless because"
-	line "of the volcano."
-
-	para "Waaah!"
-
-	para "But I'm back in"
-	line "business as a GYM"
-
-	para "LEADER here in"
-	line "this cave."
-
-	para "If you can beat"
-	line "me, I'll give you"
-	cont "a BADGE."
-
-	para "Ha! You'd better"
+	para "Hah! You better"
 	line "have BURN HEAL!"
 	done
 
-BlaineWinLossText:
-	text "BLAINE: Awesome."
-	line "I've burned out…"
+BlaineWinText:
+	text "BLAINE: I have"
+	line "burnt out!"
+	done
 
-	para "You've earned"
-	line "VOLCANOBADGE!"
+BlaineLossText:
+	text "BLAINE: Whoa hey!"
+	line "I'm a"
+	cont "raging inferno!"
 	done
 
 ReceivedVolcanoBadgeText:
-	text "<PLAYER> received"
+	text "You have earned"
+	line "the VOLCANOBADGE!"
+
+	para "<PLAYER> received"
 	line "VOLCANOBADGE."
 	done
 
-BlaineAfterBattleText:
-	text "BLAINE: I did lose"
-	line "this time, but I'm"
+BlaineVolcanoBadgeText:
+	text "BLAINE: Hah!"
 
-	para "going to win the"
-	line "next time."
+	para "The VOLCANOBADGE"
+	line "once heightened"
+	cont "SPECIAL abilities"
+	cont "of your #MON!"
 
-	para "When I rebuild my"
-	line "CINNABAR GYM,"
+	para "But badge boosts"
+	line "are now a thing of"
+	cont "the past…"
 
-	para "we'll have to have"
-	line "a rematch."
+	para "Here, you can"
+	line "have this instead!"
 	done
 
-BlaineFightDoneText:
-	text "BLAINE: My fire"
-	line "#MON will be"
+BlaineTMFireBlastText:
+	text "TM38 contains"
+	line "FIRE BLAST!"
 
-	para "even stronger."
-	line "Just you watch!"
+	para "Teach it to fire-"
+	line "type #MON!"
+
+	para "CHARMELEON or"
+	line "PONYTA would be"
+	cont "good bets!"
+
+	text "FIRE BLAST is the"
+	line "ultimate fire"
+	cont "technique!"
+
+	para "Don't waste it on"
+	line "water #MON!"
+	done
+
+BlaineAfterBattleText:
+	text "I did lose this"
+	line "time, but I'm"
+	cont "going to win"
+	cont "next time."
+
+	para "Let's have"
+	line "a rematch!"
+	done
+
+BlaineRematchText:
+	text "Whoa hey! I'm a"
+	line "raging inferno!"
 	done
 
 SeafoamGymGuideWinText:

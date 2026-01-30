@@ -13,10 +13,10 @@ PewterGymBrockScript:
 	opentext
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .FightDone
-	writetext BrockIntroText
+	writetext BrockBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext BrockWinLossText, 0
+	winlosstext BrockWinText, BrockLossText
 	loadtrainer BROCK, BROCK1
 	startbattle
 	reloadmapafterbattle
@@ -27,15 +27,35 @@ PewterGymBrockScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_BOULDERBADGE
+.FightDone:
+	checktmhm TM_ANCIENTPOWER
+	iftrue .Rematch
 	writetext BrockBoulderBadgeText
+	promptbutton
+	verbosegivetmhm TM_ANCIENTPOWER
+	writetext BrockTMBideText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-.FightDone:
-	writetext BrockFightDoneText
+.Rematch
+	writetext BrockAfterBattleText
+	yesorno
+	iffalse .End
+	writetext BrockRematchText
 	waitbutton
 	closetext
+	winlosstext BrockWinText, BrockLossText
+	loadtrainer BROCK, BROCK1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 TrainerCamperJerry:
@@ -73,32 +93,27 @@ PewterGymStatue:
 	gettrainername STRING_BUFFER_4, BROCK, BROCK1
 	jumpstd GymStatue2Script
 
-BrockIntroText:
-	text "BROCK: Wow, it's"
-	line "not often that we"
+BrockBeforeBattleText:
+	text "I'm BROCK!"
+	line "I'm PEWTER's GYM"
+	cont "LEADER!"
 
-	para "get a challenger"
-	line "from JOHTO."
+	para "I believe in rock"
+	line "hard defense and"
+	cont "determination!"
 
-	para "I'm BROCK, the"
-	line "PEWTER GYM LEADER."
+	para "That's why my"
+	line "#MON are all"
+	cont "the rock-type!"
 
-	para "I'm an expert on"
-	line "rock-type #MON."
+	para "Do you still want"
+	line "to challenge me?"
 
-	para "My #MON are im-"
-	line "pervious to most"
-
-	para "physical attacks."
-	line "You'll have a hard"
-
-	para "time inflicting"
-	line "any damage."
-
-	para "Come on!"
+	para "Fine then! Show"
+	line "me your best!"
 	done
 
-BrockWinLossText:
+BrockWinText:
 	text "BROCK: Your #-"
 	line "MON's powerful at-"
 	cont "tacks overcame my"
@@ -107,17 +122,30 @@ BrockWinLossText:
 	para "You're stronger"
 	line "than I expected…"
 
-	para "Go ahead--take"
-	line "this BADGE."
+	para "I took"
+	line "you for granted."
+	done
+
+BrockLossText:
+	text "BROCK:"
+	line "Looking good."
 	done
 
 ReceivedBoulderBadgeText:
-	text "<PLAYER> received"
+	text "As proof of your"
+	line "victory, I confer"
+	cont "on you this…"
+	
+	para "The official"
+	line "#MON LEAGUE"
+	cont "BOULDERBADGE."
+	
+	para "<PLAYER> received"
 	line "BOULDERBADGE."
 	done
 
 BrockBoulderBadgeText:
-	text "BROCK: <PLAYER>,"
+	text "BROCK: <PLAY_G>,"
 	line "thanks. I enjoyed"
 
 	para "battling you, even"
@@ -129,9 +157,21 @@ BrockBoulderBadgeText:
 
 	para "#MON even more"
 	line "powerful."
+
+	para "Wait! Take this"
+	line "with you!"
+	done
+	
+BrockTMBideText:
+	text "TM34 teaches BIDE!"
+	
+	para "Your #MON will"
+	line "absorb damage in"
+	cont "battle, then pay"
+	cont "it back double!"
 	done
 
-BrockFightDoneText:
+BrockAfterBattleText:
 	text "BROCK: The world"
 	line "is huge. There are"
 
@@ -142,6 +182,14 @@ BrockFightDoneText:
 	line "I'm going to be-"
 	cont "come a lot strong-"
 	cont "er too."
+
+	para "Want to battle"
+	line "me again?"
+	done
+
+BrockRematchText:
+	text "All right! Time to"
+	line "keep our promise!"
 	done
 
 CamperJerrySeenText:

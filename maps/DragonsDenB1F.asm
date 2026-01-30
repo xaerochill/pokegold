@@ -57,12 +57,11 @@ DragonsDenB1FDragonFangScript:
 	specialphonecall SPECIALCALL_MASTERBALL
 	writetext DragonShrineRisingBadgeExplanationText
 	promptbutton
-	verbosegiveitem TM_DRAGONBREATH, 1
-	iffalse .ClairLastText
-	setevent EVENT_GOT_TM24_DRAGONBREATH
+	checktmhm TM_DRAGONBREATH
+	iftrue .ClairLastText
+	verbosegivetmhm TM_DRAGONBREATH
 	writetext ClairText_DescribeDragonbreathDragonDen
 	promptbutton
-	sjump .ClairLastText
 .ClairLastText
 	writetext ClairText_CollectedAllBadges
 	waitbutton
@@ -148,22 +147,8 @@ DragonShrineRisingBadgeExplanationText:
 	line "move for climbing"
 	cont "waterfalls."
 
-	para "Also, all #MON"
-	line "will recognize you"
-
-	para "as a trainer and"
-	line "obey your every"
-
-	para "command without"
-	line "question."
-
 	para "I also want you to"
 	line "have this TM."
-	done
-
-Text_ReceivedTM24: ; unreferenced
-	text "<PLAYER> received"
-	line "TM24."
 	done
 
 ClairText_DescribeDragonbreathDragonDen:

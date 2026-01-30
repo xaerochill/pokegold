@@ -12,39 +12,50 @@ OlivineGymJasmineScript:
 	opentext
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .FightDone
-	writetext Jasmine_SteelTypeIntro
+	writetext JasmineIntroText
 	waitbutton
 	closetext
-	winlosstext Jasmine_BetterTrainer, 0
+	winlosstext JasmineWinText, JasmineLossText
 	loadtrainer JASMINE, JASMINE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
 	opentext
-	writetext Text_ReceivedMineralBadge
+	writetext ReceivedMineralBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MINERALBADGE
 	readvar VAR_BADGES
 	scall OlivineGymActivateRockets
 .FightDone:
-	checkevent EVENT_GOT_TM23_IRON_TAIL
-	iftrue .GotIronTail
-	writetext Jasmine_BadgeSpeech
+	checktmhm TM_IRON_TAIL
+	iftrue .Rematch
+	writetext JasmineMineralBadgeText
 	promptbutton
-	verbosegiveitem TM_IRON_TAIL
-	iffalse .NoRoomForIronTail
-	setevent EVENT_GOT_TM23_IRON_TAIL
-	writetext Jasmine_IronTailSpeech
+	verbosegivetmhm TM_IRON_TAIL
+	writetext JasmineTMIronTailText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-.GotIronTail:
-	writetext Jasmine_GoodLuck
+.Rematch:
+	writetext JasmineFightDoneText
+	yesorno
+	iffalse .End
+	writetext JasmineRematchText
 	waitbutton
-.NoRoomForIronTail:
 	closetext
+	winlosstext JasmineWinText, JasmineLossText
+	loadtrainer JASMINE, JASMINE1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End:
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 OlivineGymActivateRockets:
@@ -92,7 +103,7 @@ OlivineGymStatue:
 	gettrainername STRING_BUFFER_4, JASMINE, JASMINE1
 	jumpstd GymStatue2Script
 
-Jasmine_SteelTypeIntro:
+JasmineIntroText:
 	text "…Thank you for"
 	line "your help at the"
 	cont "LIGHTHOUSE…"
@@ -117,46 +128,66 @@ Jasmine_SteelTypeIntro:
 	para "…Um… May I begin?"
 	done
 
-Jasmine_BetterTrainer:
+JasmineWinText:
 	text "…You are a better"
 	line "trainer than me,"
 
 	para "in both skill and"
 	line "kindness."
+	done
 
-	para "In accordance with"
+JasmineLossText:
+	text "I'm glad… I won…"
+	done
+
+ReceivedMineralBadgeText:
+	text "In accordance with"
 	line "LEAGUE rules, I"
 
 	para "confer upon you"
 	line "this BADGE."
-	done
-
-Text_ReceivedMineralBadge:
-	text "<PLAYER> received"
+	
+	para "<PLAYER> received"
 	line "MINERALBADGE."
-	done
 
-Jasmine_BadgeSpeech:
-	text "MINERALBADGE"
-	line "raises #MON's"
-	cont "DEFENSE."
-
+JasmineMineralBadgeText:
 	para "…Um… Please take"
 	line "this too…"
 	done
 
-Text_ReceivedTM09: ; unreferenced
-	text "<PLAYER> received"
-	line "TM09."
-	done
-
-Jasmine_IronTailSpeech:
+JasmineTMIronTailText:
 	text "…You could use"
 	line "that TM to teach"
 	cont "IRON TAIL."
+
+	text "Your #MON will"
+	line "hit the target"
+	cont "with its hard tail"
+	cont "and occasionally"
+	cont "lower Defenses…"
 	done
 
-Jasmine_GoodLuck:
+JasmineFightDoneText:
+	text "Properly tempered"
+	line "steel won't be"
+	cont "made rusty by"
+	cont "things like this!"
+	
+	para "If you keep"
+	line "training without"
+	cont "giving up,"
+	
+	para "I'm sure we'll see"
+	line "each other again."
+
+	text "…Um… Since we're"
+	line "here already…"
+
+	para "May we please"
+	line "get started?"
+	done
+
+JasmineRematchText:
 	text "Um… I don't know"
 	line "how to say this,"
 	cont "but good luck…"

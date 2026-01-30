@@ -16,10 +16,10 @@ SaffronGymSabrinaScript:
 	opentext
 	checkflag ENGINE_MARSHBADGE
 	iftrue .FightDone
-	writetext SabrinaIntroText
+	writetext SabrinaBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext SabrinaWinLossText, 0
+	winlosstext SabrinaWinText, SabrinaLossText
 	loadtrainer SABRINA, SABRINA1
 	startbattle
 	reloadmapafterbattle
@@ -33,19 +33,39 @@ SaffronGymSabrinaScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MARSHBADGE
+.FightDone:
+	checktmhm TM_PSYWAVE
+	iftrue .Rematch
 	writetext SabrinaMarshBadgeText
+	promptbutton
+	verbosegivetmhm TM_PSYWAVE
+	writetext SabrinaTMPsywaveText
 	waitbutton
 	closetext
+	turnobject PLAYER, DOWN
 	end
 
-.FightDone:
-	writetext SabrinaFightDoneText
+.Rematch
+	writetext SabrinaAfterBattleText
+	yesorno
+	iffalse .End
+	writetext SabrinaRematchText
 	waitbutton
 	closetext
+	winlosstext SabrinaWinText, SabrinaLossText
+	loadtrainer SABRINA, SABRINA1
+	startbattle
+	reloadmapafterbattle
+	turnobject PLAYER, DOWN
+	end
+
+.End
+	closetext
+	turnobject PLAYER, DOWN
 	end
 
 TrainerMediumRebecca:
-	trainer MEDIUM, REBECCA, EVENT_BEAT_MEDIUM_REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, 0, .Script
+	trainer MEDIUM, REBECCA, EVENT_BEAT_MEDIUM_REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, MediumRebeccaWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -56,7 +76,7 @@ TrainerMediumRebecca:
 	end
 
 TrainerPsychicFranklin:
-	trainer PSYCHIC_T, FRANKLIN, EVENT_BEAT_PSYCHIC_FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, 0, .Script
+	trainer PSYCHIC_T, FRANKLIN, EVENT_BEAT_PSYCHIC_FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, PsychicFranklinWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -67,7 +87,7 @@ TrainerPsychicFranklin:
 	end
 
 TrainerMediumDoris:
-	trainer MEDIUM, DORIS, EVENT_BEAT_MEDIUM_DORIS, MediumDorisSeenText, MediumDorisBeatenText, 0, .Script
+	trainer MEDIUM, DORIS, EVENT_BEAT_MEDIUM_DORIS, MediumDorisSeenText, MediumDorisBeatenText, MediumDorisWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -78,7 +98,7 @@ TrainerMediumDoris:
 	end
 
 TrainerPsychicJared:
-	trainer PSYCHIC_T, JARED, EVENT_BEAT_PSYCHIC_JARED, PsychicJaredSeenText, PsychicJaredBeatenText, 0, .Script
+	trainer PSYCHIC_T, JARED, EVENT_BEAT_PSYCHIC_JARED, PsychicJaredSeenText, PsychicJaredBeatenText, PsychicJaredWonText, .Script
 
 .Script:
 	endifjustbattled
@@ -112,7 +132,7 @@ SaffronGymStatue:
 	gettrainername STRING_BUFFER_4, SABRINA, SABRINA1
 	jumpstd GymStatue2Script
 
-SabrinaIntroText:
+SabrinaBeforeBattleText:
 	text "SABRINA: I knew"
 	line "you were coming…"
 
@@ -138,7 +158,7 @@ SabrinaIntroText:
 	cont "psychic powers!"
 	done
 
-SabrinaWinLossText:
+SabrinaWinText:
 	text "SABRINA: Your"
 	line "power…"
 
@@ -150,14 +170,19 @@ SabrinaWinLossText:
 
 	para "predict what the"
 	line "future holds…"
+	done
 
-	para "OK, you win. You"
-	line "earned yourself"
-	cont "MARSHBADGE."
+SabrinaLossText:
+	text "SABRINA: Just"
+	line "as I foresaw…"
 	done
 
 ReceivedMarshBadgeText:
-	text "<PLAYER> received"
+	text "OK, you win. You"
+	line "earned yourself"
+	cont "the MARSHBADGE."
+	
+	para "<PLAYER> received"
 	line "MARSHBADGE."
 	done
 
@@ -168,18 +193,34 @@ SabrinaMarshBadgeText:
 	para "your subliminal"
 	line "powers…"
 
-	para "Although I failed"
-	line "to accurately pre-"
-	cont "dict your power,"
-	cont "this much I know"
-	cont "to be true."
-
-	para "You will become a"
-	line "celebrated and"
-	cont "beloved CHAMPION!"
+	para "I failed to"
+	line "accurately predict"
+	cont "your power."
+	
+	para "That means that"
+	line "your power is"
+	cont "beyond my psychic"
+	cont "ability."
+	
+	para "You deserve this."
+	line "Please take"
+	cont "this TM, too!"
 	done
 
-SabrinaFightDoneText:
+SabrinaTMPsywaveText:
+	para "TM46 is PSYWAVE!"
+	line "It uses powerful"
+	cont "psychic waves to"
+	cont "inflict damage!"
+
+	para "Everyone has"
+	cont "psychic power!"
+	
+	para "People just don't"
+	cont "realize it!"
+	done
+
+SabrinaAfterBattleText:
 	text "SABRINA: Your love"
 	line "for your #MON"
 
@@ -193,6 +234,19 @@ SabrinaFightDoneText:
 	line "power…"
 	done
 
+SabrinaRematchText:
+	text "I knew you'd come!"
+	line "I had a feeling."
+	
+	para "What? We promised"
+	line "each other, so it"
+	cont "is no surprise?!"
+	
+	para "Well, you may"
+	line "be right!"
+	done
+
+
 MediumRebeccaSeenText:
 	text "The power of all"
 	line "those you defeated"
@@ -202,6 +256,11 @@ MediumRebeccaSeenText:
 MediumRebeccaBeatenText:
 	text "Strong…"
 	line "Far too strong…"
+	done
+
+MediumRebeccaWonText:
+	text "The spirits were"
+	line "with me…"
 	done
 
 MediumRebeccaAfterBattleText:
@@ -218,6 +277,11 @@ PsychicFranklinSeenText:
 PsychicFranklinBeatenText:
 	text "Your soul has more"
 	line "power than mine!"
+	done
+
+PsychicFranklinWonText:
+	text "My soul has more"
+	line "power than yours!"
 	done
 
 PsychicFranklinAfterBattleText:
@@ -239,6 +303,12 @@ MediumDorisBeatenText:
 	line "I still lost…"
 	done
 
+MediumDorisWonText:
+	text "Fufufufu…"
+	line "Just like I"
+	cont "told you."
+	done
+
 MediumDorisAfterBattleText:
 	text "Darn! I forgot"
 	line "that I predicted I"
@@ -253,6 +323,11 @@ PsychicJaredSeenText:
 
 PsychicJaredBeatenText:
 	text "I was no match…"
+	done
+
+PsychicJaredWonText:
+	text "Huh! You are just"
+	line "another weakling!"
 	done
 
 PsychicJaredAfterBattleText:
@@ -331,9 +406,10 @@ SaffronGym_MapEvents:
 	bg_event  8, 15, BGEVENT_READ, SaffronGymStatue
 
 	def_object_events
-	object_event  9,  8, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronGymSabrinaScript, -1
-	object_event 17, 16, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerMediumRebecca, -1
+	object_event  9,  7, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronGymSabrinaScript, -1
+	object_event 17, 16, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerMediumRebecca, -1
 	object_event  3, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
-	object_event  3,  4, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
+	object_event  3,  4, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
 	object_event 17,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicJared, -1
 	object_event  9, 14, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuideScript, -1
+	

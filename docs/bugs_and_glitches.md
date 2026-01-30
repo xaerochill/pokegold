@@ -95,7 +95,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [ ] [`EVOLVE_STAT` can break Stone compatibility reporting](#evolve_stat-can-break-stone-compatibility-reporting)
   - [ ] [A "HOF Master!" title for 200-Time Famers is defined but inaccessible](#a-hof-master-title-for-200-time-famers-is-defined-but-inaccessible)
 - [Scripted events](#scripted-events)
-  - [ ] [Clair can give TM24 Dragonbreath twice](#clair-can-give-tm24-dragonbreath-twice)
+  - [x] [Clair can give TM24 Dragonbreath twice](#clair-can-give-tm24-dragonbreath-twice)
   - [ ] [Daisy's grooming doesn't always increase happiness](#daisys-grooming-doesnt-always-increase-happiness)
   - [ ] [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
   - [ ] [Magikarp length limits have a unit conversion error](#magikarp-length-limits-have-a-unit-conversion-error)
