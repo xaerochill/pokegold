@@ -876,9 +876,6 @@ ENDSECTION
 
 SECTION "Map Blocks 4", ROMX
 
-BetaLakeOfRage_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaLakeOfRage.blk"
-
 BetaRocketHideoutB2F_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaRocketHideoutB2F.blk"
 
