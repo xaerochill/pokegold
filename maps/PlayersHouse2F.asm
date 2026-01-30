@@ -41,6 +41,7 @@ if DEF(_DEBUG)
 	; pokedex
 	setflag ENGINE_POKEDEX
 	; useful items
+	givemoney YOUR_MONEY, 99999
 	giveitem MAX_REPEL, 99
 	giveitem MASTER_BALL, 99
 	giveitem ESCAPE_ROPE, 99

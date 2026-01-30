@@ -245,12 +245,11 @@ FarfetchdCryAndCheckFacing:
 IlexForestCharcoalMasterScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_HM01_CUT
+	checktmhm HM_CUT
 	iftrue .AlreadyGotCut
 	writetext Text_CharcoalMasterIntro
 	promptbutton
-	verbosegiveitem HM_CUT
-	setevent EVENT_GOT_HM01_CUT
+	verbosegivetmhm HM_CUT
 	writetext Text_CharcoalMasterOutro
 	waitbutton
 	closetext
@@ -271,17 +270,14 @@ IlexForestCharcoalMasterScript:
 IlexForestHeadbuttGuyScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM02_HEADBUTT
+	checktmhm TM_HEADBUTT
 	iftrue .AlreadyGotHeadbutt
 	writetext Text_HeadbuttIntro
 	promptbutton
-	verbosegiveitem TM_HEADBUTT
-	iffalse .BagFull
-	setevent EVENT_GOT_TM02_HEADBUTT
+	verbosegivetmhm TM_HEADBUTT
 .AlreadyGotHeadbutt:
 	writetext Text_HeadbuttOutro
 	waitbutton
-.BagFull:
 	closetext
 	end
 

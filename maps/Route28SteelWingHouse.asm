@@ -14,16 +14,14 @@ Route28SteelWingHouseNoopScene:
 Celebrity:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM47_STEEL_WING
+	checktmhm TM_STEEL_WING
 	iftrue .AlreadyGotItem
 	writetext CelebrityText1
 	promptbutton
-	verbosegiveitem TM_STEEL_WING
-	iffalse .Done
-	setevent EVENT_GOT_TM47_STEEL_WING
-.Done:
+	verbosegivetmhm TM_STEEL_WING
 	closetext
 	end
+
 .AlreadyGotItem:
 	writetext CelebrityText2
 	waitbutton

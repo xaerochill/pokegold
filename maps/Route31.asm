@@ -109,7 +109,7 @@ TrainerBugCatcherWade1:
 Route31MailRecipientScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM50_NIGHTMARE
+	checktmhm TM_NIGHTMARE
 	iftrue .DescribeNightmare
 	checkevent EVENT_GOT_KENYA
 	iftrue .TryGiveKenya
@@ -132,13 +132,10 @@ Route31MailRecipientScript:
 	writetext Text_Route31ReadingMail
 	promptbutton
 	setevent EVENT_GAVE_KENYA
-	verbosegiveitem TM_NIGHTMARE
-	iffalse .NoRoomForItems
-	setevent EVENT_GOT_TM50_NIGHTMARE
+	verbosegivetmhm TM_NIGHTMARE
 .DescribeNightmare:
 	writetext Text_Route31DescribeNightmare
 	waitbutton
-.NoRoomForItems:
 	closetext
 	end
 

@@ -11,17 +11,14 @@ Route34IlexForestGate_MapScripts:
 Route34IlexForestGateTeacherScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM12_SWEET_SCENT
+	checktmhm TM_SWEET_SCENT
 	iftrue .GotSweetScent
 	writetext Route34IlexForestGateTeacherText
 	promptbutton
-	verbosegiveitem TM_SWEET_SCENT
-	iffalse .NoRoom
-	setevent EVENT_GOT_TM12_SWEET_SCENT
+	verbosegivetmhm TM_SWEET_SCENT
 .GotSweetScent:
 	writetext Route34IlexForestGateTeacher_GotSweetScent
 	waitbutton
-.NoRoom:
 	closetext
 	end
 

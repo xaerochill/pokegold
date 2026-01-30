@@ -74,7 +74,7 @@ DidntCatchSudowoodo:
 Route36RockSmashGuyScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM08_ROCK_SMASH
+	checktmhm TM_ROCK_SMASH
 	iftrue .AlreadyGotRockSmash
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue .ClearedSudowoodo
@@ -86,13 +86,10 @@ Route36RockSmashGuyScript:
 .ClearedSudowoodo:
 	writetext RockSmashGuyText2
 	promptbutton
-	verbosegiveitem TM_ROCK_SMASH
-	iffalse .NoRoomForTM
-	setevent EVENT_GOT_TM08_ROCK_SMASH
+	verbosegivetmhm TM_ROCK_SMASH
 .AlreadyGotRockSmash:
 	writetext RockSmashGuyText3
 	waitbutton
-.NoRoomForTM:
 	closetext
 	end
 

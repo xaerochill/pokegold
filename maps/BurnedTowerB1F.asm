@@ -86,7 +86,7 @@ BurnedTowerB1FHPUp:
 	itemball HP_UP
 
 BurnedTowerB1FTMEndure:
-	itemball TM_ENDURE
+	tmhmball TM_ENDURE
 
 BurnedTowerB1FBoulder:
 	jumpstd StrengthBoulderScript

@@ -23,7 +23,7 @@ CianwoodCityFlypointCallback:
 CianwoodCityChucksWife:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_HM02_FLY
+	checktmhm HM_FLY
 	iftrue .GotFly
 	writetext ChucksWifeEasierToFlyText
 	promptbutton
@@ -37,15 +37,12 @@ CianwoodCityChucksWife:
 .BeatChuck:
 	writetext ChucksWifeGiveHMText
 	promptbutton
-	verbosegiveitem HM_FLY
-	iffalse .Done
-	setevent EVENT_GOT_HM02_FLY
+	verbosegivetmhm HM_FLY
 	writetext ChucksWifeFlySpeechText
 	promptbutton
 .GotFly:
 	writetext ChucksWifeChubbyText
 	waitbutton
-.Done:
 	closetext
 	end
 
