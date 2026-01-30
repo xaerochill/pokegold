@@ -13,7 +13,100 @@ CeladonDeptStore3F_MapScripts:
 CeladonDeptStore3FClerkScript:
 	faceplayer
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_CELADON_3F
+CeladonDeptStore3FClerk_LoopScript:
+	checkmoney YOUR_MONEY, 9000
+	ifequal HAVE_LESS, CeladonDeptStore3FClerkNotEnoughMoney
+	writetext CeladonDeptStore3FClerk_AskWhichCarpetText
+	special PlaceMoneyTopRight
+	loadmenu CeladonDeptStore3FClerkMenu
+	verticalmenu
+	closewindow
+	ifequal 1, .RedCarpet
+	ifequal 2, .BlueCarpet
+	ifequal 3, .GreenCarpet
+	ifequal 4, .YellowCarpet
+	jump CeladonDeptStore3FClerk_Cancel
+	
+.RedCarpet
+	writetext CeladonDeptStore3FClerk_AreYouSureText
+	yesorno
+	iffalse CeladonDeptStore3FClerk_Cancel
+	checkevent EVENT_DECO_CARPET_1
+	iftrue .AlreadyHaveDecorItem
+	setevent EVENT_DECO_CARPET_1
+	takemoney YOUR_MONEY, 9000
+	jump CeladonDeptStore3FClerk_FinishScript
+	end
+	
+.BlueCarpet
+	writetext CeladonDeptStore3FClerk_AreYouSureText
+	yesorno
+	iffalse CeladonDeptStore3FClerk_Cancel
+	checkevent EVENT_DECO_CARPET_2
+	iftrue .AlreadyHaveDecorItem
+	setevent EVENT_DECO_CARPET_2
+	takemoney YOUR_MONEY, 9000
+	jump CeladonDeptStore3FClerk_FinishScript
+	end
+	
+.GreenCarpet
+	writetext CeladonDeptStore3FClerk_AreYouSureText
+	yesorno
+	iffalse CeladonDeptStore3FClerk_Cancel
+	checkevent EVENT_DECO_CARPET_4
+	iftrue .AlreadyHaveDecorItem
+	setevent EVENT_DECO_CARPET_4
+	takemoney YOUR_MONEY, 9000
+	jump CeladonDeptStore3FClerk_FinishScript
+	end
+
+.YellowCarpet
+	writetext CeladonDeptStore3FClerk_AreYouSureText
+	yesorno
+	iffalse CeladonDeptStore3FClerk_Cancel
+	checkevent EVENT_DECO_CARPET_3
+	iftrue .AlreadyHaveDecorItem
+	setevent EVENT_DECO_CARPET_3
+	takemoney YOUR_MONEY, 9000
+	jump CeladonDeptStore3FClerk_FinishScript
+	end
+	
+.AlreadyHaveDecorItem
+	writetext CeladonDeptStore3FClerk_AlreadyHaveDecoText
+	waitbutton
+	jump CeladonDeptStore3FClerk_LoopScript
+
+	
+CeladonDeptStore3FClerkMenu:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 15, TEXTBOX_Y - 1
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 4 ; items
+	db "RED     ¥9000@"
+	db "BLUE    ¥9000@"
+	db "GREEN   ¥9000@"
+	db "YELLOW  ¥9000@"
+	
+CeladonDeptStore3FClerk_FinishScript:
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext CeladonDeptStore3FClerk_HereYouGoText
+	waitbutton
+	jump CeladonDeptStore3FClerk_LoopScript
+
+CeladonDeptStore3FClerk_Cancel:
+	writetext CeladonDeptStore3FClerkTakeCare
+	waitbutton
+	closetext
+	end
+	
+CeladonDeptStore3FClerkNotEnoughMoney:
+	writetext CeladonDeptStore3FClerkNotEnoughMoneyText
+	waitbutton
 	closetext
 	end
 
@@ -47,12 +140,46 @@ CeladonDeptStore3FElevatorButton:
 CeladonDeptStore3FDirectory:
 	jumptext CeladonDeptStore3FDirectoryText
 
-CeladonDeptStore3FYoungsterText:
-	text "I can't decide"
-	line "which #MON I"
+CeladonDeptStore3FClerk_AskWhichCarpetText:
+	text "Which CARPET"
+	line "do you like?"
+	done
+	
+CeladonDeptStore3FClerk_AreYouSureText:
+	text "Are you sure?"
+	done
 
-	para "should use this TM"
-	line "on…"
+CeladonDeptStore3FClerk_AlreadyHaveDecoText:
+	text "You already have"
+	line "this CARPET!"
+	done
+
+CeladonDeptStore3FClerk_HereYouGoText:
+	text "Here you go! We"
+	line "will deliver this"
+	cont "item to your home"
+	cont "without delay!"
+	done
+
+CeladonDeptStore3FClerkNotEnoughMoneyText:
+	text "A PALDEAN CARPET"
+	line "is expensive! You"
+	cont "need more money…"
+	done
+	
+CeladonDeptStore3FClerkTakeCare:
+	text "Pleasure doing"
+	line "business with you!"
+	done
+
+CeladonDeptStore3FYoungsterText:
+	text "There was a TM"
+	line "SHOP here that"
+	cont "made a fortune…"
+
+	para "But now there are"
+	line "infinite-use TM's,"
+	cont "they closed shop!"
 	done
 
 CeladonDeptStore3FGameboyKid1Text:
@@ -81,15 +208,16 @@ CeladonDeptStore3FGameboyKid2Text:
 	done
 
 CeladonDeptStore3FSuperNerdText:
-	text "The TM SHOP sells"
-	line "some rare moves."
+	text "Those carpets are"
+	line "so fine… But also"
+	cont "so expensive…"
 	done
 
 CeladonDeptStore3FDirectoryText:
-	text "3F: TM SHOP"
+	text "3F: DECO SHOP"
 
-	para "Make Your #MON"
-	line "Stronger!"
+	para "Make Your room"
+	line "look nicer!"
 	done
 
 CeladonDeptStore3F_MapEvents:

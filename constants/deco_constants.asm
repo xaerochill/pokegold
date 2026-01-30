@@ -126,10 +126,10 @@ DEF NUM_DECOS EQU const_value
 	const DECO_PIKACHU_BED
 ; FindOwnedCarpets.carpets values (see engine/overworld/decorations.asm)
 	const CARPETS
-	const DECO_RED_CARPET
-	const DECO_BLUE_CARPET
-	const DECO_YELLOW_CARPET
-	const DECO_GREEN_CARPET
+	const DECO_RED_CARPET    ; can be bought in Celadon Dept. Store 3F
+	const DECO_BLUE_CARPET   ; can be bought in Celadon Dept. Store 3F
+	const DECO_YELLOW_CARPET ; can be bought in Celadon Dept. Store 3F
+	const DECO_GREEN_CARPET  ; can be bought in Celadon Dept. Store 3F
 ; FindOwnedPlants.plants values (see engine/overworld/decorations.asm)
 	const PLANTS
 	const DECO_MAGNAPLANT
@@ -143,10 +143,10 @@ DEF NUM_DECOS EQU const_value
 	const DECO_JIGGLYPUFF_POSTER
 ; FindOwnedConsoles.consoles values (see engine/overworld/decorations.asm)
 	const CONSOLES
-	const DECO_FAMICOM
-	const DECO_SNES
-	const DECO_N64
-	const DECO_VIRTUAL_BOY
+	const DECO_FAMICOM     ; can be bought in Goldenrod Dept. Store 5F
+	const DECO_SNES        ; can be bought in Goldenrod Dept. Store 5F
+	const DECO_N64         ; can be bought in Goldenrod Dept. Store 5F
+	const DECO_VIRTUAL_BOY ; can be bought in Goldenrod Dept. Store 5F
 ; FindOwnedBigDolls.big_dolls values (see engine/overworld/decorations.asm)
 	const BIG_DOLLS
 	const DECO_BIG_SNORLAX_DOLL

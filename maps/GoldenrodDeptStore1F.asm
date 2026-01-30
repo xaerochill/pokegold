@@ -69,7 +69,7 @@ GoldenrodDeptStore1FDirectoryText:
 
 	para "4F MEDICINE BOX"
 
-	para "5F TM CORNER"
+	para "5F CONSOLE SHOP"
 
 	para "6F ROOFTOP SQUARE"
 	done
