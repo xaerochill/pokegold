@@ -8,7 +8,18 @@ OlivineHouseBeta_MapScripts:
 	def_callbacks
 
 OlivineHouseBetaTeacherScript:
-	jumptextfaceplayer OlivineHouseBetaTeacherText
+	faceplayer
+	opentext
+	checktmhm HM_WATERFALL
+	iftrue .GotWaterfall
+	writetext OlivineHouseBetaTeacherText
+	promptbutton
+	verbosegivetmhm HM_WATERFALL
+.GotWaterfall:
+	writetext OlivineHouseBetaTeacherGotWaterfallText
+	waitbutton
+	closetext
+	end
 
 OlivineHouseBetaRhydonScript:
 	opentext
@@ -26,11 +37,25 @@ OlivineHouseBetaBookshelf2:
 
 OlivineHouseBetaTeacherText:
 	text "When my #MON"
-	line "got sick, the"
+	line "and I got lost"
+	cont "in deep water,"
 
-	para "PHARMACIST in"
-	line "ECRUTEAK made some"
-	cont "medicine for me."
+	para "the Guardian of"
+	line "the Sea came to"
+	cont "our rescue."
+
+	para "Now, it is time"
+	line "for me to help"
+	cont "you as well!"
+	done
+
+OlivineHouseBetaTeacherGotWaterfallText:
+	text "This HM teaches"
+	line "WATERFALL."
+
+	para "You can teach it"
+	line "to your"
+	cont "#MON!"
 	done
 
 OlivineHouseBetaRhydonText:
