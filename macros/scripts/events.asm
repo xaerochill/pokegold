@@ -1012,4 +1012,17 @@ MACRO warpfacing
 	db \4 ; y
 ENDM
 
+	const verbosegivetmhm_command ; $a2
+MACRO verbosegivetmhm
+	db verbosegivetmhm_command
+	db \1 ; TM/HM number (use MOVE_TMNUM constants, e.g., MEGA_PUNCH_TMNUM)
+ENDM
+
+	const checktmhm_command ; $a3
+MACRO checktmhm
+	db checktmhm_command
+	db \1 ; TM/HM number
+	; sets wScriptVar to TRUE if owned, FALSE if not
+ENDM
+
 DEF NUM_EVENT_COMMANDS EQU const_value

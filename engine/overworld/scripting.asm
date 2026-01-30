@@ -226,6 +226,8 @@ ScriptCommandTable:
 	dw Script_halloffame                 ; 9f
 	dw Script_credits                    ; a0
 	dw Script_warpfacing                 ; a1
+	dw Script_verbosegivetmhm            ; a2
+	dw Script_checktmhm                  ; a3
 	assert_table_length NUM_EVENT_COMMANDS
 
 StartScript:
@@ -2221,10 +2223,58 @@ ReturnFromCredits:
 	call StopScript
 	ret
 
-Script_checkver_duplicate: ; unreferenced
-	ld a, [.gs_version]
+Script_checktmhm:
+; check if player has TM/HM flag
+; parameters: 1 byte - TM/HM flag index (1-104)
+	call GetScriptByte
+	ld e, a
+	ld d, 0
+	ld b, CHECK_FLAG
+	ld hl, wTMsHMs
+	call FlagAction
+	ld a, c
 	ld [wScriptVar], a
 	ret
 
-.gs_version:
-	db GS_VERSION
+Script_verbosegivetmhm:
+; give TM/HM to player (set flag) and display message
+; parameters: 1 byte - TM/HM flag index (1-104)
+	call GetScriptByte
+	ld [wCurTMHM], a
+	
+	; set the flag
+	dec a
+	ld e, a
+	ld d, 0
+	ld b, SET_FLAG
+	ld hl, wTMsHMs
+	call FlagAction
+	
+	; get TM/HM name for display
+	ld a, [wCurTMHM]
+	ld [wNamedObjectIndex], a
+	call GetTMHMName
+	ld de, wStringBuffer1
+	ld a, STRING_BUFFER_4
+	call CopyConvertedText
+	
+	; wScriptVar = TRUE (always succeeds since flags have no limit)
+	ld a, TRUE
+	ld [wScriptVar], a
+	
+	; call the give script
+	ld b, BANK(GiveTMHMScript)
+	ld de, GiveTMHMScript
+	jp ScriptCall
+
+GiveTMHMScript:
+	callasm GiveItemScript_DummyFunction
+	writetext .ReceivedTMHMText
+	waitsfx
+	specialsound
+	waitbutton
+	end
+
+.ReceivedTMHMText:
+	text_far _ReceivedItemText
+	text_end

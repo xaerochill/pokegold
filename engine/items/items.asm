@@ -15,7 +15,7 @@ _ReceiveItem::
 	dw .Item
 	dw .KeyItem
 	dw .Ball
-	dw .TMHM
+	dw .TMHM ; impossible
 
 .Item:
 	ld h, d
@@ -32,12 +32,7 @@ _ReceiveItem::
 	jp PutItemInPocket
 
 .TMHM:
-	ld h, d
-	ld l, e
-	ld a, [wCurItem]
-	ld c, a
-	call GetTMHMNumber
-	jp ReceiveTMHM
+	ret
 
 _TossItem::
 	call DoesHLEqualNumItems
@@ -56,19 +51,14 @@ _TossItem::
 	dw .Item
 	dw .KeyItem
 	dw .Ball
-	dw .TMHM
+	dw .TMHM ; impossible
 
 .Ball:
 	ld hl, wNumBalls
 	jp RemoveItemFromPocket
 
 .TMHM:
-	ld h, d
-	ld l, e
-	ld a, [wCurItem]
-	ld c, a
-	call GetTMHMNumber
-	jp TossTMHM
+	ret
 
 .KeyItem:
 	ld h, d
@@ -401,93 +391,56 @@ CheckKeyItems:
 	scf
 	ret
 
-ReceiveTMHM:
-	dec c
-	ld b, 0
+ReceiveTMHM::
+; give TM/HM to player
+; input: c = TM/HM number (1-104)
+; output: carry set (always succeeds - no capacity limit)
+	push bc
+	push de
+	push hl
+
+	ld a, c
+	dec a ; convert to 0-indexed for FlagAction
+	ld e, a
+	ld d, 0
 	ld hl, wTMsHMs
-	add hl, bc
-	ld a, [wItemQuantityChange]
-	add [hl]
-	cp MAX_ITEM_STACK + 1
-	jr nc, .toomany
-	ld [hl], a
-	scf
+	ld b, SET_FLAG
+	call FlagAction
+
+	pop hl
+	pop de
+	pop bc
+	scf ; always succeeds
 	ret
 
-.toomany
-	and a
-	ret
+CheckTMHM::
+; check if player has TM/HM
+; input: c = TM/HM number (1-104)
+; output: carry set if player has it
+	push bc
+	push de
+	push hl
 
-TossTMHM:
-	dec c
-	ld b, 0
-	ld hl, wTMsHMs
-	add hl, bc
-	ld a, [wItemQuantityChange]
-	ld b, a
-	ld a, [hl]
-	sub b
-	jr c, .nope
-	ld [hl], a
-	ld [wItemQuantity], a
-	jr nz, .yup
-	ld a, [wTMHMPocketScrollPosition]
-	and a
-	jr z, .yup
+	ld a, c
 	dec a
-	ld [wTMHMPocketScrollPosition], a
-
-.yup
-	scf
-	ret
-
-.nope
-	and a
-	ret
-
-CheckTMHM:
-	dec c
-	ld b, $0
+	ld e, a
+	ld d, 0
 	ld hl, wTMsHMs
-	add hl, bc
-	ld a, [hl]
+	ld b, CHECK_FLAG
+	call FlagAction
+
+	pop hl
+	pop de
+	pop bc
+
+	ld a, c ; flagAction returns result in c
 	and a
-	ret z
-	scf
+	ret z ; no carry if flag is 0
+	scf ; set carry if flag is 1
 	ret
 
 GetTMHMNumber::
-; Return the number of a TM/HM by item id c.
-	ld a, c
-; Skip any dummy items.
-	cp ITEM_C3 ; TM04-05
-	jr c, .done
-	cp ITEM_DC ; TM28-29
-	jr c, .skip
-	dec a
-.skip
-	dec a
-.done
-	sub TM01
-	inc a
-	ld c, a
-	ret
-
-GetNumberedTMHM:
-; Return the item id of a TM/HM by number c.
-	ld a, c
-; Skip any gaps.
-	cp ITEM_C3 - (TM01 - 1)
-	jr c, .done
-	cp ITEM_DC - (TM01 - 1) - 1
-	jr c, .skip_one
-; skip two
-	inc a
-.skip_one
-	inc a
-.done
-	add TM01
-	dec a
+	ld a, [wCurTMHM]
 	ld c, a
 	ret
 

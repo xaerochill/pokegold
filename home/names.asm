@@ -147,26 +147,17 @@ endr
 
 GetItemName::
 ; Get item name for wNamedObjectIndex.
-
-	push hl
-	push bc
-	ld a, [wNamedObjectIndex]
-
-	cp TM01
-	jr nc, .TM
-
-	ld [wCurSpecies], a
-	ld a, ITEM_NAME
-	ld [wNamedObjectType], a
-	call GetName
-	jr .Copied
-.TM:
-	call GetTMHMName
-.Copied:
-	ld de, wStringBuffer1
-	pop bc
-	pop hl
-	ret
+    push hl
+    push bc
+    ld a, [wNamedObjectIndex]
+    ld [wCurSpecies], a
+    ld a, ITEM_NAME
+    ld [wNamedObjectType], a
+    call GetName
+    ld de, wStringBuffer1
+    pop bc
+    pop hl
+    ret
 
 GetTMHMName::
 ; Get TM/HM name for item wNamedObjectIndex.
@@ -197,6 +188,7 @@ GetTMHMName::
 ; TM/HM number
 	push de
 	ld a, [wNamedObjectIndex]
+	ld [wCurTMHM], a
 	ld c, a
 	callfar GetTMHMNumber
 	pop de

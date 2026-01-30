@@ -1832,7 +1832,7 @@ wCurPartyMon::
 ; index of mon's party location (0-5)
 	db
 
-	ds 1
+wCurTMHM:: db ; Current TM/HM flag index (1-104)
 
 wWhichHPBar::
 ; 0: Enemy
@@ -2159,11 +2159,7 @@ wBaseTMHM:: flag_array NUM_TM_HM
 wCurBaseDataEnd::
 	assert wCurBaseDataEnd - wCurBaseData == BASE_DATA_SIZE
 
-	ds 1
-
 wCurDamage:: dw
-
-	ds 2
 
 wMornEncounterRate::  db
 wDayEncounterRate::   db
@@ -2203,8 +2199,6 @@ wTempBank:: db
 
 wTimeOfDay:: db
 
-	ds 1
-
 wMapStatus:: db
 wMapEventStatus:: db
 
@@ -2237,7 +2231,6 @@ wScriptTextBank::
 wDeferredScriptAddr::
 wScriptTextAddr::
 	dw
-	ds 1
 wWildEncounterCooldown:: db
 
 wXYComparePointer:: dw
@@ -2418,7 +2411,9 @@ wBadges::
 wJohtoBadges:: flag_array NUM_JOHTO_BADGES
 wKantoBadges:: flag_array NUM_KANTO_BADGES
 
-wTMsHMs:: ds NUM_TMS + NUM_HMS
+wTMsHMs:: flag_array NUM_TM_HM_FLAGS ; 13 bytes
+
+	ds 44
 
 wNumItems:: db
 wItems:: ds MAX_ITEMS * 2 + 1

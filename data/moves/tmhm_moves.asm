@@ -1,25 +1,115 @@
-; The add_tm and add_hm macros in constants/item_constants.asm simultaneously
-; define constants for the item IDs and for the corresponding move values.
-
 TMHMMoves:
-; entries correspond to *_TMNUM constants (see constants/item_constants.asm)
+; entries correspond to *_TMNUM constants (see constants/tmhm_constants.asm)
 	table_width 1
 
 ; TMs
-for n, 1, NUM_TMS + 1
-	db TM{02d:n}_MOVE
-endr
+	db MEGA_PUNCH    ; TM01
+	db RAZOR_WIND    ; TM02
+	db SWORDS_DANCE  ; TM03
+	db WHIRLWIND     ; TM04
+	db MEGA_KICK     ; TM05
+	db TOXIC         ; TM06
+	db HORN_DRILL    ; TM07
+	db BODY_SLAM     ; TM08
+	db TAKE_DOWN     ; TM09
+	db DOUBLE_EDGE   ; TM10
+	db BUBBLEBEAM    ; TM11
+	db LOW_KICK      ; TM12
+	db ICE_BEAM      ; TM13
+	db BLIZZARD      ; TM14
+	db HYPER_BEAM    ; TM15
+	db PAY_DAY       ; TM16
+	db SUBMISSION    ; TM17
+	db COUNTER       ; TM18
+	db SEISMIC_TOSS  ; TM19
+	db ANCIENTPOWER  ; TM20
+	db MEGA_DRAIN    ; TM21
+	db SOLARBEAM     ; TM22
+	db DRAGON_RAGE   ; TM23
+	db THUNDERBOLT   ; TM24
+	db THUNDER       ; TM25
+	db EARTHQUAKE    ; TM26
+	db FISSURE       ; TM27
+	db DIG           ; TM28
+	db PSYCHIC_M     ; TM29
+	db TELEPORT      ; TM30
+	db MIMIC         ; TM31
+	db DOUBLE_TEAM   ; TM32
+	db REFLECT       ; TM33
+	db SWAGGER       ; TM34
+	db METRONOME     ; TM35
+	db SELFDESTRUCT  ; TM36
+	db EGG_BOMB      ; TM37
+	db FIRE_BLAST    ; TM38
+	db SWIFT         ; TM39
+	db DYNAMICPUNCH  ; TM40
+	db SOFTBOILED    ; TM41
+	db DREAM_EATER   ; TM42
+	db SKY_ATTACK    ; TM43
+	db REST          ; TM44
+	db THUNDER_WAVE  ; TM45
+	db PSYWAVE       ; TM46
+	db EXPLOSION     ; TM47
+	db ROCK_SLIDE    ; TM48
+	db TRI_ATTACK    ; TM49
+	db SUBSTITUTE    ; TM50
+	db SANDSTORM     ; TM51
+	db HEADBUTT      ; TM52
+	db CURSE         ; TM53
+	db ROLLOUT       ; TM54
+	db ROAR          ; TM55
+	db LIGHT_SCREEN  ; TM56
+	db ZAP_CANNON    ; TM57
+	db ROCK_SMASH    ; TM58
+	db PSYCH_UP      ; TM59
+	db MEGAHORN      ; TM60
+	db SUNNY_DAY     ; TM61
+	db PAIN_SPLIT    ; TM62
+	db SNORE         ; TM63
+	db SWEET_SCENT   ; TM64
+	db FLAMETHROWER  ; TM65
+	db ICY_WIND      ; TM66
+	db PROTECT       ; TM67
+	db RAIN_DANCE    ; TM68
+	db GIGA_DRAIN    ; TM69
+	db ENDURE        ; TM70
+	db FRUSTRATION   ; TM71
+	db SUPER_FANG    ; TM72
+	db DETECT        ; TM73
+	db DRAGONBREATH  ; TM74
+	db SLEEP_TALK    ; TM75
+	db THIEF         ; TM76
+	db RETURN        ; TM77
+	db FIRE_PUNCH    ; TM78
+	db FURY_CUTTER   ; TM79
+	db SHADOW_BALL   ; TM80
+	db MUD_SLAP      ; TM81
+	db TWISTER       ; TM82
+	db ICE_PUNCH     ; TM83
+	db HIDDEN_POWER  ; TM84
+	db ATTRACT       ; TM85
+	db SLUDGE_BOMB   ; TM86
+	db IRON_TAIL     ; TM87
+	db HEAL_BELL     ; TM88
+	db SYNTHESIS     ; TM89
+	db NIGHTMARE     ; TM90
+	db THUNDERPUNCH  ; TM91
+	db SAFEGUARD     ; TM92
+	db SKULL_BASH    ; TM93
+	db FALSE_SWIPE   ; TM94
+	db LEECH_LIFE    ; TM95
+	db SPIKES        ; TM96
+	db STEEL_WING    ; TM97
 	assert_table_length NUM_TMS
 
 ; HMs
-for n, 1, NUM_HMS + 1
-	db HM{02d:n}_MOVE
-endr
+	db CUT           ; HM01
+	db FLY           ; HM02
+	db SURF          ; HM03
+	db STRENGTH      ; HM04
+	db FLASH         ; HM05
+	db WHIRLPOOL     ; HM06
+	db WATERFALL     ; HM07
 	assert_table_length NUM_TM_HM
 
 	db 0 ; end
-
-; unused
-	db 0
-	db 0
-	db 0
