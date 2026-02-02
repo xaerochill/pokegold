@@ -1169,8 +1169,14 @@ VitaminEffect:
 
 	add hl, bc
 	ld a, [hl]
-	cp 100
-	jr nc, NoEffectMessage
+	cp $ff
+	jr c, .not_max
+	inc hl
+	ld a, [hld]
+	cp $ff
+	jr z, NoEffectMessage
+	ld a, [hl]
+.not_max
 
 	add 10
 	ld [hl], a
