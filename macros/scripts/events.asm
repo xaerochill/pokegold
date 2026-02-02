@@ -1025,4 +1025,11 @@ MACRO checktmhm
 	; sets wScriptVar to TRUE if owned, FALSE if not
 ENDM
 
+const gettmhmname_command ; $a4
+MACRO gettmhmname
+	db gettmhmname_command
+	db \2 ; TM/HM number
+	db \1 ; string_buffer
+ENDM
+
 DEF NUM_EVENT_COMMANDS EQU const_value

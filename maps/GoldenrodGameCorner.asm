@@ -50,7 +50,7 @@ GoldenrodGameCornerTMVendorLoopScript:
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendorNotEnoughCoinsScript
 	checktmhm TM_ROCK_SLIDE
 	iftrue GoldenrodGameCornerPrizeMonVendorAlreadyHaveTMScript
-	getitemname STRING_BUFFER_3, TM_ROCK_SLIDE
+	gettmhmname STRING_BUFFER_3, TM_ROCK_SLIDE
 	scall GoldenrodGameCornerPrizeVendorConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendorCancelPurchaseScript
 	verbosegivetmhm TM_ROCK_SLIDE
@@ -62,7 +62,7 @@ GoldenrodGameCornerTMVendorLoopScript:
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendorNotEnoughCoinsScript
 	checktmhm TM_FLAMETHROWER
 	iftrue GoldenrodGameCornerPrizeMonVendorAlreadyHaveTMScript
-	getitemname STRING_BUFFER_3, TM_FLAMETHROWER
+	gettmhmname STRING_BUFFER_3, TM_FLAMETHROWER
 	scall GoldenrodGameCornerPrizeVendorConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendorCancelPurchaseScript
 	verbosegivetmhm TM_FLAMETHROWER
@@ -74,7 +74,7 @@ GoldenrodGameCornerTMVendorLoopScript:
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendorNotEnoughCoinsScript
 	checktmhm TM_TRI_ATTACK
 	iftrue GoldenrodGameCornerPrizeMonVendorAlreadyHaveTMScript
-	getitemname STRING_BUFFER_3, TM_TRI_ATTACK
+	gettmhmname STRING_BUFFER_3, TM_TRI_ATTACK
 	scall GoldenrodGameCornerPrizeVendorConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendorCancelPurchaseScript
 	verbosegivetmhm TM_TRI_ATTACK

@@ -228,6 +228,7 @@ ScriptCommandTable:
 	dw Script_warpfacing                 ; a1
 	dw Script_verbosegivetmhm            ; a2
 	dw Script_checktmhm                  ; a3
+	dw Script_gettmhmname                ; a4
 	assert_table_length NUM_EVENT_COMMANDS
 
 StartScript:
@@ -2223,19 +2224,6 @@ ReturnFromCredits:
 	call StopScript
 	ret
 
-Script_checktmhm:
-; check if player has TM/HM flag
-; parameters: 1 byte - TM/HM flag index (1-104)
-	call GetScriptByte
-	ld e, a
-	ld d, 0
-	ld b, CHECK_FLAG
-	ld hl, wTMsHMs
-	call FlagAction
-	ld a, c
-	ld [wScriptVar], a
-	ret
-
 Script_verbosegivetmhm:
 ; give TM/HM to player (set flag) and display message
 ; parameters: 1 byte - TM/HM flag index (1-104)
@@ -2278,3 +2266,28 @@ GiveTMHMScript:
 .ReceivedTMHMText:
 	text_far _ReceivedItemText
 	text_end
+
+Script_checktmhm:
+; check if player has TM/HM flag
+; parameters: 1 byte - TM/HM flag index (1-104)
+	call GetScriptByte
+	dec a ; convert to 0-indexed
+	ld e, a
+	ld d, 0
+	ld b, CHECK_FLAG
+	ld hl, wTMsHMs
+	call FlagAction
+	ld a, c
+	ld [wScriptVar], a
+	ret
+
+Script_gettmhmname:
+; get TM/HM name into string buffer
+; parameters: 1 byte - TM/HM number (1-104), 1 byte - string buffer
+	call GetScriptByte
+	ld [wNamedObjectIndex], a
+	call GetTMHMName ; outputs to wStringBuffer1
+	ld de, wStringBuffer1
+	call GetScriptByte ; get string buffer destination
+	call CopyConvertedText
+	ret

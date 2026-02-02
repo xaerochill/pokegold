@@ -39,11 +39,11 @@ CeladonPrizeRoomTMCounterLoop:
 	sjump CeladonPrizeRoomCancelPurchaseScript
 
 .DragonRage:
-	checkcoins CELADONGAMECORNERPRIZEROOM_TM23_COINS
-	ifequal HAVE_LESS, CeladonPrizeRoomNotEnoughCoins
 	checktmhm TM_DRAGON_RAGE
 	iftrue CeladonPrizeRoomAlreadyHaveTMScript
-	getitemname STRING_BUFFER_3, TM_DRAGON_RAGE
+	checkcoins CELADONGAMECORNERPRIZEROOM_TM23_COINS
+	ifequal HAVE_LESS, CeladonPrizeRoomNotEnoughCoins
+	gettmhmname STRING_BUFFER_3, TM_DRAGON_RAGE
 	scall CeladonPrizeRoomAskBuy
 	iffalse CeladonPrizeRoomCancelPurchaseScript
 	verbosegivetmhm TM_DRAGON_RAGE
@@ -51,11 +51,11 @@ CeladonPrizeRoomTMCounterLoop:
 	sjump CeladonPrizeRoomPurchased
 
 .Substitute:
-	checkcoins CELADONGAMECORNERPRIZEROOM_TM50_COINS
-	ifequal HAVE_LESS, CeladonPrizeRoomNotEnoughCoins
 	checktmhm TM_SUBSTITUTE
 	iftrue CeladonPrizeRoomAlreadyHaveTMScript
-	getitemname STRING_BUFFER_3, TM_SUBSTITUTE
+	checkcoins CELADONGAMECORNERPRIZEROOM_TM50_COINS
+	ifequal HAVE_LESS, CeladonPrizeRoomNotEnoughCoins
+	gettmhmname STRING_BUFFER_3, TM_SUBSTITUTE
 	scall CeladonPrizeRoomAskBuy
 	iffalse CeladonPrizeRoomCancelPurchaseScript
 	verbosegivetmhm TM_SUBSTITUTE
@@ -63,11 +63,11 @@ CeladonPrizeRoomTMCounterLoop:
 	sjump CeladonPrizeRoomPurchased
 
 .HyperBeam:
-	checkcoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
-	ifequal HAVE_LESS, CeladonPrizeRoomNotEnoughCoins
 	checktmhm TM_HYPER_BEAM
 	iftrue CeladonPrizeRoomAlreadyHaveTMScript
-	getitemname STRING_BUFFER_3, TM_HYPER_BEAM
+	checkcoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
+	ifequal HAVE_LESS, CeladonPrizeRoomNotEnoughCoins
+	gettmhmname STRING_BUFFER_3, TM_HYPER_BEAM
 	scall CeladonPrizeRoomAskBuy
 	iffalse CeladonPrizeRoomCancelPurchaseScript
 	verbosegivetmhm TM_HYPER_BEAM
