@@ -428,15 +428,15 @@ CheckTMHM::
 	ld hl, wTMsHMs
 	ld b, CHECK_FLAG
 	call FlagAction
+	ld a, c ; save `FlagAction`  result
 
 	pop hl
 	pop de
 	pop bc
 
-	ld a, c ; flagAction returns result in c
-	and a
-	ret z ; no carry if flag is 0
-	scf ; set carry if flag is 1
+	and a  ; now test result from `FlagAction`
+	ret z  ; no carry if not owned
+	scf    ; set carry if owned
 	ret
 
 GetTMHMNumber::

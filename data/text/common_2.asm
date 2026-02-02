@@ -209,6 +209,14 @@ _CantCarryItemText::
 	cont "items!"
 	done
 
+_TMStoredText::
+	text "<PLAYER> put"
+	line "@"
+	text_ram wStringBuffer3
+	text " in"
+	cont "the TM POCKET."
+	done
+
 _WhitedOutText::
 	text "<PLAYER> is out of"
 	line "useable #MON!"
@@ -1584,6 +1592,19 @@ _MartNoMoneyText::
 _MartPackFullText::
 	text "You can't carry"
 	line "any more items."
+	done
+
+_TMShopAlreadyHaveText::
+	text "You already have"
+	line "this TM."
+	done
+
+_TMShopFinalPriceText::
+	text_ram wStringBuffer1
+	text " will"
+	line "cost ¥@"
+	text_decimal hMoneyTemp, 3, 6
+	text "."
 	done
 
 _MartCantBuyText::
