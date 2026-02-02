@@ -19,7 +19,7 @@ CeladonDeptStore2FClerk1Script:
 CeladonDeptStore2FClerk2Script:
 	faceplayer
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_2
+	pokemart MARTTYPE_TM_SHOP, MART_CELADON_2F_2
 	closetext
 	end
 

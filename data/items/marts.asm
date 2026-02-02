@@ -252,27 +252,20 @@ MartVermilion:
 
 MartCeladon2F1:
 	db 7 ; # items
-	db POTION
-	db SUPER_POTION
+	db GREAT_BALL
+	db ULTRA_BALL
 	db HYPER_POTION
 	db MAX_POTION
-	db REVIVE
 	db SUPER_REPEL
 	db MAX_REPEL
+	db FULL_HEAL
 	db -1 ; end
 
 MartCeladon2F2:
-	db 10 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db ESCAPE_ROPE
-	db FULL_HEAL
-	db ANTIDOTE
-	db BURN_HEAL
-	db ICE_HEAL
-	db AWAKENING
-	db PARLYZ_HEAL
+	db 3 ; # items
+	dbw TM_BODY_SLAM, 9000
+	dbw TM_LOW_KICK, 9000
+	dbw TM_ICE_BEAM, 9000
 	db -1 ; end
 
 MartCeladon4F:
