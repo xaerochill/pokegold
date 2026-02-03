@@ -11,7 +11,18 @@ PlaceMenuTMName:
 	push de
 	ld a, [wMenuSelection]
 	ld [wNamedObjectIndex], a
+	ld c, a
 	call GetTMHMName
+	ld de, wStringBuffer1
+.find_end
+	ld a, [de]
+	cp '@'
+	jr z, .found_end
+	inc de
+	jr .find_end
+.found_end
+	inc de
+	call AppendTMHMMoveName
 	ld de, wStringBuffer1
 	pop hl
 	call PlaceString

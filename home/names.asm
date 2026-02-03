@@ -258,3 +258,56 @@ GetMoveName::
 
 	pop hl
 	ret
+
+AppendTMHMMoveName::
+; Input: c = TM number (1-57), de = pointer past '@'
+; Appends " MOVENAME" to buffer at de
+	ldh a, [hROMBank]
+	push af
+	push hl
+	push bc
+
+	; Overwrite '@' with space
+	dec de
+	ld a, ' '
+	ld [de], a
+	inc de
+	push de                      ; save destination
+
+	; Look up move ID from TMHMMoves[c-1]
+	ld a, c
+	dec a
+	ld hl, TMHMMoves
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, BANK(TMHMMoves)
+	call GetFarByte              ; a = move ID
+
+	; Find move name string in MoveNames
+	dec a                        ; move ID to 0-indexed
+	push af                      ; save move index
+	ld a, BANK(MoveNames)
+	rst Bankswitch
+	pop af                       ; restore move index
+	ld hl, MoveNames
+	call GetNthString            ; hl = pointer to move name
+
+	; Copy move name to destination (WRAM always accessible)
+	pop de                       ; de = destination
+.copy_loop
+	ld a, [hli]
+	cp '@'
+	jr z, .done
+	ld [de], a
+	inc de
+	jr .copy_loop
+.done
+	ld a, '@'
+	ld [de], a
+
+	pop bc
+	pop hl
+	pop af
+	rst Bankswitch               ; restore original bank
+	ret

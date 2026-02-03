@@ -2229,7 +2229,7 @@ Script_verbosegivetmhm:
 ; parameters: 1 byte - TM/HM flag index (1-104)
 	call GetScriptByte
 	ld [wCurTMHM], a
-	
+
 	; set the flag
 	dec a
 	ld e, a
@@ -2237,19 +2237,34 @@ Script_verbosegivetmhm:
 	ld b, SET_FLAG
 	ld hl, wTMsHMs
 	call FlagAction
-	
+
 	; get TM/HM name for display
 	ld a, [wCurTMHM]
 	ld [wNamedObjectIndex], a
+	ld c, a
 	call GetTMHMName
+	ld de, wStringBuffer1
+
+	; find end of string (the '@' terminator) and append move name
+.find_name_end
+	ld a, [de]
+	cp '@'
+	jr z, .found_name_end
+	inc de
+	jr .find_name_end
+.found_name_end
+	inc de
+	call AppendTMHMMoveName
+
+	; copy the complete name (with move) to STRING_BUFFER_4 for display
 	ld de, wStringBuffer1
 	ld a, STRING_BUFFER_4
 	call CopyConvertedText
-	
+
 	; wScriptVar = TRUE (always succeeds since flags have no limit)
 	ld a, TRUE
 	ld [wScriptVar], a
-	
+
 	; call the give script
 	ld b, BANK(GiveTMHMScript)
 	ld de, GiveTMHMScript

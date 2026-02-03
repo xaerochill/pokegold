@@ -80,10 +80,24 @@ FindItemInBallScript::
 	and $7F ; clear high bit to get TM/HM number
 	ld c, a
 	ld [wNamedObjectIndex], a
+	push bc
 	call GetTMHMName
+	ld de, wStringBuffer1
+.find_end
+	ld a, [de]
+	cp '@'
+	jr z, .found_end
+	inc de
+	jr .find_end
+.found_end
+	inc de
+	pop bc
+	push bc
+	call AppendTMHMMoveName
 	ld hl, wStringBuffer3
 	ld de, wStringBuffer1
 	call CopyName2 ; copy to wStringBuffer3 for text display
+	pop bc
 
 	ld a, [wItemBallItemID]
 	and $7F

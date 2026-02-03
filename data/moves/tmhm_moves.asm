@@ -1,4 +1,4 @@
-TMHMMoves:
+TMHMMoves::
 ; entries correspond to *_TMNUM constants (see constants/tmhm_constants.asm)
 	table_width 1
 
