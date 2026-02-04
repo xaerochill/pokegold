@@ -591,6 +591,8 @@ PhoneFullMScript:
 	end
 
 RematchMScript:
+	loadtemptrainer
+	encountermusic
 	writetext RematchMText
 	waitbutton
 	closetext
@@ -630,6 +632,8 @@ PhoneFullFScript:
 	end
 
 RematchFScript:
+	loadtemptrainer
+	encountermusic
 	writetext RematchFText
 	waitbutton
 	closetext
