@@ -9,6 +9,7 @@
 	const ROUTE30_FRUIT_TREE1
 	const ROUTE30_FRUIT_TREE2
 	const ROUTE30_COOLTRAINER_F
+	const ROUTE30_POKE_BALL
 
 Route30_MapScripts:
 	def_scene_scripts
@@ -158,6 +159,9 @@ Route30YoungsterScript:
 
 Route30CooltrainerFScript:
 	jumptextfaceplayer Route30CooltrainerFText
+
+Route30TMTeleport:
+	tmhmball TM_TELEPORT
 
 Route30Sign:
 	jumptext Route30SignText
@@ -345,3 +349,4 @@ Route30_MapEvents:
 	object_event  5, 39, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route30FruitTree1, -1
 	object_event 11,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route30FruitTree2, -1
 	object_event  2, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route30CooltrainerFScript, -1
+	object_event 10, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route30TMTeleport, EVENT_ROUTE_30_TM_TELEPORT

@@ -9,7 +9,17 @@ CopycatsHouse1F_MapScripts:
 	def_callbacks
 
 CopycatsHouse1FPokefanMScript:
-	jumptextfaceplayer CopycatsHouse1FPokefanMText
+	faceplayer
+	opentext
+	checktmhm TM_MIMIC
+	iftrue .HasTM
+	writetext CopycatsHouse1FPokefanMBeforeMimicText
+	verbosegivetmhm TM_MIMIC
+.HasTM:
+	writetext CopycatsHouse1FPokefanMAfterMimicText
+	waitbutton
+	closetext
+	end
 
 CopycatsHouse1FPokefanFScript:
 	faceplayer
@@ -22,7 +32,7 @@ CopycatsHouse1FPokefanFScript:
 	end
 
 .ReturnedMachinePart:
-	writetext CopycatsHouse1FPokefanFText_ReturnedMachinePart
+	writetext CopycatsHouse1FPokefanFReturnedMachinePartText
 	waitbutton
 	closetext
 	end
@@ -35,7 +45,7 @@ CopycatsHouse1FBlisseyScript:
 	closetext
 	end
 
-CopycatsHouse1FPokefanMText:
+CopycatsHouse1FPokefanMBeforeMimicText:
 	text "My daughter likes"
 	line "to mimic people."
 
@@ -44,7 +54,17 @@ CopycatsHouse1FPokefanMText:
 
 	para "nickname COPYCAT"
 	line "around here."
+
+	para "Here, you should"
+	line "have a go as well!"
 	done
+
+CopycatsHouse1FPokefanMAfterMimicText:
+	text "There! You did"
+	line "pretty well!"
+
+	para "Not as good as my"
+	line "daughter though…"
 
 CopycatsHouse1FPokefanFText:
 	text "My daughter is so"
@@ -54,7 +74,7 @@ CopycatsHouse1FPokefanFText:
 	line "friends."
 	done
 
-CopycatsHouse1FPokefanFText_ReturnedMachinePart:
+CopycatsHouse1FPokefanFReturnedMachinePartText:
 	text "She recently lost"
 	line "the # DOLL that"
 

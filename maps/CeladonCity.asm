@@ -34,7 +34,17 @@ CeladonCityTeacher1Script:
 	jumptextfaceplayer CeladonCityTeacher1Text
 
 CeladonCityGramps1Script:
-	jumptextfaceplayer CeladonCityGramps1Text
+	faceplayer
+	opentext
+	checktmhm TM_SOFTBOILED
+	iftrue .HasTM
+	writetext CeladonCityGramps1BeforeSoftBoiledText
+	verbosegivetmhm TM_SOFTBOILED
+.HasTM:
+	writetext CeladonCityGramps1AfterSoftBoiledText
+	waitbutton
+	closetext
+	end
 
 CeladonCityGramps2Script:
 	jumptextfaceplayer CeladonCityGramps2Text
@@ -99,7 +109,7 @@ CeladonCityTeacher1Text:
 	line "them out too."
 	done
 
-CeladonCityGramps1Text:
+CeladonCityGramps1BeforeSoftBoiledText:
 	text "GRIMER have been"
 	line "appearing lately."
 
@@ -112,6 +122,23 @@ CeladonCityGramps1Text:
 	para "Where did they"
 	line "come from? This is"
 	cont "a serious problem…"
+
+	para "For now, my"
+	line "#MON can take"
+	cont "care of them."
+
+	para "Here, let me give"
+	line "you this TM."
+	done
+
+CeladonCityGramps1AfterSoftBoiledText:
+	text "We need all the"
+	line "help we can get to"
+	cont "clean up here."
+	
+	para "I wish more people"
+	line "would take care of"
+	cont "nature…"
 	done
 
 CeladonCityGramps2Text:

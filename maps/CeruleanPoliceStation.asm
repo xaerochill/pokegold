@@ -12,7 +12,17 @@ CeruleanPoliceStationFishingGuruScript:
 	jumptextfaceplayer CeruleanPoliceStationFishingGuruText
 
 CeruleanPoliceStationPokefanFScript:
-	jumptextfaceplayer CeruleanPoliceStationPokefanFText
+	faceplayer
+	opentext
+	checkitem TM_DIG
+	iftrue .HasTM
+	writetext CeruleanPoliceStationPokefanFBeforeDigText
+	verbosegivetmhm TM_DIG
+.HasTM:
+	writetext CeruleanPoliceStationPokefanFAfterDigText
+	waitbutton
+	closetext
+	end
 
 CeruleanDiglett:
 	opentext
@@ -32,9 +42,28 @@ CeruleanPoliceStationFishingGuruText:
 	cont "to be a thief."
 	done
 
-CeruleanPoliceStationPokefanFText:
+CeruleanPoliceStationPokefanFBeforeDigText:
 	text "We were held up by"
 	line "robbers before."
+
+	para "Afterwards, we"
+	line "found this in"
+	cont "our backyard."
+
+	para "Here, keep it!"
+
+	para "We have no use"
+	line "for it anymore."
+	done
+
+CeruleanPoliceStationPokefanFAfterDigText:
+	text "MT. MOON is a"
+	line "popular place for"
+	cont "using DIG!"
+
+	para "I think people"
+	line "go there to find"
+	cont "rare fossils."
 	done
 
 CeruleanDiglettText:

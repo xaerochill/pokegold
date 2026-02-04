@@ -81,8 +81,8 @@ TrainerSchoolboyBilly:
 Route15Sign:
 	jumptext Route15SignText
 
-Route15PPUp:
-	itemball PP_UP
+Route15TMTwister:
+	tmhmball TM_TWISTER
 
 TeacherColetteSeenText:
 	text "Have you forgotten"
@@ -193,8 +193,7 @@ SchoolboyBillyAfterBattleText:
 	done
 
 Route15SignText:
-; BUG: "Route 15" is not capitalized in a signpost (see docs/bugs_and_glitches.md)
-	text "Route 15"
+	text "ROUTE 15"
 
 	para "FUCHSIA CITY -"
 	line "LAVENDER TOWN"
@@ -219,4 +218,4 @@ Route15_MapEvents:
 	object_event 27,  8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSchoolboyBilly, -1
 	object_event 36, 13, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerTeacherColette, -1
 	object_event 53, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerTeacherHillary, -1
-	object_event 16,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route15PPUp, EVENT_ROUTE_15_PP_UP
+	object_event 18,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route15TMTwister, EVENT_ROUTE_15_TM_TWISTER

@@ -185,8 +185,8 @@ TrainerCooltrainermKevin:
 BillsHouseSign:
 	jumptext BillsHouseSignText
 
-Route25Protein:
-	itemball PROTEIN
+Route25TMSeismicToss:
+	tmhmball TM_SEISMIC_TOSS
 
 Route25HiddenPotion:
 	hiddenitem POTION, EVENT_ROUTE_25_HIDDEN_POTION
@@ -423,10 +423,6 @@ BillsHouseSignText:
 	line "BILL'S HOUSE"
 	done
 
-UnusedBillsHouseSignText: ; unreferenced
-	text "BILL'S HOUSE"
-	done
-
 Route25_MapEvents:
 	db 0, 0 ; filler
 
@@ -452,4 +448,4 @@ Route25_MapEvents:
 	object_event 13,  7, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassShannon, -1
 	object_event 32,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerSupernerdPat, -1
 	object_event 40,  5, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermKevin, -1
-	object_event 23,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN
+	object_event 23,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25TMSeismicToss, EVENT_ROUTE_25_TM_SEISMIC_TOSS

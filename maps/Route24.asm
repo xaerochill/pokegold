@@ -1,5 +1,6 @@
 	object_const_def
 	const ROUTE24_ROCKET
+	const ROUTE_24_ITEM_BALL
 
 Route24_MapScripts:
 	def_scene_scripts
@@ -33,6 +34,9 @@ Route24RocketScript:
 	special FadeInFromBlack
 	playmapmusic
 	end
+
+Route24TMThunderwave:
+	tmhmball TM_THUNDER_WAVE
 
 Route24RocketSeenText:
 	text "Hey, kid! Me am a"
@@ -127,3 +131,4 @@ Route24_MapEvents:
 
 	def_object_events
 	object_event 11, 15, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route24RocketScript, EVENT_ROUTE_24_ROCKET
+	object_event  6,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route24TMThunderwave, EVENT_ROUTE_24_TM_THUNDER_WAVE
