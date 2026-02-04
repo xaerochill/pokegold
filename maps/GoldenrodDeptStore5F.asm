@@ -25,100 +25,7 @@ GoldenrodDeptStore5FCheckIfSundayCallback:
 GoldenrodDeptStore5FClerkScript:
 	faceplayer
 	opentext
-GoldenrodDeptStore5FClerk_LoopScript:
-	checkmoney YOUR_MONEY, 9000
-	ifequal HAVE_LESS, GoldenrodDeptStore5FClerkNotEnoughMoney
-	writetext GoldenrodDeptStore5FClerk_AskWhichConsoleText
-	special PlaceMoneyTopRight
-	loadmenu GoldenrodDeptStore5FClerkMenu
-	verticalmenu
-	closewindow
-	ifequal 1, .Famicom
-	ifequal 2, .SNES
-	ifequal 3, .N64
-	ifequal 4, .V32
-	jump GoldenrodDeptStore5FClerk_Cancel
-	
-.Famicom
-	writetext GoldenrodDeptStore5FClerk_AreYouSureText
-	yesorno
-	iffalse GoldenrodDeptStore5FClerk_Cancel
-	checkevent EVENT_DECO_FAMICOM
-	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_FAMICOM
-	takemoney YOUR_MONEY, 9000
-	jump GoldenrodDeptStore5FClerk_FinishScript
-	end
-	
-.SNES
-	writetext GoldenrodDeptStore5FClerk_AreYouSureText
-	yesorno
-	iffalse GoldenrodDeptStore5FClerk_Cancel
-	checkevent EVENT_DECO_SNES
-	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_SNES
-	takemoney YOUR_MONEY, 9000
-	jump GoldenrodDeptStore5FClerk_FinishScript
-	end
-	
-.N64
-	writetext GoldenrodDeptStore5FClerk_AreYouSureText
-	yesorno
-	iffalse GoldenrodDeptStore5FClerk_Cancel
-	checkevent EVENT_DECO_N64
-	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_N64
-	takemoney YOUR_MONEY, 9000
-	jump GoldenrodDeptStore5FClerk_FinishScript
-	end
-
-.V32
-	writetext GoldenrodDeptStore5FClerk_AreYouSureText
-	yesorno
-	iffalse GoldenrodDeptStore5FClerk_Cancel
-	checkevent EVENT_DECO_VIRTUAL_BOY
-	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_VIRTUAL_BOY
-	takemoney YOUR_MONEY, 9000
-	jump GoldenrodDeptStore5FClerk_FinishScript
-	end
-	
-.AlreadyHaveDecorItem
-	writetext GoldenrodDeptStore5FClerk_AlreadyHaveDecoText
-	waitbutton
-	jump GoldenrodDeptStore5FClerk_LoopScript
-
-	
-GoldenrodDeptStore5FClerkMenu:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 2, 15, TEXTBOX_Y - 1
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR ; flags
-	db 4 ; items
-	db "FAMICOM ¥9000@"
-	db "SNES    ¥9000@"
-	db "N64     ¥9000@"
-	db "V32     ¥9000@"
-	
-GoldenrodDeptStore5FClerk_FinishScript:
-	waitsfx
-	playsound SFX_TRANSACTION
-	writetext GoldenrodDeptStore5FClerk_HereYouGoText
-	waitbutton
-	jump GoldenrodDeptStore5FClerk_LoopScript
-
-GoldenrodDeptStore5FClerk_Cancel:
-	writetext GoldenrodDeptStore5FClerkTakeCare
-	waitbutton
-	closetext
-	end
-	
-GoldenrodDeptStore5FClerkNotEnoughMoney:
-	writetext GoldenrodDeptStore5FClerkNotEnoughMoneyText
-	waitbutton
+	pokemart MARTTYPE_TM_SHOP, MART_GOLDENROD_5F
 	closetext
 	end
 
@@ -204,38 +111,6 @@ GoldenrodDeptStore5FDirectory:
 GoldenrodDeptStore5FElevatorButton:
 	jumpstd ElevatorButtonScript
 
-GoldenrodDeptStore5FClerk_AskWhichConsoleText:
-	text "Which CONSOLE"
-	line "do you like?"
-	done
-	
-GoldenrodDeptStore5FClerk_AreYouSureText:
-	text "Are you sure?"
-	done
-
-GoldenrodDeptStore5FClerk_AlreadyHaveDecoText:
-	text "You already have"
-	line "this CONSOLE!"
-	done
-
-GoldenrodDeptStore5FClerk_HereYouGoText:
-	text "Here you go! We"
-	line "will deliver this"
-	cont "item to your home"
-	cont "without delay!"
-	done
-
-GoldenrodDeptStore5FClerkNotEnoughMoneyText:
-	text "A NINTENDO product"
-	line "is expensive! You"
-	cont "need more money…"
-	done
-	
-GoldenrodDeptStore5FClerkTakeCare:
-	text "Pleasure doing"
-	line "business with you!"
-	done
-
 GoldenrodDeptStore5FReceptionistOhYourMonDotDotDotText:
 	text "Hello. Oh, your"
 	line "#MON…"
@@ -307,10 +182,10 @@ GoldenrodDeptStore5FPokefanMText:
 	done
 
 GoldenrodDeptStore5FDirectoryText:
-	text "Step up your"
-	line "GAME"
+	text "Customize Your"
+	line "#MON"
 
-	para "5F CONSOLE SHOP"
+	para "5F TM CORNER"
 	done
 
 GoldenrodDeptStore5F_MapEvents:

@@ -61,7 +61,8 @@ CeladonDeptStore1FDirectoryText:
 	para "2F: TRAINER'S"
 	line "    MARKET"
 
-	para "3F: DECO SHOP"
+	para "3F: TV GAME"
+	line "    SHOP"
 
 	para "4F: WISEMAN GIFTS"
 

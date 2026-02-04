@@ -10,74 +10,73 @@ CeladonDeptStore3F_MapScripts:
 
 	def_callbacks
 
-CeladonDeptStore3FClerkScript:
+CeladonDeptStore3FConsoleClerkScript:
 	faceplayer
 	opentext
-CeladonDeptStore3FClerk_LoopScript:
+CeladonDeptStore3FConsoleClerk_LoopScript:
 	checkmoney YOUR_MONEY, 9000
-	ifequal HAVE_LESS, CeladonDeptStore3FClerkNotEnoughMoney
-	writetext CeladonDeptStore3FClerk_AskWhichCarpetText
+	ifequal HAVE_LESS, CeladonDeptStore3FConsoleClerkNotEnoughMoney
+	writetext CeladonDeptStore3FConsoleClerk_AskWhichConsoleText
 	special PlaceMoneyTopRight
-	loadmenu CeladonDeptStore3FClerkMenu
+	loadmenu CeladonDeptStore3FConsoleClerkMenu
 	verticalmenu
 	closewindow
-	ifequal 1, .RedCarpet
-	ifequal 2, .BlueCarpet
-	ifequal 3, .GreenCarpet
-	ifequal 4, .YellowCarpet
-	jump CeladonDeptStore3FClerk_Cancel
+	ifequal 1, .Famicom
+	ifequal 2, .SNES
+	ifequal 3, .N64
+	ifequal 4, .V32
+	jump CeladonDeptStore3FConsoleClerk_Cancel
 	
-.RedCarpet
-	writetext CeladonDeptStore3FClerk_AreYouSureText
+.Famicom
+	writetext CeladonDeptStore3FConsoleClerk_AreYouSureText
 	yesorno
-	iffalse CeladonDeptStore3FClerk_Cancel
-	checkevent EVENT_DECO_CARPET_1
+	iffalse CeladonDeptStore3FConsoleClerk_Cancel
+	checkevent EVENT_DECO_FAMICOM
 	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_CARPET_1
+	setevent EVENT_DECO_FAMICOM
 	takemoney YOUR_MONEY, 9000
-	jump CeladonDeptStore3FClerk_FinishScript
+	jump CeladonDeptStore3FConsoleClerk_FinishScript
 	end
 	
-.BlueCarpet
-	writetext CeladonDeptStore3FClerk_AreYouSureText
+.SNES
+	writetext CeladonDeptStore3FConsoleClerk_AreYouSureText
 	yesorno
-	iffalse CeladonDeptStore3FClerk_Cancel
-	checkevent EVENT_DECO_CARPET_2
+	iffalse CeladonDeptStore3FConsoleClerk_Cancel
+	checkevent EVENT_DECO_SNES
 	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_CARPET_2
+	setevent EVENT_DECO_SNES
 	takemoney YOUR_MONEY, 9000
-	jump CeladonDeptStore3FClerk_FinishScript
+	jump CeladonDeptStore3FConsoleClerk_FinishScript
 	end
 	
-.GreenCarpet
-	writetext CeladonDeptStore3FClerk_AreYouSureText
+.N64
+	writetext CeladonDeptStore3FConsoleClerk_AreYouSureText
 	yesorno
-	iffalse CeladonDeptStore3FClerk_Cancel
-	checkevent EVENT_DECO_CARPET_4
+	iffalse CeladonDeptStore3FConsoleClerk_Cancel
+	checkevent EVENT_DECO_N64
 	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_CARPET_4
+	setevent EVENT_DECO_N64
 	takemoney YOUR_MONEY, 9000
-	jump CeladonDeptStore3FClerk_FinishScript
+	jump CeladonDeptStore3FConsoleClerk_FinishScript
 	end
 
-.YellowCarpet
-	writetext CeladonDeptStore3FClerk_AreYouSureText
+.V32
+	writetext CeladonDeptStore3FConsoleClerk_AreYouSureText
 	yesorno
-	iffalse CeladonDeptStore3FClerk_Cancel
-	checkevent EVENT_DECO_CARPET_3
+	iffalse CeladonDeptStore3FConsoleClerk_Cancel
+	checkevent EVENT_DECO_VIRTUAL_BOY
 	iftrue .AlreadyHaveDecorItem
-	setevent EVENT_DECO_CARPET_3
+	setevent EVENT_DECO_VIRTUAL_BOY
 	takemoney YOUR_MONEY, 9000
-	jump CeladonDeptStore3FClerk_FinishScript
+	jump CeladonDeptStore3FConsoleClerk_FinishScript
 	end
 	
 .AlreadyHaveDecorItem
-	writetext CeladonDeptStore3FClerk_AlreadyHaveDecoText
+	writetext CeladonDeptStore3FConsoleClerk_AlreadyHaveDecoText
 	waitbutton
-	jump CeladonDeptStore3FClerk_LoopScript
+	jump CeladonDeptStore3FConsoleClerk_LoopScript
 
-	
-CeladonDeptStore3FClerkMenu:
+CeladonDeptStore3FConsoleClerkMenu:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 15, TEXTBOX_Y - 1
 	dw .MenuData
@@ -86,26 +85,26 @@ CeladonDeptStore3FClerkMenu:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "RED     ¥9000@"
-	db "BLUE    ¥9000@"
-	db "GREEN   ¥9000@"
-	db "YELLOW  ¥9000@"
+	db "FAMICOM ¥9000@"
+	db "SNES    ¥9000@"
+	db "N64     ¥9000@"
+	db "V32     ¥9000@"
 	
-CeladonDeptStore3FClerk_FinishScript:
+CeladonDeptStore3FConsoleClerk_FinishScript:
 	waitsfx
 	playsound SFX_TRANSACTION
-	writetext CeladonDeptStore3FClerk_HereYouGoText
+	writetext CeladonDeptStore3FConsoleClerk_HereYouGoText
 	waitbutton
-	jump CeladonDeptStore3FClerk_LoopScript
+	jump CeladonDeptStore3FConsoleClerk_LoopScript
 
-CeladonDeptStore3FClerk_Cancel:
-	writetext CeladonDeptStore3FClerkTakeCare
+CeladonDeptStore3FConsoleClerk_Cancel:
+	writetext CeladonDeptStore3FConsoleClerkTakeCare
 	waitbutton
 	closetext
 	end
 	
-CeladonDeptStore3FClerkNotEnoughMoney:
-	writetext CeladonDeptStore3FClerkNotEnoughMoneyText
+CeladonDeptStore3FConsoleClerkNotEnoughMoney:
+	writetext CeladonDeptStore3FConsoleClerkNotEnoughMoneyText
 	waitbutton
 	closetext
 	end
@@ -140,46 +139,56 @@ CeladonDeptStore3FElevatorButton:
 CeladonDeptStore3FDirectory:
 	jumptext CeladonDeptStore3FDirectoryText
 
-CeladonDeptStore3FClerk_AskWhichCarpetText:
-	text "Which CARPET"
+CeladonDeptStore3FConsoleClerk_AskWhichConsoleText:
+	text "Which CONSOLE"
 	line "do you like?"
 	done
 	
-CeladonDeptStore3FClerk_AreYouSureText:
+CeladonDeptStore3FConsoleClerk_AreYouSureText:
 	text "Are you sure?"
 	done
 
-CeladonDeptStore3FClerk_AlreadyHaveDecoText:
+CeladonDeptStore3FConsoleClerk_AlreadyHaveDecoText:
 	text "You already have"
-	line "this CARPET!"
+	line "this CONSOLE!"
 	done
 
-CeladonDeptStore3FClerk_HereYouGoText:
+CeladonDeptStore3FConsoleClerk_HereYouGoText:
 	text "Here you go! We"
 	line "will deliver this"
 	cont "item to your home"
 	cont "without delay!"
 	done
 
-CeladonDeptStore3FClerkNotEnoughMoneyText:
-	text "A PALDEAN CARPET"
+CeladonDeptStore3FConsoleClerkNotEnoughMoneyText:
+	text "A NINTENDO product"
 	line "is expensive! You"
 	cont "need more money…"
 	done
 	
-CeladonDeptStore3FClerkTakeCare:
+CeladonDeptStore3FConsoleClerkTakeCare:
 	text "Pleasure doing"
 	line "business with you!"
 	done
 
 CeladonDeptStore3FYoungsterText:
-	text "There was a TM"
-	line "SHOP here that"
-	cont "made a fortune…"
+	text "You can identify"
+	line "#MON you got"
+	cont "in trades by"
+	cont "their ID Numbers!"
 
-	para "But now there are"
-	line "infinite-use TM's,"
-	cont "they closed shop!"
+	para "They gain more"
+	line "experience than"
+	cont "the ones you"
+	cont "caught yourself."
+
+	para "You need to be"
+	line "extra careful so"
+	cont "they obey you!"
+
+	para "But also your"
+	line "own #MON may"
+	cont "disobey you…"
 	done
 
 CeladonDeptStore3FGameboyKid1Text:
@@ -208,16 +217,15 @@ CeladonDeptStore3FGameboyKid2Text:
 	done
 
 CeladonDeptStore3FSuperNerdText:
-	text "Those carpets are"
-	line "so fine… But also"
-	cont "so expensive…"
+	text "#MON will start"
+	line "to disobey if you"
+	cont "do not have"
+	cont "enough badges."
 	done
 
 CeladonDeptStore3FDirectoryText:
-	text "3F: DECO SHOP"
-
-	para "Make Your room"
-	line "look nicer!"
+	text "3F: TV GAME"
+	line "    SHOP"
 	done
 
 CeladonDeptStore3F_MapEvents:
@@ -235,7 +243,7 @@ CeladonDeptStore3F_MapEvents:
 	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore3FElevatorButton
 
 	def_object_events
-	object_event  7,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FClerkScript, -1
+	object_event  7,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FConsoleClerkScript, -1
 	object_event  6,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FYoungsterScript, -1
 	object_event  9,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid1Script, -1
 	object_event 10,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid2Script, -1

@@ -44,18 +44,19 @@ CeladonDeptStore2FPokefanMText:
 
 	para "I'm impressed by"
 	line "the selection of"
-	cont "convenient items."
+	cont "TM's!"
 	done
 
 CeladonDeptStore2FYoungsterText:
-	text "My Dad's having a"
-	line "hard time learning"
+	text "The TM SHOP sells"
+	line "some rare moves."
 
-	para "the names of items"
-	line "and how they are"
+	para "Check them out!"
 
-	para "supposed to be"
-	line "used…"
+	para "You can use them"
+	line "over and over."
+
+	cont "Science is great!"
 	done
 
 CeladonDeptStore2FDirectoryText:
