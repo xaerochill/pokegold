@@ -53,6 +53,7 @@ CGBLayoutJumptable:
 	dw _CGB_MagnetTrain
 	dw _CGB_PackPals
 	dw _CGB_TrainerCard
+	dw _CGB_TrainerCardKanto
 	dw _CGB_PokedexUnownMode
 	dw _CGB_BillsPC
 	dw _CGB_UnownPuzzle
@@ -653,6 +654,83 @@ _CGB_TrainerCard:
 	hlcoord 11, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $7 ; pryce
+	call FillBoxCGB
+	call ApplyAttrmap
+	call ApplyPals
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+	ret
+
+_CGB_TrainerCardKanto:
+	ld de, wBGPals1
+	xor a ; CHRIS & MISTY
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, FALKNER
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, BROCK
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, LT_SURGE ; ERIKA
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, JANINE
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, SABRINA
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, BLAINE
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, BLUE
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, PREDEFPAL_CGB_BADGE
+	call GetPredefPal
+	call LoadHLPaletteIntoDE
+
+	; card border
+	hlcoord 0, 0, wAttrmap
+	ld bc, SCREEN_AREA
+	ld a, $1 ; falkner
+	call ByteFill
+	; trainer sprite area
+	hlcoord 14, 1, wAttrmap
+	lb bc, 7, 5
+	xor a ; chris
+	call FillBoxCGB
+	; top-right corner still uses the border's palette
+	hlcoord 18, 1, wAttrmap
+	ld [hl], $1
+	hlcoord 3, 10, wAttrmap
+	lb bc, 3, 3
+	ld a, $2 ; brock
+	call FillBoxCGB
+	hlcoord 7, 10, wAttrmap
+	lb bc, 3, 3
+	ld a, $0 ; misty / chris
+	call FillBoxCGB
+	hlcoord 11, 10, wAttrmap
+	lb bc, 3, 3
+	ld a, $3 ; lt.surge / erika
+	call FillBoxCGB
+	hlcoord 15, 10, wAttrmap
+	lb bc, 3, 3
+	ld a, $3 ; erika / lt.surge
+	call FillBoxCGB
+	hlcoord 3, 13, wAttrmap
+	lb bc, 3, 3
+	ld a, $4 ; janine
+	call FillBoxCGB
+	hlcoord 7, 13, wAttrmap
+	lb bc, 3, 3
+	ld a, $5 ; sabrina
+	call FillBoxCGB
+	hlcoord 11, 13, wAttrmap
+	lb bc, 3, 3
+	ld a, $6 ; blaine
 	call FillBoxCGB
 	call ApplyAttrmap
 	call ApplyPals
