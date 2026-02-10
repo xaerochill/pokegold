@@ -799,8 +799,8 @@ DragonsDenB1F_Blocks:
 TohjoFalls_Blocks:
 	INCBIN "maps/TohjoFalls.blk"
 
-SeafoamGym_Blocks: ; 6
-	INCBIN "maps/SeafoamGym.blk"
+CinnabarGym_Blocks: ; 6
+	INCBIN "maps/CinnabarGym.blk"
 
 Route19_Blocks:
 	INCBIN "maps/Route19.blk"
@@ -825,6 +825,18 @@ CinnabarPokemonLabRoom2_Blocks:
 
 CinnabarPokemonLabRoom3_Blocks:
 	INCBIN "maps/CinnabarPokemonLabRoom3.blk"
+
+PokemonMansionB1F_Blocks:
+	INCBIN "maps/PokemonMansionB1F.blk"
+
+PokemonMansion1F_Blocks:
+	INCBIN "maps/PokemonMansion1F.blk"
+
+PokemonMansion2F_Blocks:
+	INCBIN "maps/PokemonMansion2F.blk"
+
+PokemonMansion3F_Blocks:
+	INCBIN "maps/PokemonMansion3F.blk"
 
 Route3_Blocks: ; 14
 	INCBIN "maps/Route3.blk"

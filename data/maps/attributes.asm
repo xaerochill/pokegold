@@ -491,7 +491,15 @@ ENDM
 	map_attributes CinnabarPokecenter1F, CINNABAR_POKECENTER_1F, $00, 0
 	map_attributes CinnabarPokecenter2FBeta, CINNABAR_POKECENTER_2F_BETA, $00, 0
 	map_attributes Route19FuchsiaGate, ROUTE_19_FUCHSIA_GATE, $00, 0
-	map_attributes SeafoamGym, SEAFOAM_GYM, $09, 0
+	map_attributes CinnabarGym, CINNABAR_GYM, $00, 0
+	map_attributes CinnabarPokemonLabHallway, CINNABAR_POKEMON_LAB_HALLWAY, $00, 0
+	map_attributes CinnabarPokemonLabRoom1, CINNABAR_POKEMON_LAB_ROOM_1, $00, 0
+	map_attributes CinnabarPokemonLabRoom2, CINNABAR_POKEMON_LAB_ROOM_2, $00, 0
+	map_attributes CinnabarPokemonLabRoom3, CINNABAR_POKEMON_LAB_ROOM_3, $00, 0
+	map_attributes PokemonMansionB1F, POKEMON_MANSION_B1F, $00, 0
+	map_attributes PokemonMansion1F, POKEMON_MANSION_1F, $00, 0
+	map_attributes PokemonMansion2F, POKEMON_MANSION_2F, $00, 0
+	map_attributes PokemonMansion3F, POKEMON_MANSION_3F, $00, 0
 	map_attributes CeruleanGymBadgeSpeechHouse, CERULEAN_GYM_BADGE_SPEECH_HOUSE, $00, 0
 	map_attributes CeruleanPoliceStation, CERULEAN_POLICE_STATION, $00, 0
 	map_attributes CeruleanTradeSpeechHouse, CERULEAN_TRADE_SPEECH_HOUSE, $00, 0
@@ -677,7 +685,3 @@ ENDM
 	map_attributes Route30BerryHouse, ROUTE_30_BERRY_HOUSE, $00, 0
 	map_attributes MrPokemonsHouse, MR_POKEMONS_HOUSE, $00, 0
 	map_attributes Route31VioletGate, ROUTE_31_VIOLET_GATE, $00, 0
-	map_attributes CinnabarPokemonLabHallway, CINNABAR_POKEMON_LAB_HALLWAY, $00, 0
-	map_attributes CinnabarPokemonLabRoom1, CINNABAR_POKEMON_LAB_ROOM_1, $00, 0
-	map_attributes CinnabarPokemonLabRoom2, CINNABAR_POKEMON_LAB_ROOM_2, $00, 0
-	map_attributes CinnabarPokemonLabRoom3, CINNABAR_POKEMON_LAB_ROOM_3, $00, 0

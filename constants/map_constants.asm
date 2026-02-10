@@ -176,7 +176,7 @@ ENDM
 	map_const CINNABAR_POKECENTER_1F,                       5,  4 ;  1
 	map_const CINNABAR_POKECENTER_2F_BETA,                  8,  4 ;  2
 	map_const ROUTE_19_FUCHSIA_GATE,                        5,  4 ;  3
-	map_const SEAFOAM_GYM,                                  5,  4 ;  4
+	map_const CINNABAR_GYM,                                10,  9 ;  4
 	map_const ROUTE_19,                                    10, 27 ;  5
 	map_const ROUTE_20,                                    50,  9 ;  6
 	map_const ROUTE_21,                                    10, 45 ;  7
@@ -185,6 +185,10 @@ ENDM
 	map_const CINNABAR_POKEMON_LAB_ROOM_1,                  4,  4 ; 10
 	map_const CINNABAR_POKEMON_LAB_ROOM_2,                  4,  4 ; 11
 	map_const CINNABAR_POKEMON_LAB_ROOM_3,                  4,  4 ; 12
+	map_const POKEMON_MANSION_B1F,                         15, 14 ; 13
+	map_const POKEMON_MANSION_1F,                          15, 14 ; 14
+	map_const POKEMON_MANSION_2F,                          15, 14 ; 15
+	map_const POKEMON_MANSION_3F,                          15,  9 ; 16
 	endgroup
 
 	newgroup CERULEAN                                             ;  7
