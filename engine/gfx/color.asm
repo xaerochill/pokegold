@@ -1124,6 +1124,8 @@ INCLUDE "data/pokemon/palettes.asm"
 INCLUDE "data/trainers/palettes.asm"
 
 LoadMapPals:
+	farcall LoadSpecialMapPalette
+	jr c, .got_pals
 	; Which palette group is based on whether we're outside or inside
 	ld a, [wEnvironment]
 	maskbits NUM_ENVIRONMENTS + 1
@@ -1173,6 +1175,7 @@ LoadMapPals:
 	inc de
 	dec b
 	jr nz, .outer_loop
+.got_pals
 	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	ld bc, 8 palettes
@@ -1208,6 +1211,8 @@ endr
 	ld bc, 4
 	call CopyBytes
 	ret
+
+INCLUDE "engine/tilesets/tileset_palettes.asm"
 
 INCLUDE "data/maps/environment_colors.asm"
 
