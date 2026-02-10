@@ -102,6 +102,20 @@ DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 	const JED
 	const MARC
 	const RICH
+	const KEATON
+	const CONNOR
+	const LEOPOLD
+	const TRACE
+	const BEAU
+	const TAYLOR
+	const CORY
+	const ELTON
+	const TRAVIS
+	const MELVIN
+	const BRAYDON
+	const CRAIG
+	const GIDEON
+	const LINDEN
 
 	trainerclass ERIKA ; 15
 	const ERIKA1
@@ -410,9 +424,9 @@ DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 	trainerclass SUPER_NERD ; 29
 	const ERIC_UNUSED
 	const ERIC
-	const GREGG ; unused
-	const JAY ; unused
-	const DAVE ; unused
+	const GREGG ; Cinnabar Gym
+	const JAY ; Cinnabar Gym
+	const DAVE ; Cinnabar Gym
 	const SAM
 	const TOM
 	const PAT
@@ -473,6 +487,11 @@ DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 	const DUNCAN
 	const EDDIE
 	const COREY
+	const ORSON
+	const DUSTY
+	const JENSEN
+	const LOUIS
+	const JAC
 
 	trainerclass FIREBREATHER ; 30
 	const OTIS

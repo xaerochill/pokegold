@@ -296,34 +296,131 @@ LtSurgeGroup:
 	db -1 ; end
 
 ScientistGroup:
-	; SCIENTIST (1)
+	; SCIENTIST (1) Team Rocket Base B3F
 	db "ROSS@", TRAINERTYPE_NORMAL
 	db 22, KOFFING
 	db 22, KOFFING
 	db -1 ; end
 
-	; SCIENTIST (2)
+	; SCIENTIST (2) Team Rocket Base B3F
 	db "MITCH@", TRAINERTYPE_NORMAL
 	db 24, DITTO
 	db -1 ; end
 
-	; SCIENTIST (3)
+	; SCIENTIST (3) Team Rocket Base B1F
 	db "JED@", TRAINERTYPE_NORMAL
 	db 20, MAGNEMITE
 	db 20, MAGNEMITE
 	db 20, MAGNEMITE
 	db -1 ; end
 
-	; SCIENTIST (4)
+	; SCIENTIST (4) Radio Tower 3F
 	db "MARC@", TRAINERTYPE_NORMAL
 	db 27, MAGNEMITE
 	db 27, MAGNEMITE
 	db 27, MAGNEMITE
 	db -1 ; end
 
-	; SCIENTIST (5)
+	; SCIENTIST (5) Radio Tower 4F
 	db "RICH@", TRAINERTYPE_MOVES
 	db 30, PORYGON,    CONVERSION, CONVERSION2, RECOVER, TRI_ATTACK
+	db -1 ; end
+
+	; SCIENTIST (6) Silph Co. 2F
+	db "KEATON@", TRAINERTYPE_NORMAL
+	db 26, GRIMER
+	db 26, WEEZING
+	db 26, KOFFING
+	db 26, WEEZING
+	db -1 ; end
+
+	; SCIENTIST (7) Silph Co. 2F
+	db "CONNOR@", TRAINERTYPE_NORMAL
+	db 27, MAGNEMITE
+	db 27, VOLTORB
+	db 27, MAGNETON
+	db -1 ; end
+
+	; SCIENTIST (8) Silph Co. 3F
+	db "LEOPOLD@", TRAINERTYPE_NORMAL
+	db 29, ELECTRODE
+	db 29, WEEZING
+	db -1 ; end
+
+	; SCIENTIST (9) Silph Co. 4F
+	db "TRACE@", TRAINERTYPE_NORMAL
+	db 23, ELECTRODE
+	db -1 ; end
+
+	; SCIENTIST (10) Silph Co. 5F
+	db "BEAU@", TRAINERTYPE_NORMAL
+	db 26, MAGNETON
+	db 26, KOFFING
+	db 26, WEEZING
+	db 26, MAGNEMITE
+	db -1 ; end
+
+	; SCIENTIST (11) Silph Co. 6F
+	db "TAYLOR@", TRAINERTYPE_NORMAL
+	db 25, VOLTORB
+	db 25, KOFFING
+	db 25, MAGNETON
+	db 25, MAGNEMITE
+	db 25, KOFFING
+	db -1 ; end
+
+	; SCIENTIST (12) Silph Co. 7F
+	db "CORY@", TRAINERTYPE_NORMAL
+	db 29, ELECTRODE
+	db 29, MUK
+	db -1 ; end
+
+	; SCIENTIST (13) Silph Co. 8F
+	db "ELTON@", TRAINERTYPE_NORMAL
+	db 29, GRIMER
+	db 29, ELECTRODE
+	db -1 ; end
+
+	; SCIENTIST (14) Silph Co. 9F
+	db "TRAVIS@", TRAINERTYPE_NORMAL
+	db 28, VOLTORB
+	db 28, KOFFING
+	db 28, MAGNETON
+	db -1 ; end
+
+	; SCIENTIST (15) Silph Co. 10F
+	db "MELVIN@", TRAINERTYPE_NORMAL
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db -1 ; end
+
+	; SCIENTIST (16) Pokémon Mansion 1F
+	db "BRAYDON@", TRAINERTYPE_NORMAL
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db -1 ; end
+
+	; SCIENTIST (17) Pokémon Mansion 3F
+	db "CRAIG@", TRAINERTYPE_NORMAL
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db -1 ; end
+
+	; SCIENTIST (18) Pokémon Mansion B1F
+	db "GIDEON@", TRAINERTYPE_NORMAL
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db 27, MAGNEMITE
+	db -1 ; end
+
+	; SCIENTIST (19) Cinnabar Gym
+	db "LINDEN@", TRAINERTYPE_NORMAL
+	db 36, GROWLITHE
+	db 36, VULPIX
+	db 36, NINETALES
 	db -1 ; end
 
 ErikaGroup:
@@ -1963,61 +2060,61 @@ SailorGroup:
 	db -1 ; end
 
 SuperNerdGroup:
-	; SUPER_NERD (1)
+	; SUPER_NERD (1) unused Ruins of Alph
 	db "ERIC@", TRAINERTYPE_NORMAL
 	db 20, GRIMER
 	db -1 ; end
 
-	; SUPER_NERD (2)
+	; SUPER_NERD (2) Goldenrod Underground
 	db "ERIC@", TRAINERTYPE_NORMAL
 	db 11, GRIMER
 	db 11, GRIMER
 	db -1 ; end
 
-	; SUPER_NERD (3)
+	; SUPER_NERD (3) Cinnabar Gym
 	db "GREGG@", TRAINERTYPE_NORMAL
 	db 20, MAGNEMITE
 	db 20, MAGNEMITE
 	db 20, MAGNEMITE
 	db -1 ; end
 
-	; SUPER_NERD (4)
+	; SUPER_NERD (4) Cinnabar Gym
 	db "JAY@", TRAINERTYPE_NORMAL
 	db 22, KOFFING
 	db 22, KOFFING
 	db -1 ; end
 
-	; SUPER_NERD (5)
+	; SUPER_NERD (5) Cinnabar Gym
 	db "DAVE@", TRAINERTYPE_NORMAL
 	db 24, DITTO
 	db -1 ; end
 
-	; SUPER_NERD (6)
+	; SUPER_NERD (6) Route 8
 	db "SAM@", TRAINERTYPE_NORMAL
 	db 34, GRIMER
 	db 34, MUK
 	db -1 ; end
 
-	; SUPER_NERD (7)
+	; SUPER_NERD (7) Route 8
 	db "TOM@", TRAINERTYPE_NORMAL
 	db 32, MAGNEMITE
 	db 32, MAGNEMITE
 	db 32, MAGNEMITE
 	db -1 ; end
 
-	; SUPER_NERD (8)
+	; SUPER_NERD (8) Route 25
 	db "PAT@", TRAINERTYPE_NORMAL
 	db 36, PORYGON
 	db -1 ; end
 
-	; SUPER_NERD (9)
+	; SUPER_NERD (9) Fast Ship
 	db "SHAWN@", TRAINERTYPE_NORMAL
 	db 31, MAGNEMITE
 	db 33, MUK
 	db 31, MAGNEMITE
 	db -1 ; end
 
-	; SUPER_NERD (10)
+	; SUPER_NERD (10) Goldenrod Underground
 	db "TERU@", TRAINERTYPE_NORMAL
 	db  7, MAGNEMITE
 	db 11, VOLTORB
@@ -2025,15 +2122,8 @@ SuperNerdGroup:
 	db  9, MAGNEMITE
 	db -1 ; end
 
-	; SUPER_NERD (11)
-	db "RUSS@", TRAINERTYPE_NORMAL
-	db 27, MAGNEMITE
-	db 27, MAGNEMITE
-	db 27, MAGNEMITE
-	db -1 ; end
-
-	; SUPER_NERD (12)
-	db "NORTON@", TRAINERTYPE_MOVES
+	; SUPER_NERD (11) Cinnabar Gym
+	db "ZAC@", TRAINERTYPE_MOVES
 	db 30, PORYGON,    CONVERSION, CONVERSION2, RECOVER, TRI_ATTACK
 	db -1 ; end
 
@@ -2308,25 +2398,62 @@ BlaineGroup:
 	db -1 ; end
 
 BurglarGroup:
-	; BURGLAR (1)
+	; BURGLAR (1) Goldenrod Underground Switch Room
 	db "DUNCAN@", TRAINERTYPE_NORMAL
 	db 23, KOFFING
 	db 25, MAGMAR
 	db 23, KOFFING
 	db -1 ; end
 
-	; BURGLAR (2)
+	; BURGLAR (2) Goldenrod Underground Switch Room
 	db "EDDIE@", TRAINERTYPE_MOVES
 	db 26, GROWLITHE,  ROAR, EMBER, LEER, TAKE_DOWN
 	db 24, KOFFING,    TACKLE, SMOG, SLUDGE, SMOKESCREEN
 	db -1 ; end
 
-	; BURGLAR (3)
+	; BURGLAR (3) Fast Ship
 	db "COREY@", TRAINERTYPE_NORMAL
 	db 25, KOFFING
 	db 28, MAGMAR
 	db 25, KOFFING
 	db 30, KOFFING
+	db -1 ; end
+
+	; BURGLAR (4) Cinnabar Gym
+	db "ORSON@", TRAINERTYPE_NORMAL
+	db 29, GROWLITHE
+	db 29, VULPIX
+	db 33, GROWLITHE
+	db 28, VULPIX
+	db 28, CHARMANDER
+	db 28, PONYTA
+	db -1 ; end
+
+	; BURGLAR (5) Cinnabar Gym
+	db "DUSTY@", TRAINERTYPE_NORMAL
+	db 36, GROWLITHE
+	db 36, VULPIX
+	db 36, NINETALES
+	db 41, PONYTA
+	db 37, VULPIX
+	db 37, GROWLITHE
+	db -1 ; end
+
+	; BURGLAR (6) Pokémon Mansion 2F
+	db "JENSEN@", TRAINERTYPE_NORMAL
+	db 34, CHARMANDER
+	db 34, CHARMELEON
+	db -1 ; end
+
+	; BURGLAR (7) Pokémon Mansion 3F
+	db "LOUIS@", TRAINERTYPE_NORMAL
+	db 38, NINETALES
+	db -1 ; end
+
+	; BURGLAR (8) Pokémon Mansion B1F
+	db "JAC@", TRAINERTYPE_NORMAL
+	db 34, GROWLITHE
+	db 34, PONYTA
 	db -1 ; end
 
 FirebreatherGroup:
