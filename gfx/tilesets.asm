@@ -93,6 +93,9 @@ INCLUDE "data/tilesets/mansion_collision.asm"
 TilesetCaveGFX::
 INCBIN "gfx/tilesets/cave.2bpp.lz"
 
+TilesetDarkCaveGFX::
+INCBIN "gfx/tilesets/dark_cave.2bpp.lz"
+
 TilesetCaveMeta::
 TilesetDarkCaveMeta::
 INCBIN "data/tilesets/cave_metatiles.bin"
@@ -217,9 +220,6 @@ INCBIN "data/tilesets/ice_path_metatiles.bin"
 
 TilesetIcePathColl::
 INCLUDE "data/tilesets/ice_path_collision.asm"
-
-TilesetDarkCaveGFX::
-INCBIN "gfx/tilesets/dark_cave.2bpp.lz"
 
 TilesetForestGFX::
 INCBIN "gfx/tilesets/forest.2bpp.lz"
