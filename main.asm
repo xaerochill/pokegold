@@ -320,6 +320,7 @@ INCLUDE "engine/events/npc_trade.asm"
 INCLUDE "engine/events/mom_phone.asm"
 INCLUDE "engine/link/mystery_gift_3.asm"
 INCLUDE "engine/debug/color_picker.asm"
+INCLUDE "engine/events/tradeback_npc.asm"
 
 
 SECTION "Standard Scripts", ROMX
