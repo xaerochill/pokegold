@@ -21,7 +21,7 @@ SetDVs:
 	push hl                 ; save DV address
 
 	call .TypeMenu
-	jp nz, .cancel_pop
+	jp c, .cancel_pop
 
 	call CalculateHPDVs
 
@@ -141,24 +141,19 @@ SetDVs:
 	xor a
 	ld [wMenuCursorPosition], a
 	call _2DMenu
+	jr c, .type_cancel ; _2DMenu sets carry on B press
 
 	ld a, [wMenuCursorPosition]
-	ld b, a ; save cursor in b
-	
-	ld a, [wMenuJoypad]
-	ld c, a ; save joypad in c
-	
-	push bc ; save position before `ExitMenu` clobbers it
+	push af ; save cursor before ExitMenu clobbers it
 	call ExitMenu
-	pop bc
-
-	ld a, c ; restore joypad
-	and PAD_B
-	jr c, .cancel_pop
-	
-	ld a, b ; restore cursor
+	pop af
 	dec a   ; convert 1-indexed to 0-indexed
 	and a   ; clear carry
+	ret
+
+.type_cancel
+	call ExitMenu
+	scf
 	ret
 
 SelectTypeText:
