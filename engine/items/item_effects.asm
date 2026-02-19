@@ -1179,7 +1179,14 @@ VitaminEffect:
 .not_max
 
 	add 10
+	jr nc, .no_overflow
+	ld a, $ff
+	ld [hli], a
 	ld [hl], a
+	jr .updated
+.no_overflow
+	ld [hl], a
+.updated
 	call UpdateStatsAfterItem
 
 	call GetStatExpRelativePointer
