@@ -187,27 +187,31 @@ _CGB_StatsScreenHPPals:
 	call CopyBytes
 	call WipeAttrmap
 
+; Left panel (cols 0-6, all rows) — mon palette
+; Col 7 (divider) stays palette $0 to match page color
 	hlcoord 0, 0, wAttrmap
-	lb bc, 8, SCREEN_WIDTH
+	lb bc, SCREEN_HEIGHT, 7
 	ld a, $1 ; mon palette
 	call FillBoxCGB
 
-	hlcoord 10, 16, wAttrmap
+; Exp bar (row 15, cols 8-17) — exp palette
+	hlcoord 8, 15, wAttrmap
 	ld bc, 10
 	ld a, $2 ; exp palette
 	call ByteFill
 
-	hlcoord 13, 5, wAttrmap
+; Page indicators at left panel (2x2 tiles at rows 14-15)
+	hlcoord 0, 14, wAttrmap
 	lb bc, 2, 2
 	ld a, $3 ; pink page palette
 	call FillBoxCGB
 
-	hlcoord 15, 5, wAttrmap
+	hlcoord 2, 14, wAttrmap
 	lb bc, 2, 2
 	ld a, $4 ; green page palette
 	call FillBoxCGB
 
-	hlcoord 17, 5, wAttrmap
+	hlcoord 4, 14, wAttrmap
 	lb bc, 2, 2
 	ld a, $5 ; blue page palette
 	call FillBoxCGB

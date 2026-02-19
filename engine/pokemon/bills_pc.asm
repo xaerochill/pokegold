@@ -1644,7 +1644,7 @@ StatsScreenDPad:
 	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and PAD_A | PAD_B | PAD_RIGHT | PAD_LEFT
+	and PAD_A | PAD_B | PAD_RIGHT | PAD_LEFT | PAD_SELECT
 	ld [wMenuJoypad], a
 	jr nz, .pressed_a_b_right_left
 	ld a, [hl]

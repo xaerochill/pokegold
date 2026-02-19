@@ -123,6 +123,36 @@ PrintTempMonStats:
 	next "SPEED"
 	next "@"
 
+PrintTempMonStatExp:
+; Print wTempMon's stat XP at hl.
+	push hl
+	ld de, PrintTempMonStats.StatNames
+	call PlaceString
+	pop hl
+	ld bc, 4
+	add hl, bc
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	ld de, wTempMonAtkExp
+	lb bc, 2, 5
+	call .PrintStatExp
+	ld de, wTempMonDefExp
+	call .PrintStatExp
+	ld de, wTempMonSpcExp
+	call .PrintStatExp
+	ld de, wTempMonSpcExp
+	call .PrintStatExp
+	ld de, wTempMonSpdExp
+	jp PrintNum
+
+.PrintStatExp:
+	push hl
+	call PrintNum
+	pop hl
+	ld de, SCREEN_WIDTH * 2
+	add hl, de
+	ret
+
 GetGender:
 ; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
 ; When calling this function, a should be set to an appropriate wMonType value.

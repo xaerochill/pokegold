@@ -48,6 +48,7 @@
 
 	; needed for StatsScreen_PlaceShinyIcon and PrintPartyMonPage1
 	charmap "⁂",         $3f ; gfx/stats/stats_tiles.png, tile 14
+	charmap "♥",          $36 ; gfx/stats/stats_tiles.png, tile 5
 
 ; Actual characters (from gfx/font/font.png)
 

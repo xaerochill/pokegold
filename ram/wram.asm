@@ -1695,7 +1695,7 @@ wPoisonStepPartyFlags:: ds PARTY_LENGTH
 wPoisonStepDataEnd::
 ENDU
 
-	ds 1
+wStatsScreenStatExpToggle:: db
 
 wBoxAlignment:: db
 wFarDecompressPicPointer:: dw
