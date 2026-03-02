@@ -293,8 +293,11 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	hlcoord 2, 10
 	ld de, .Dex_PlayTime
 	call PlaceString
-	hlcoord 12, 15
+	hlcoord 12, 16
 	ld de, .Badges
+	call PlaceString
+	hlcoord 2, 14
+	ld de, .Obedience
 	call PlaceString
 	ld hl, wPokedexCaught
 	ld b, wEndPokedexCaught - wPokedexCaught
@@ -304,6 +307,10 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	lb bc, 1, 3
 	call PrintNum
 	call TrainerCard_Page1_PrintGameTime
+	hlcoord 15, 14
+	ld de, wObedienceLevel
+	lb bc, 1, 3
+	call PrintNum
 	hlcoord 2, 8
 	ld de, .StatusTilemap
 	call TrainerCardSetup_PlaceTilemapString
@@ -319,8 +326,8 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	db   "#DEX"
 	next "PLAY TIME@"
 
-.Unused: ; unreferenced
-	db "@"
+.Obedience:
+	db "OBEDIENCE LV:@"
 
 .Badges:
 	db "BADGES▶@"
