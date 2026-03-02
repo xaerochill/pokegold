@@ -69,6 +69,7 @@ CinnabarGymBlaineScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_VOLCANOBADGE
+	special RecalcObedienceLevel
 .FightDone:
 	checktmhm TM_FIRE_BLAST
 	iftrue .Rematch

@@ -30,6 +30,7 @@ MahoganyGymPryceScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_GLACIERBADGE
+	special RecalcObedienceLevel
 	readvar VAR_BADGES
 	scall MahoganyGymActivateRockets
 .FightDone:
@@ -151,12 +152,7 @@ MahoganyGymGuideScript:
 	end
 
 MahoganyGymStatue:
-	checkflag ENGINE_GLACIERBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, PRYCE, PRYCE1
-	jumpstd GymStatue2Script
 
 PryceIntroText:
 	text "#MON have many"

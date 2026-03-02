@@ -33,6 +33,7 @@ SaffronGymSabrinaScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MARSHBADGE
+	special RecalcObedienceLevel
 .FightDone:
 	checktmhm TM_PSYWAVE
 	iftrue .Rematch
@@ -125,12 +126,7 @@ SaffronGymGuideScript:
 	end
 
 SaffronGymStatue:
-	checkflag ENGINE_MARSHBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, SABRINA, SABRINA1
-	jumpstd GymStatue2Script
 
 SabrinaBeforeBattleText:
 	text "SABRINA: I knew"

@@ -2441,7 +2441,7 @@ wRegisteredItem:: db
 wPlayerState:: db
 
 wHallOfFameCount:: db
-	ds 1
+wObedienceLevel:: db
 wTradeFlags:: flag_array NUM_NPC_TRADES
 
 	ds 33

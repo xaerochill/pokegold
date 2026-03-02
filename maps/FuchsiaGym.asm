@@ -39,6 +39,7 @@ FuchsiaGymJanineScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_SOULBADGE
+	special RecalcObedienceLevel
 .FightDone:
 	checktmhm TM_TOXIC
 	iftrue .Rematch
@@ -223,12 +224,7 @@ FuchsiaGymGuideScript:
 	end
 
 FuchsiaGymStatue:
-	checkflag ENGINE_SOULBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, JANINE, JANINE1
-	jumpstd GymStatue2Script
 
 Movement_NinjaSpin:
 	turn_head DOWN

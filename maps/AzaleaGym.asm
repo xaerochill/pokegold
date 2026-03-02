@@ -30,6 +30,7 @@ AzaleaGymBugsyScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_HIVEBADGE
+	special RecalcObedienceLevel
 	readvar VAR_BADGES
 	scall AzaleaGymActivateRockets
 .FightDone:
@@ -151,12 +152,7 @@ AzaleaGymGuideScript:
 	end
 
 AzaleaGymStatue:
-	checkflag ENGINE_HIVEBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, BUGSY, BUGSY1
-	jumpstd GymStatue2Script
 
 BugsyIntroText:
 	text "I'm BUGSY!"

@@ -77,6 +77,7 @@ CeruleanGymMistyScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_CASCADEBADGE
+	special RecalcObedienceLevel
 .FightDone:
 	checktmhm TM_BUBBLEBEAM
 	iftrue .Rematch
@@ -179,12 +180,7 @@ CeruleanGymStatue2:
 	end
 
 CeruleanGymStatue:
-	checkflag ENGINE_CASCADEBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, MISTY, MISTY1
-	jumpstd GymStatue2Script
 
 CeruleanGymGruntRunsDownMovement:
 	big_step DOWN

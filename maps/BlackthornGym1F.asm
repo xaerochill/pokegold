@@ -129,12 +129,7 @@ BlackthornGymGuideScript:
 	end
 
 BlackthornGymStatue:
-	checkflag ENGINE_RISINGBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, CLAIR, CLAIR1
-	jumpstd GymStatue2Script
 
 ClairIntroText:
 	text "I am CLAIR."

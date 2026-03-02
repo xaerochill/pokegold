@@ -66,6 +66,7 @@ DEF STRING_BUFFER_LENGTH EQU 19
 	const VAR_XCOORD           ; 12
 	const VAR_YCOORD           ; 13
 	const VAR_SPECIALPHONECALL ; 14
+	const VAR_OBEDIENCE        ; 15
 DEF NUM_VARS EQU const_value
 
 ; variable action types

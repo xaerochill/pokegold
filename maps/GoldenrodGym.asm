@@ -36,6 +36,7 @@ GoldenrodGymWhitneyScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_PLAINBADGE
+	special RecalcObedienceLevel
 	readvar VAR_BADGES
 	scall GoldenrodGymActivateRockets
 .FightDone:
@@ -147,12 +148,7 @@ GoldenrodGymGuideScript:
 	end
 
 GoldenrodGymStatue:
-	checkflag ENGINE_PLAINBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, WHITNEY, WHITNEY1
-	jumpstd GymStatue2Script
 
 WhitneyIntroText:
 	text "Hi! I'm WHITNEY!"

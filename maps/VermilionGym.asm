@@ -31,6 +31,7 @@ VermilionGymSurgeScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_THUNDERBADGE
+	special RecalcObedienceLevel
 .FightDone:
 	checktmhm TM_THUNDERBOLT
 	iftrue .Rematch
@@ -115,12 +116,7 @@ VermilionGymTrashCan:
 	jumptext VermilionGymTrashCanText
 
 VermilionGymStatue:
-	checkflag ENGINE_THUNDERBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, LT_SURGE, LT_SURGE1
-	jumpstd GymStatue2Script
 
 LtSurgeBeforeBattleText:
 	text "Hey, kid! What do"

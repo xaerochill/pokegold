@@ -25,6 +25,7 @@ ViridianGymBlueScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_EARTHBADGE
+	special RecalcObedienceLevel
 	writetext LeaderBlueAfterText
 	waitbutton
 	closetext
@@ -53,13 +54,7 @@ ViridianGymGuideScript:
 	end
 
 ViridianGymStatue:
-	checkflag ENGINE_EARTHBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-
-.Beaten:
-	gettrainername STRING_BUFFER_4, BLUE, BLUE1
-	jumpstd GymStatue2Script
 
 LeaderBlueBeforeText:
 	text "BLUE: Yo! Finally"

@@ -59,7 +59,7 @@ _GetVarAction::
 	dwb wXCoord,                        RETVAR_STRBUF2
 	dwb wYCoord,                        RETVAR_STRBUF2
 	dwb wSpecialPhoneCallID,            RETVAR_STRBUF2
-	dwb NULL,                           RETVAR_STRBUF2
+	dwb wObedienceLevel,                RETVAR_STRBUF2
 
 .CountCaughtMons:
 ; Caught mons.

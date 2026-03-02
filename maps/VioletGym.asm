@@ -29,6 +29,7 @@ VioletGymFalknerScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_ZEPHYRBADGE
+	special RecalcObedienceLevel
 	readvar VAR_BADGES
 	scall VioletGymActivateRockets
 .FightDone:
@@ -119,12 +120,7 @@ VioletGymGuideScript:
 	end
 
 VioletGymStatue:
-	checkflag ENGINE_ZEPHYRBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, FALKNER, FALKNER1
-	jumpstd GymStatue2Script
 
 FalknerIntroText:
 	text "I'm FALKNER, the"

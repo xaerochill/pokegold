@@ -33,6 +33,7 @@ CeladonGymErikaScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
+	special RecalcObedienceLevel
 .FightDone:
 	checktmhm TM_GIGA_DRAIN
 	iftrue .Rematch
@@ -120,12 +121,7 @@ TrainerTwinsJoAndZoe2:
 	end
 
 CeladonGymStatue:
-	checkflag ENGINE_RAINBOWBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, ERIKA, ERIKA1
-	jumpstd GymStatue2Script
 
 ErikaBeforeBattleText:
 	text "ERIKA: Hello…"

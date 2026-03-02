@@ -326,18 +326,26 @@ ContestResults_PartyFullText:
 	line "in BILL's PC."
 	done
 
-GymStatue_CityGymText:
-	text_ram wStringBuffer3
+GymStatue_ObedienceOnText:
+	text "OBEDIENCE: <LV>@"
+	text_decimal wObedienceLevel, 1, 3
 	text_start
-	line "#MON GYM"
+	para "Turn off?"
 	done
 
-GymStatue_WinningTrainersText:
-	text "LEADER: @"
-	text_ram wStringBuffer4
-	text_start
-	para "WINNING TRAINERS:"
-	line "<PLAYER>"
+GymStatue_ObedienceOffText:
+	text "OBEDIENCE: OFF"
+	para "Turn on?"
+	done
+
+GymStatue_ToggledOffText:
+	text "Obedience has"
+	line "been disabled."
+	done
+
+GymStatue_ToggledOnText:
+	text "Obedience has"
+	line "been enabled."
 	done
 
 CoinVendor_WelcomeText:

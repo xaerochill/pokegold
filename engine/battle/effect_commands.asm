@@ -662,24 +662,7 @@ BattleCommand_CheckObedience:
 	and a
 	ret nz
 
-	; all Pokémon obey after entering the Hall of Fame at least once
-	ld a, [wHallOfFameCount] 
-	and a
-	ld a, MAX_LEVEL
-	jr nz, .getlevel
-
-	; Count how many badges the player has.
-	ld hl, wBadges
-	ld b, 2
-	call CountSetBits
-	; Get obedience level from table that corresponds to number of badges
-	ld hl, .ObedienceLevels
-	add l
-	ld l, a
-	adc h
-	sub l
-	ld h, a
-	ld a, [hl]
+	ld a, [wObedienceLevel]
 
 .getlevel
 ; c = obedience level
@@ -896,8 +879,8 @@ BattleCommand_CheckObedience:
 
 	jp EndMoveEffect
 
-.ObedienceLevels:
-	table_width 1, .ObedienceLevels
+ObedienceLevels:
+	table_width 1, ObedienceLevels
 	db 15
 	db 18
 	db 21
@@ -916,6 +899,35 @@ BattleCommand_CheckObedience:
 	db 60
 	db 70
 	assert_table_length NUM_BADGES + 1
+
+RecalcObedienceLevel::
+; Recalculate wObedienceLevel based on badges.
+; If Hall of Fame completed, set MAX_LEVEL.
+	ld a, [wHallOfFameCount]
+	and a
+	jr nz, .max
+; Count badges
+	ld hl, wBadges
+	ld b, 2
+	call CountSetBits
+; Look up ObedienceLevels table
+	ld hl, ObedienceLevels
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	ld [wObedienceLevel], a
+	ret
+.max
+	ld a, MAX_LEVEL
+	ld [wObedienceLevel], a
+	ret
+
+SetObedienceOff::
+; Set wObedienceLevel to MAX_LEVEL (disable obedience).
+	ld a, MAX_LEVEL
+	ld [wObedienceLevel], a
+	ret
 
 IgnoreSleepOnly:
 	ld a, BATTLE_VARS_MOVE_ANIM

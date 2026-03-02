@@ -27,6 +27,7 @@ PewterGymBrockScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_BOULDERBADGE
+	special RecalcObedienceLevel
 .FightDone:
 	checktmhm TM_ANCIENTPOWER
 	iftrue .Rematch
@@ -86,12 +87,7 @@ PewterGymGuideScript:
 	end
 
 PewterGymStatue:
-	checkflag ENGINE_BOULDERBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, BROCK, BROCK1
-	jumpstd GymStatue2Script
 
 BrockBeforeBattleText:
 	text "I'm BROCK!"

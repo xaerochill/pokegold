@@ -29,6 +29,7 @@ EcruteakGymMortyScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_FOGBADGE
+	special RecalcObedienceLevel
 	readvar VAR_BADGES
 	scall EcruteakGymActivateRockets
 	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
@@ -139,12 +140,7 @@ EcruteakGymGuideScript:
 	end
 
 EcruteakGymStatue:
-	checkflag ENGINE_FOGBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, MORTY, MORTY1
-	jumpstd GymStatue2Script
 
 MortyIntroText:
 	text "Good of you to"

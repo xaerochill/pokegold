@@ -25,6 +25,7 @@ OlivineGymJasmineScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MINERALBADGE
+	special RecalcObedienceLevel
 	readvar VAR_BADGES
 	scall OlivineGymActivateRockets
 .FightDone:
@@ -96,12 +97,7 @@ OlivineGymGuideScript:
 	end
 
 OlivineGymStatue:
-	checkflag ENGINE_MINERALBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, JASMINE, JASMINE1
-	jumpstd GymStatue2Script
 
 JasmineIntroText:
 	text "…Thank you for"

@@ -45,6 +45,7 @@ CianwoodGymChuckScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_STORMBADGE
+	special RecalcObedienceLevel
 	readvar VAR_BADGES
 	scall CianwoodGymActivateRockets
 .FightDone:
@@ -141,12 +142,7 @@ CianwoodGymBoulder:
 	jumpstd StrengthBoulderScript
 
 CianwoodGymStatue:
-	checkflag ENGINE_STORMBADGE
-	iftrue .Beaten
 	jumpstd GymStatue1Script
-.Beaten:
-	gettrainername STRING_BUFFER_4, CHUCK, CHUCK1
-	jumpstd GymStatue2Script
 
 CianwoodGymMovement_ChuckChucksBoulder:
 	set_sliding

@@ -20,6 +20,7 @@ HallOfFame::
 	jr nc, .ok
 	inc [hl]
 .ok
+	farcall RecalcObedienceLevel
 	farcall SaveGameData
 	call GetHallOfFameParty
 	farcall AddHallOfFameEntry

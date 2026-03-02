@@ -54,6 +54,7 @@ DragonsDenB1FDragonFangScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_RISINGBADGE
+	special RecalcObedienceLevel
 	specialphonecall SPECIALCALL_MASTERBALL
 	writetext DragonShrineRisingBadgeExplanationText
 	promptbutton
