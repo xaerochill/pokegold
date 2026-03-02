@@ -17,12 +17,6 @@ PlayersHouse2FNoopScene: ; unreferenced
 PlayersHouse2FInitializeRoomCallback:
 	special ToggleDecorationsVisibility
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
-	checkevent EVENT_INITIALIZED_EVENTS
-	iftrue .SkipInitialization
-	jumpstd InitializeEventsScript
-	endcallback
-
-.SkipInitialization:
 	endcallback
 
 PlayersHouse2FSetUpTileDecorationsCallback:
@@ -45,7 +39,16 @@ if DEF(_DEBUG)
 	giveitem MAX_REPEL, 99
 	giveitem MASTER_BALL, 99
 	giveitem ESCAPE_ROPE, 99
+	giveitem THUNDERSTONE, 1
 	giveitem BICYCLE
+	giveitem HP_UP, 99
+	giveitem PROTEIN, 99
+	giveitem IRON, 99
+	giveitem CALCIUM, 99
+	giveitem CARBOS, 99
+	giveitem COIN_CASE
+	givecoins 9999
+
 	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent EVENT_GOT_BICYCLE
 	; all badges
@@ -65,6 +68,7 @@ if DEF(_DEBUG)
 	setflag ENGINE_SOULBADGE
 	setflag ENGINE_VOLCANOBADGE
 	setflag ENGINE_EARTHBADGE
+	special RecalcObedienceLevel
 	setevent EVENT_BEAT_FALKNER
 	setevent EVENT_BEAT_BUGSY
 	setevent EVENT_BEAT_WHITNEY
@@ -110,13 +114,13 @@ if DEF(_DEBUG)
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
 	; good party
-	givepoke NIDOKING, 100, BRIGHTPOWDER
-	givepoke ENTEI, 100, BRIGHTPOWDER
+	givepoke NIDOKING, 99, BRIGHTPOWDER
+	givepoke ENTEI, 77, BRIGHTPOWDER
 	; hm slaves
-	givepoke RAICHU, 100, BRIGHTPOWDER
-	givepoke KINGLER, 100, BRIGHTPOWDER
+	givepoke PIKACHU, 55, BRIGHTPOWDER
+	givepoke KINGLER, 33, BRIGHTPOWDER
 	; rest
-	givepoke MAROWAK, 100, THICK_CLUB
+	givepoke MAROWAK, 11, THICK_CLUB
 	;moves
 	loadmem wPartyMon1Moves+0, THUNDERBOLT
 	loadmem wPartyMon1Moves+1, ICE_BEAM

@@ -220,6 +220,7 @@ InitializeWorld:
 	call ShrinkPlayer
 	farcall SpawnPlayer
 	farcall _InitializeStartDay
+	farcall InitializeEvents
 	ret
 
 LoadOrRegenerateLuckyIDNumber:
@@ -283,6 +284,7 @@ Continue:
 	farcall JumpRoamMons
 	farcall CopyMysteryGiftReceivedDecorationsToPC
 	farcall ClockContinue
+	farcall RecalcObedienceLevel
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
 	jr z, .SpawnAfterE4
