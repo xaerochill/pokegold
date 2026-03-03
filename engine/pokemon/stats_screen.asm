@@ -632,7 +632,7 @@ LoadGreenPage:
 	hlcoord 8, 8
 	ld de, .Move
 	call PlaceString
-	hlcoord 9, 9
+	hlcoord 8, 9
 	ld a, SCREEN_WIDTH * 2
 	ld [wListMovesLineSpacing], a
 	call ListMoves
