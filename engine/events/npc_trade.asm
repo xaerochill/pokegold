@@ -27,10 +27,6 @@ NPCTrade::
 	ld a, TRADE_DIALOG_WRONG
 	jr nz, .done
 
-	call CheckTradeGender
-	ld a, TRADE_DIALOG_WRONG
-	jr c, .done
-
 	ld b, SET_FLAG
 	call TradeFlagAction
 
@@ -65,34 +61,6 @@ NPCTrade::
 	pop af
 	ld [wJumptableIndex], a
 	call ReturnToMapWithSpeechTextbox
-	ret
-
-CheckTradeGender:
-	xor a
-	ld [wMonType], a
-
-	ld e, NPCTRADE_GENDER
-	call GetTradeAttr
-	ld a, [hl]
-	and a ; TRADE_GENDER_EITHER
-	jr z, .matching
-	cp TRADE_GENDER_MALE
-	jr z, .check_male
-	; TRADE_GENDER_FEMALE
-	farcall GetGender
-	jr nz, .not_matching
-	jr .matching
-
-.check_male
-	farcall GetGender
-	jr z, .not_matching
-
-.matching
-	and a
-	ret
-
-.not_matching
-	scf
 	ret
 
 TradeFlagAction:
@@ -159,6 +127,14 @@ DoNPCTrade:
 	call Trade_GetAttributeOfCurrentPartymon
 	ld a, [hl]
 	ld [wCurPartyLevel], a
+; Override level if a custom level is specified
+	ld e, NPCTRADE_LEVEL
+	call GetTradeAttr
+	ld a, [hl]
+	and a
+	jr z, .keep_level
+	ld [wCurPartyLevel], a
+.keep_level
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a
 	xor a
@@ -166,6 +142,33 @@ DoNPCTrade:
 	ld [wPokemonWithdrawDepositParameter], a ; REMOVE_PARTY
 	callfar RemoveMonFromPartyOrBox
 	predef TryAddMonToParty
+
+; Overwrite the first move slot if a custom move is specified
+	ld e, NPCTRADE_MOVE
+	call GetTradeAttr
+	ld a, [hl]
+	and a ; NO_MOVE
+	jr z, .no_custom_move
+; Write the move
+	push af
+	ld hl, wPartyMon1Moves
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call Trade_GetAttributeOfLastPartymon
+	pop af
+	ld [de], a
+; Update the PP to match the new move
+	push de
+	dec a
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	pop de
+	ld hl, MON_PP - MON_MOVES
+	add hl, de
+	ld [hl], a
+.no_custom_move
 
 	ld e, NPCTRADE_NICKNAME
 	call GetTradeAttr
@@ -331,28 +334,6 @@ GetTradeMonNames:
 	ld de, wMonOrItemNameBuffer
 	call CopyTradeName
 
-	ld hl, wStringBuffer1
-.loop
-	ld a, [hli]
-	cp '@'
-	jr nz, .loop
-
-	dec hl
-	push hl
-	ld e, NPCTRADE_GENDER
-	call GetTradeAttr
-	ld a, [hl]
-	pop hl
-	and a ; TRADE_GENDER_EITHER
-	ret z
-	cp TRADE_GENDER_MALE
-	ld a, '♂'
-	jr z, .done
-	; TRADE_GENDER_FEMALE
-	ld a, '♀'
-.done
-	ld [hli], a
-	ld [hl], '@'
 	ret
 
 INCLUDE "data/events/npc_trades.asm"

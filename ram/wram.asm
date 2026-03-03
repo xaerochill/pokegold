@@ -2442,9 +2442,9 @@ wPlayerState:: db
 
 wHallOfFameCount:: db
 wObedienceLevel:: db
-wTradeFlags:: flag_array NUM_NPC_TRADES
+wTradeFlags:: flag_array NUM_NPC_TRADES ; 2 bytes
 
-	ds 33
+	ds 32
 
 wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
