@@ -144,14 +144,14 @@ ItemDescriptions:
 	dw TeruSama16Desc
 	dw TeruSama17Desc
 	dw MetalCoatDesc
-	dw DragonFangDesc
+	dw DragonScaleDesc
 	dw TeruSama18Desc
 	dw LeftoversDesc
 	dw TeruSama19Desc
 	dw TeruSama20Desc
 	dw TeruSama21Desc
 	dw MysteryBerryDesc
-	dw DragonScaleDesc
+	dw DragonFangDesc
 	dw BerserkGeneDesc
 	dw TeruSama22Desc
 	dw TeruSama23Desc
