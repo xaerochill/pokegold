@@ -30,25 +30,15 @@ TinTowerHoOh:
 	pause 15
 	closetext
 	setevent EVENT_FOUGHT_HO_OH
-	checkver
-	iftrue .Silver
 	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadwildmon HO_OH, 40
-	startbattle
-	disappear TINTOWERROOF_HO_OH
-	reloadmapafterbattle
-	end
-
-.Silver:
-	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadwildmon HO_OH, 70
+	loadwildmon HO_OH, 60
 	startbattle
 	disappear TINTOWERROOF_HO_OH
 	reloadmapafterbattle
 	end
 
 HoOhText:
-	text "Shaoooh!"
+	text "HO-OH: Shaoooh!"
 	done
 
 TinTowerRoof_MapEvents:
