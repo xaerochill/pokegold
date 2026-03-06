@@ -135,9 +135,9 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw PassDesc
-	dw TeruSama13Desc
-	dw TeruSama14Desc
-	dw TeruSama15Desc
+	dw FossilsDesc
+	dw FossilsDesc
+	dw FossilsDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
@@ -777,14 +777,9 @@ PassDesc:
 	db   "A ticket for the"
 	next "MAGNET TRAIN.@"
 
-TeruSama13Desc:
-	db   "?@"
-
-TeruSama14Desc:
-	db   "?@"
-
-TeruSama15Desc:
-	db   "?@"
+FossilsDesc:
+	db   "A fossil of an"
+	next "ancient #MON."
 
 CharcoalDesc:
 	db   "Powers up fire-"
