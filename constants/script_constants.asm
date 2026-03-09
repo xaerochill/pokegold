@@ -303,3 +303,9 @@ DEF BUG_CONTESTANT_SIZE EQU 4
 	const UNOWNPUZZLE_AERODACTYL ; 2
 	const UNOWNPUZZLE_HO_OH      ; 3
 DEF NUM_UNOWN_PUZZLES EQU const_value
+
+; FossilScientist setval arguments
+	const_def 1
+	const REVIVE_OLD_AMBER    ; 1
+	const REVIVE_DOME_FOSSIL  ; 2
+	const REVIVE_LORD_HELIX   ; 3

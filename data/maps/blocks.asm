@@ -817,14 +817,14 @@ CinnabarIsland_Blocks:
 CinnabarPokemonLabHallway_Blocks:
 	INCBIN "maps/CinnabarPokemonLabHallway.blk"
 
-CinnabarPokemonLabRoom1_Blocks:
-	INCBIN "maps/CinnabarPokemonLabRoom1.blk"
+CinnabarPokemonLabTradeRoom_Blocks:
+	INCBIN "maps/CinnabarPokemonLabTradeRoom.blk"
 
-CinnabarPokemonLabRoom2_Blocks:
-	INCBIN "maps/CinnabarPokemonLabRoom2.blk"
+CinnabarPokemonLabMetronomeRoom_Blocks:
+	INCBIN "maps/CinnabarPokemonLabMetronomeRoom.blk"
 
-CinnabarPokemonLabRoom3_Blocks:
-	INCBIN "maps/CinnabarPokemonLabRoom3.blk"
+CinnabarPokemonLabFossilRoom_Blocks:
+	INCBIN "maps/CinnabarPokemonLabFossilRoom.blk"
 
 PokemonMansionB1F_Blocks:
 	INCBIN "maps/PokemonMansionB1F.blk"
