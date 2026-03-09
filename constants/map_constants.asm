@@ -182,9 +182,9 @@ ENDM
 	map_const ROUTE_21,                                    10, 45 ;  7
 	map_const CINNABAR_ISLAND,                             10,  9 ;  8
 	map_const CINNABAR_POKEMON_LAB_HALLWAY,                 9,  4 ;  9
-	map_const CINNABAR_POKEMON_LAB_ROOM_1,                  4,  4 ; 10
-	map_const CINNABAR_POKEMON_LAB_ROOM_2,                  4,  4 ; 11
-	map_const CINNABAR_POKEMON_LAB_ROOM_3,                  4,  4 ; 12
+	map_const CINNABAR_POKEMON_LAB_TRADE_ROOM,              4,  4 ; 10
+	map_const CINNABAR_POKEMON_LAB_METRONOME_ROOM,          4,  4 ; 11
+	map_const CINNABAR_POKEMON_LAB_FOSSIL_ROOM,             4,  4 ; 12
 	map_const POKEMON_MANSION_B1F,                         15, 14 ; 13
 	map_const POKEMON_MANSION_1F,                          15, 14 ; 14
 	map_const POKEMON_MANSION_2F,                          15, 14 ; 15

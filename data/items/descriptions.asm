@@ -779,7 +779,7 @@ PassDesc:
 
 FossilsDesc:
 	db   "A fossil of an"
-	next "ancient #MON."
+	next "ancient #MON.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

@@ -190,7 +190,6 @@ ROMX $4d
 	"Map Scripts 12"
 ROMX $4e
 	"Map Scripts 13"
-	"Map Scripts Cinnabar"
 ROMX $4f
 	"Map Scripts 14"
 ROMX $50
@@ -209,7 +208,8 @@ ROMX $56
 	"Map Scripts 21"
 ROMX $57
 	"Map Scripts 22"
-;ROMX $58
+ROMX $58
+	"Map Scripts Cinnabar"
 ROMX $59
 	"Map Scripts 23"
 ROMX $5a

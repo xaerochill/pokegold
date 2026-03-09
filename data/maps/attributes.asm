@@ -493,9 +493,9 @@ ENDM
 	map_attributes Route19FuchsiaGate, ROUTE_19_FUCHSIA_GATE, $00, 0
 	map_attributes CinnabarGym, CINNABAR_GYM, $00, 0
 	map_attributes CinnabarPokemonLabHallway, CINNABAR_POKEMON_LAB_HALLWAY, $00, 0
-	map_attributes CinnabarPokemonLabRoom1, CINNABAR_POKEMON_LAB_ROOM_1, $00, 0
-	map_attributes CinnabarPokemonLabRoom2, CINNABAR_POKEMON_LAB_ROOM_2, $00, 0
-	map_attributes CinnabarPokemonLabRoom3, CINNABAR_POKEMON_LAB_ROOM_3, $00, 0
+	map_attributes CinnabarPokemonLabTradeRoom, CINNABAR_POKEMON_LAB_TRADE_ROOM, $00, 0
+	map_attributes CinnabarPokemonLabMetronomeRoom, CINNABAR_POKEMON_LAB_METRONOME_ROOM, $00, 0
+	map_attributes CinnabarPokemonLabFossilRoom, CINNABAR_POKEMON_LAB_FOSSIL_ROOM, $00, 0
 	map_attributes PokemonMansionB1F, POKEMON_MANSION_B1F, $00, 0
 	map_attributes PokemonMansion1F, POKEMON_MANSION_1F, $00, 0
 	map_attributes PokemonMansion2F, POKEMON_MANSION_2F, $00, 0
