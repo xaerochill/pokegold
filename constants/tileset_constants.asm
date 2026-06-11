@@ -31,6 +31,7 @@
 	const TILESET_KANTO_MODERN         ; 1d
 	const TILESET_PLATEAU              ; 1e
 	const TILESET_MUSEUM               ; 1f
+	const TILESET_SEVII                ; 20
 DEF NUM_TILESETS EQU const_value - 1
 
 ; wTileset struct size

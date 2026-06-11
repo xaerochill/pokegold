@@ -100,6 +100,9 @@ INCLUDE "gfx/tilesets/ice_path_palette_map.asm"
 TilesetForestPalMap:
 INCLUDE "gfx/tilesets/forest_palette_map.asm"
 
+TilesetSeviiPalMap:
+INCLUDE "gfx/tilesets/sevii_palette_map.asm"
+
 MapGroupPalettes:
 ; entries correspond to MAPGROUP_* constants
 rept NUM_MAP_GROUPS

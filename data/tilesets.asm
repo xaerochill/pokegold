@@ -45,4 +45,5 @@ Tilesets::
 	tileset TilesetKantoModern
 	tileset TilesetPlateau
 	tileset TilesetMuseum
+	tileset TilesetSevii
 	assert_table_length NUM_TILESETS + 1
