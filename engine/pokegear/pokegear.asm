@@ -17,12 +17,14 @@ DEF PHONE_DISPLAY_HEIGHT EQU 4
 	const POKEGEARSTATE_JOHTOMAPJOYPAD  ; 4
 	const POKEGEARSTATE_KANTOMAPINIT    ; 5
 	const POKEGEARSTATE_KANTOMAPJOYPAD  ; 6
-	const POKEGEARSTATE_PHONEINIT       ; 7
-	const POKEGEARSTATE_PHONEJOYPAD     ; 8
-	const POKEGEARSTATE_MAKEPHONECALL   ; 9
-	const POKEGEARSTATE_FINISHPHONECALL ; a
-	const POKEGEARSTATE_RADIOINIT       ; b
-	const POKEGEARSTATE_RADIOJOYPAD     ; c
+	const POKEGEARSTATE_SEVIIMAPINIT    ; 7
+	const POKEGEARSTATE_SEVIIMAPJOYPAD  ; 8
+	const POKEGEARSTATE_PHONEINIT       ; 9
+	const POKEGEARSTATE_PHONEJOYPAD     ; a
+	const POKEGEARSTATE_MAKEPHONECALL   ; b
+	const POKEGEARSTATE_FINISHPHONECALL ; c
+	const POKEGEARSTATE_RADIOINIT       ; d
+	const POKEGEARSTATE_RADIOJOYPAD     ; e
 
 PokeGear:
 	ld hl, wOptions
@@ -318,14 +320,20 @@ InitPokegearTilemap:
 	ld a, [wPokegearMapPlayerIconLandmark]
 	cp LANDMARK_FAST_SHIP
 	jr z, .johto
+	cp SEVII_LANDMARK
+	jr nc, .sevii
 	cp KANTO_LANDMARK
 	jr nc, .kanto
 .johto
-	ld e, 0
+	ld e, JOHTO_REGION
 	jr .ok
 
 .kanto
-	ld e, 1
+	ld e, KANTO_REGION
+	jr .ok
+
+.sevii
+	ld e, SEVII_REGION
 .ok
 	farcall PokegearMap
 	ld a, $07
@@ -435,6 +443,8 @@ PokegearJumptable:
 	dw PokegearMap_JohtoMap
 	dw PokegearMap_Init
 	dw PokegearMap_KantoMap
+	dw PokegearMap_Init
+	dw PokegearMap_SeviiMap
 	dw PokegearPhone_Init
 	dw PokegearPhone_Joypad
 	dw PokegearPhone_MakePhoneCall
@@ -524,15 +534,18 @@ PokegearMap_CheckRegion:
 	ld a, [wPokegearMapPlayerIconLandmark]
 	cp LANDMARK_FAST_SHIP
 	jr z, .johto
+	cp SEVII_LANDMARK
+	jr nc, .sevii
 	cp KANTO_LANDMARK
 	jr nc, .kanto
 .johto
 	ld a, POKEGEARSTATE_JOHTOMAPINIT
 	jr .done
-	ret
-
 .kanto
 	ld a, POKEGEARSTATE_KANTOMAPINIT
+	jr .done
+.sevii
+	ld a, POKEGEARSTATE_SEVIIMAPINIT
 .done
 	ld [wJumptableIndex], a
 	call ExitPokegearRadio_HandleMusic
@@ -559,6 +572,11 @@ PokegearMap_KantoMap:
 PokegearMap_JohtoMap:
 	ld d, LANDMARK_SILVER_CAVE
 	ld e, LANDMARK_NEW_BARK_TOWN
+	jr PokegearMap_ContinueMap
+
+PokegearMap_SeviiMap:
+	ld d, LANDMARK_TANOBY_CHAMBERS
+	ld e, LANDMARK_ONE_ISLAND
 PokegearMap_ContinueMap:
 	ld hl, hJoyLast
 	ld a, [hl]
@@ -1964,14 +1982,21 @@ LoadStation_PokemonChannel:
 PokegearMap:
 	ld a, e
 	and a
-	jr nz, .kanto
+	jr nz, .not_johto
 	call LoadTownMapGFX
 	call FillJohtoMap
 	ret
 
-.kanto
+.not_johto
+	cp SEVII_REGION
+	jr z, .sevii
 	call LoadTownMapGFX
 	call FillKantoMap
+	ret
+
+.sevii
+	call LoadTownMapGFX
+	call FillSeviiMap
 	ret
 
 _FlyMap:
@@ -2215,7 +2240,8 @@ FlyMap:
 	ld c, a
 	call GetWorldMapLocation
 .CheckRegion:
-; The first 46 locations are part of Johto. The rest are in Kanto.
+	cp SEVII_LANDMARK
+	jr nc, .SeviiFlyMap
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
 ; Johto fly map
@@ -2281,6 +2307,34 @@ FlyMap:
 	ld [wTownMapCursorCoordinates + 1], a
 	ret
 
+.SeviiFlyMap:
+	push af
+	ld c, SPAWN_ONE_ISLAND
+	call HasVisitedSpawn
+	and a
+	jr z, .NoSevii
+	ld a, SEVII_FLYPOINT
+	ld [wStartFlypoint], a
+	ld a, NUM_FLYPOINTS - 1
+	ld [wEndFlypoint], a
+	ld a, SEVII_FLYPOINT ; first one is default (One Island)
+	ld [wTownMapPlayerIconLandmark], a
+	call FillSeviiMap
+	call .MapHud
+	pop af
+	call TownMapPlayerIcon
+	ret
+
+.NoSevii:
+	ld a, JOHTO_FLYPOINT
+	ld [wTownMapPlayerIconLandmark], a
+	ld [wStartFlypoint], a
+	ld a, KANTO_FLYPOINT - 1
+	ld [wEndFlypoint], a
+	call FillJohtoMap
+	pop af
+	jr .MapHud
+
 Pokedex_GetArea:
 ; e: Current landmark
 	ld a, [wTownMapPlayerIconLandmark]
@@ -2303,10 +2357,6 @@ Pokedex_GetArea:
 	ld c, 4
 	call Request2bpp
 	call LoadTownMapGFX
-	call FillKantoMap
-	call .PlaceString_MonsNest
-	call TownMapPals
-	hlbgcoord 0, 0, vBGMap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call .PlaceString_MonsNest
@@ -2318,6 +2368,7 @@ Pokedex_GetArea:
 	call SetDefaultBGPAndOBP
 	xor a
 	ldh [hBGMapMode], a
+	ldh [hWY], a ; hWY stays at 0 (window off, always show vBGMap0)
 	xor a ; JOHTO_REGION
 	call .GetAndPlaceNest
 .loop
@@ -2357,27 +2408,48 @@ Pokedex_GetArea:
 	ret
 
 .left
-	ldh a, [hWY]
-	cp SCREEN_HEIGHT_PX
-	ret z
-	call ClearSprites
-	ld a, SCREEN_HEIGHT_PX
-	ldh [hWY], a
-	xor a ; JOHTO_REGION
-	call .GetAndPlaceNest
-	ret
+	ld a, [wTownMapCursorLandmark]
+	and a
+	ret z ; already at region 0
+	dec a
+	jr .switch_region
 
 .right
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	ret z
-	ldh a, [hWY]
-	and a
-	ret z
+	ret z ; Kanto/Sevii locked until Hall of Fame
+	ld a, [wTownMapCursorLandmark]
+	cp NUM_REGIONS - 1
+	ret z ; already at last region
+	inc a
+
+.switch_region
+	push af
 	call ClearSprites
-	xor a
-	ldh [hWY], a
-	ld a, KANTO_REGION
+	pop af
+	ld [wTownMapCursorLandmark], a
+
+	; Redraw tilemap for the new region
+	and a
+	jr z, .fill_johto
+	cp KANTO_REGION
+	jr z, .fill_kanto
+	; else Sevii
+	call FillSeviiMap
+	jr .redraw
+.fill_johto
+	call FillJohtoMap
+	jr .redraw
+.fill_kanto
+	call FillKantoMap
+.redraw
+	call .PlaceString_MonsNest
+	call TownMapPals
+	hlbgcoord 0, 0
+	call TownMapBGUpdate
+
+	; Place nest icons for new region
+	ld a, [wTownMapCursorLandmark]
 	call .GetAndPlaceNest
 	ret
 
@@ -2509,22 +2581,28 @@ Pokedex_GetArea:
 ; Don't show the player's sprite if you're
 ; not in the same region as what's currently
 ; on the screen.
+	; Get player's region (0, 1, or 2)
 	ld a, [wTownMapPlayerIconLandmark]
 	cp LANDMARK_FAST_SHIP
-	jr z, .johto
+	jr z, .player_johto
+	cp SEVII_LANDMARK
+	jr nc, .player_sevii
 	cp KANTO_LANDMARK
-	jr c, .johto
-; kanto
+	jr nc, .player_kanto
+.player_johto:
+	xor a ; JOHTO_REGION
+	jr .compare
+.player_kanto:
+	ld a, KANTO_REGION
+	jr .compare
+.player_sevii:
+	ld a, SEVII_REGION
+.compare:
+	ld b, a
 	ld a, [wTownMapCursorLandmark]
-	and a
-	jr z, .clear
-	jr .ok
-
-.johto
-	ld a, [wTownMapCursorLandmark]
-	and a
-	jr nz, .clear
-.ok
+	cp b
+	jr nz, .clear ; different region — hide player
+	; same region — show player
 	and a
 	ret
 
@@ -2583,6 +2661,10 @@ FillJohtoMap:
 
 FillKantoMap:
 	ld de, KantoMap
+	jr FillTownMap
+
+FillSeviiMap:
+	ld de, SeviiMap
 FillTownMap:
 	hlcoord 0, 0
 .loop
@@ -2721,6 +2803,9 @@ INCBIN "gfx/pokegear/johto.bin"
 KantoMap:
 INCBIN "gfx/pokegear/kanto.bin"
 
+SeviiMap:
+INCBIN "gfx/pokegear/sevii.bin"
+
 PokedexNestIconGFX:
 INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX:
@@ -2729,6 +2814,7 @@ INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 EntireFlyMap: ; unreferenced
 ; Similar to _FlyMap, but scrolls through the entire
 ; Flypoints data of both regions. A debug function?
+; Sevii is not added to it yet
 	xor a
 	ld [wTownMapPlayerIconLandmark], a
 	call ClearBGPalettes
