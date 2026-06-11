@@ -38,6 +38,13 @@ MapGroupRoofs:
 	db ROOF_NEW_BARK  ; 24 (New Bark)
 	db -1             ; 25
 	db ROOF_NEW_BARK  ; 26 (Cherrygrove)
+	db -1             ; 27
+	db -1             ; 28
+	db -1             ; 29
+	db -1             ; 30
+	db -1             ; 31
+	db -1             ; 32
+	db -1             ; 33
 	assert_table_length NUM_MAP_GROUPS + 1
 
 Roofs:

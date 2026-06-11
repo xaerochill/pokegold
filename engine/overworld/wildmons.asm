@@ -27,13 +27,15 @@ LoadWildMonData:
 
 FindNest:
 ; Parameters:
-; e: 0 = Johto, 1 = Kanto
+; e: 0 = Johto, 1 = Kanto, 2 = Sevii
 ; wNamedObjectIndex: species
 	hlcoord 0, 0
 	ld bc, SCREEN_AREA
 	xor a
 	call ByteFill
 	ld a, e
+	cp SEVII_REGION
+	jr z, .sevii
 	and a
 	jr nz, .kanto
 	decoord 0, 0
@@ -45,6 +47,13 @@ FindNest:
 	call .RoamMon2
 	call .RoamMon3
 	ret
+
+.sevii:
+	decoord 0, 0
+	ld hl, SeviiGrassWildMons
+	call .FindGrass
+	ld hl, SeviiWaterWildMons
+	jp .FindWater
 
 .kanto
 	decoord 0, 0
@@ -971,5 +980,7 @@ INCLUDE "data/wild/johto_grass.asm"
 INCLUDE "data/wild/johto_water.asm"
 INCLUDE "data/wild/kanto_grass.asm"
 INCLUDE "data/wild/kanto_water.asm"
+INCLUDE "data/wild/sevii_grass.asm"
+INCLUDE "data/wild/sevii_water.asm"
 INCLUDE "data/wild/swarm_grass.asm"
 INCLUDE "data/wild/swarm_water.asm"

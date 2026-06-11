@@ -315,7 +315,7 @@ ENDM
 
 	newgroup FAST_SHIP                                            ; 15
 	map_const OLIVINE_PORT,                                10, 18 ;  1
-	map_const VERMILION_PORT,                              10, 18 ;  2
+	map_const VERMILION_PORT,                              14,  6 ;  2
 	map_const FAST_SHIP_1F,                                16,  9 ;  3
 	map_const FAST_SHIP_CABINS_NNW_NNE_NE,                  4, 16 ;  4
 	map_const FAST_SHIP_CABINS_SW_SSW_NW,                   4, 16 ;  5
@@ -491,4 +491,65 @@ ENDM
 	map_const ROUTE_31_VIOLET_GATE,                         5,  4 ; 11
 	endgroup
 
-DEF NUM_MAP_GROUPS EQU const_value ; 26
+	newgroup KNOT_ISLAND                                          ; 27
+	map_const ONE_ISLAND,                                  24, 10 ;  1
+	map_const TREASURE_BEACH,                              12, 20 ;  2
+	map_const KINDLE_ROAD,                                 12, 60 ;  3
+	map_const MT_EMBER,                                    24, 24 ;  4
+	map_const MT_EMBER_INTERIOR,                           20, 21 ;  5
+	map_const EMBER_SPA,                                   14, 20 ;  6
+	endgroup
+
+	newgroup BOON_ISLAND                                          ; 28
+	map_const TWO_ISLAND,                                  24, 10 ; 1
+	map_const CAPE_BRINK,                                  12, 16 ; 2
+	endgroup
+
+	newgroup KIN_ISLAND                                           ; 29
+	map_const THREE_ISLAND,                                12, 20 ; 1
+	map_const THREE_ISLE_PATH,                             14,  4 ; 2
+	map_const THREE_ISLE_PORT,                             24, 10 ; 3
+	map_const BOND_BRIDGE,                                 48, 10 ; 4
+	map_const BERRY_FOREST,                                28, 24 ; 5
+	endgroup
+
+	newgroup FLOE_ISLAND                                          ; 30
+	map_const FOUR_ISLAND,                                 24, 20 ; 1
+	map_const ICEFALL_CAVE_ENTRANCE,                       15, 17 ; 2
+	map_const ICEFALL_CAVE_1F,                             10, 10 ; 3
+	map_const ICEFALL_CAVE_B1F,                            10, 10 ; 4
+	map_const ICEFALL_CAVE_BACK,                           10, 10 ; 5
+	endgroup
+
+	newgroup CHRONO_ISLAND                                        ; 31
+	map_const FIVE_ISLAND,                                 12, 10 ; 1
+	map_const WATER_LABYRINTH,                             30, 10 ; 2
+	map_const RESORT_GORGEOUS,                             30, 10 ; 3
+	map_const LOST_CAVE,                                   17, 29 ; 4
+	map_const FIVE_ISLE_MEADOW,                            12, 20 ; 5
+	map_const ROCKET_WAREHOUSE,                            15, 14 ; 6
+	map_const MEMORIAL_PILLAR,                             12, 30 ; 7
+	endgroup
+
+	newgroup FORTUNE_ISLAND                                       ; 32
+	map_const SIX_ISLAND,                                  24, 12 ; 1
+	map_const WATER_PATH_NORTH,                            12, 18 ; 2
+	map_const WATER_PATH_SOUTH,                            12, 16 ; 3
+	map_const GREEN_PATH,                                  35,  8 ; 4
+	map_const PATTERN_BUSH,                                30, 16 ; 5
+	map_const OUTCAST_ISLAND,                              12, 39 ; 6
+	map_const ALTERING_CAVE,                               16, 12 ; 7
+	map_const RUIN_VALLEY,                                 24, 20 ; 8
+	map_const DOTTED_HOLE,                                 11, 23 ; 9
+	endgroup
+
+	newgroup QUEST_ISLAND                                         ; 33
+	map_const SEVEN_ISLAND,                                11, 11 ; 1
+	map_const TRAINER_TOWER,                               11, 20 ; 2
+	map_const CANYON_ENTRANCE,                             11, 18 ; 3
+	map_const SEVAULT_CANYON,                              12, 40 ; 4
+	map_const TANOBY_KEY,                                   7,  8 ; 5
+	map_const TANOBY_RUINS,                                68, 10 ; 6
+	map_const TANOBY_CHAMBERS,                             11, 68 ; 7
+	endgroup
+DEF NUM_MAP_GROUPS EQU const_value

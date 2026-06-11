@@ -103,6 +103,42 @@ Landmarks:
 	landmark  12, 100, TohjoFallsName
 	landmark  20,  68, Route28Name
 	landmark 140, 116, FastShipName
+	assert_table_length SEVII_LANDMARK
+	landmark  44,  44, OneIslandName
+	landmark  36,  52, TreasureBeachName
+	landmark  52,  36, KindleRoadName
+	landmark  52,  28, MtEmberName
+	landmark  92,  44, TwoIslandName
+	landmark  92,  36, CapeBrinkName
+	landmark 132,  28, ThreeIslandName
+	landmark 132,  36, ThreeIslePathName
+	landmark 140,  36, ThreeIslePortName
+	landmark 124,  28, BondBridgeName
+	landmark 108,  28, BerryForestName
+	landmark 124,  76, FourIslandName
+	landmark 132,  76, IcefallCaveName
+	landmark  60,  84, FiveIslandName
+	landmark  36,  68, WaterLabyrinthName
+	landmark  76,  68, ResortGorgeousName
+	landmark  92,  68, LostCaveName
+	landmark  68,  92, FiveIsleMeadowName
+	landmark  68,  84, RocketWarehouseName
+	landmark  84,  92, MemorialPillarName
+	landmark  92, 108, SixIslandName
+	landmark 100, 108, WaterPathName
+	landmark 108,  92, GreenPathName
+	landmark 100,  92, PatternBushName
+	landmark 100,  76, OutcastIslandName
+	landmark 108,  76, AlteringCaveName
+	landmark  92, 124, RuinValleyName
+	landmark  84, 124, DottedHoleName
+	landmark  20,  92, SevenIslandName
+	landmark  20, 76, TrainerTowerName
+	landmark  20, 100, CanyonEntranceName
+	landmark  28, 108, SevaultCanyonName
+	landmark  28, 100, TanobyKeyName
+	landmark  36, 124, TanobyRuinsName
+	landmark  44, 124, TanobyChamberName
 	assert_table_length NUM_LANDMARKS
 
 NewBarkTownName:     db "NEW BARK<BSP>TOWN@"
@@ -206,3 +242,38 @@ DiglettsCaveName:    db "DIGLETT's<BSP>CAVE@"
 TohjoFallsName:      db "TOHJO FALLS@"
 UndergroundName:     db "UNDERGROUND@"
 SpecialMapName:      db "SPECIAL@"
+OneIslandName:       db "ONE ISLAND@"
+TreasureBeachName:   db "TREASURE<BSP>BEACH@"
+KindleRoadName:      db "KINDLE ROAD@"
+MtEmberName:         db "MT.EMBER@"
+TwoIslandName:       db "TWO ISLAND@"
+CapeBrinkName:       db "CAPE BRINK@"
+ThreeIslandName:     db "THREE<BSP>ISLAND@"
+ThreeIslePortName:   db "THREE ISLE<BSP>PORT@"
+ThreeIslePathName:   db "THREE ISLE<BSP>PATH@"
+BondBridgeName:      db "BOND BRIDGE@"
+BerryForestName:     db "BERRY<BSP>FOREST@"
+FourIslandName:      db "FOUR ISLAND@"
+IcefallCaveName:     db "ICEFALL<BSP>CAVE@"
+FiveIslandName:      db "FIVE ISLAND@"
+WaterLabyrinthName:  db "WATER<BSP>LABYRINTH@"
+ResortGorgeousName:  db "RESORT<BSP>GORGEOUS@"
+LostCaveName:        db "LOST CAVE@"
+FiveIsleMeadowName:  db "FIVE ISLE<BSP>MEADOW@"
+RocketWarehouseName: db "ROCKET<BSP>WAREHOUSE@"
+MemorialPillarName:  db "MEMORIAL<BSP>PILLAR@"
+SixIslandName:       db "SIX ISLAND@"
+WaterPathName:       db "WATER PATH@"
+PatternBushName:     db "PATTERN<BSP>BUSH@"
+GreenPathName:       db "GREEN PATH@"
+OutcastIslandName:   db "OUTCAST<BSP>ISLAND@"
+AlteringCaveName:    db "ALTERING<BSP>CAVE@"
+RuinValleyName:      db "RUIN VALLEY@"
+DottedHoleName:      db "DOTTED HOLE@"
+SevenIslandName:     db "SEVEN<BSP>ISLAND@"
+TrainerTowerName:    db "TRAINER<BSP>TOWER@"
+CanyonEntranceName:  db "CANYON<BSP>ENTRANCE@"
+SevaultCanyonName:   db "SEVAULT<BSP>CANYON@"
+TanobyKeyName:       db "TANOBY KEY@"
+TanobyRuinsName:     db "TANOBY<BSP>RUINS@"
+TanobyChamberName:   db "TANOBY<BSP>CHAMBERS@"

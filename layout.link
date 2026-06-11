@@ -110,7 +110,6 @@ ROMX $24
 	"bank24"
 ROMX $25
 	"Maps"
-	"Events"
 ROMX $26
 	"Title Screen"
 ;ROMX $27 - $2d
@@ -118,7 +117,8 @@ ROMX $2e
 	"Pics 14"
 	org $6300
 	"bank2E"
-;ROMX $2f
+ROMX $2f
+	"Events"
 ROMX $30
 	"Sprites 1"
 ROMX $31
