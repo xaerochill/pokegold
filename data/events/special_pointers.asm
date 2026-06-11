@@ -133,3 +133,5 @@ SpecialsPointers::
 	add_special TradebackNPC
 	add_special RecalcObedienceLevel
 	add_special SetObedienceOff
+	add_special SeviiFerryMenu
+	add_special SeviiFerryWarp

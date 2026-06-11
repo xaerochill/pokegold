@@ -64,4 +64,11 @@ MapScenes::
 	scene_var FAST_SHIP_1F,                                wFastShip1FSceneID
 	scene_var FAST_SHIP_B1F,                               wFastShipB1FSceneID
 	scene_var MOUNT_MOON_SQUARE,                           wMountMoonSquareSceneID
+	scene_var TREASURE_BEACH,                              wTreasureBeachSceneID
+	scene_var TWO_ISLAND,                                  wTwoIslandSceneID
+	scene_var THREE_ISLE_PORT,                             wThreeIslePortSceneID
+	scene_var FOUR_ISLAND,                                 wFourIslandSceneID
+	scene_var FIVE_ISLAND,                                 wFiveIslandSceneID
+	scene_var SIX_ISLAND,                                  wSixIslandSceneID
+	scene_var SEVEN_ISLAND,                                wSevenIslandSceneID
 	db -1 ; end

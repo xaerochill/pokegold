@@ -15,12 +15,11 @@ INCLUDE "engine/events/happiness_egg.asm"
 INCLUDE "engine/events/shuckle.asm"
 INCLUDE "engine/events/haircut.asm"
 INCLUDE "engine/events/setdvs.asm"
+INCLUDE "engine/events/sevii_ferry.asm"
 
 
 SECTION "bank2", ROMX
 
-INCLUDE "engine/tilesets/map_palettes.asm"
-INCLUDE "gfx/tileset_palette_maps.asm"
 INCLUDE "engine/overworld/player_object.asm"
 INCLUDE "engine/math/sine.asm"
 INCLUDE "engine/predef.asm"
@@ -242,8 +241,14 @@ INCLUDE "engine/phone/phone.asm"
 INCLUDE "engine/rtc/timeset.asm"
 INCLUDE "engine/pokegear/pokegear.asm"
 INCLUDE "engine/overworld/landmarks.asm"
+
+
+SECTION "bank25", ROMX
+
 INCLUDE "engine/events/fish.asm"
 INCLUDE "engine/games/slot_machine.asm"
+INCLUDE "engine/tilesets/map_palettes.asm"
+INCLUDE "gfx/tileset_palette_maps.asm"
 
 
 SECTION "bank2E", ROMX

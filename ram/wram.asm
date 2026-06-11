@@ -2510,8 +2510,15 @@ wVermilionPortSceneID::                           db
 wFastShip1FSceneID::                              db
 wFastShipB1FSceneID::                             db
 wMountMoonSquareSceneID::                         db
+wTreasureBeachSceneID::                           db
+wTwoIslandSceneID::                               db
+wThreeIslePortSceneID::                           db
+wFourIslandSceneID::                              db
+wFiveIslandSceneID::                              db
+wSixIslandSceneID::                               db
+wSevenIslandSceneID::                             db
 
-	ds 197
+	ds 190
 
 wEventFlags:: flag_array NUM_EVENTS
 
@@ -2628,7 +2635,7 @@ wPlayerDataEnd::
 
 wCurMapData::
 
-wVisitedSpawns:: flag_array NUM_SPAWNS
+wVisitedSpawns:: flag_array NUM_SPAWNS ; one `ds` below taken out to account for the Sevii islands
 
 wDigWarpNumber:: db
 wDigMapGroup::   db
@@ -2645,7 +2652,7 @@ wBackupMapNumber::  db
 wLastSpawnMapGroup:: db
 wLastSpawnMapNumber:: db
 
-	ds 2
+	ds 1
 
 wWarpNumber:: db
 wMapGroup:: db
