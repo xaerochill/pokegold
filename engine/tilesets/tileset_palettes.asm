@@ -48,6 +48,8 @@ LoadSpecialMapPalette:
 	jr z, .radio_tower
 	cp TILESET_GATE
 	jr z, .gate
+	cp TILESET_POKECENTER
+	jr z, .pokecenter
 	jr .do_nothing
 
 .cinnabar
@@ -76,6 +78,11 @@ LoadSpecialMapPalette:
 
 .gate
 	call LoadGatePalette
+	scf
+	ret
+
+.pokecenter
+	call LoadPokeCenterPalette
 	scf
 	ret
 
@@ -132,3 +139,13 @@ LoadGatePalette:
 
 GatePalette:
 INCLUDE "gfx/tilesets/gate.pal"
+
+LoadPokeCenterPalette:
+	ld de, wBGPals1
+	ld hl, GatePalette
+	ld bc, 8 palettes
+	call CopyBytes
+	ret
+
+PokecenterPalette:
+INCLUDE "gfx/tilesets/pokecenter.pal"
