@@ -505,3 +505,58 @@ INCLUDE "maps/Route28.asm"
 INCLUDE "maps/SilverCaveOutside.asm"
 INCLUDE "maps/SilverCavePokecenter1F.asm"
 INCLUDE "maps/Route28SteelWingHouse.asm"
+
+SECTION "Map Scripts Knot Island", ROMX ; 27
+INCLUDE "maps/OneIsland.asm"
+INCLUDE "maps/TreasureBeach.asm"
+INCLUDE "maps/KindleRoad.asm"
+INCLUDE "maps/MtEmber.asm"
+INCLUDE "maps/MtEmberInterior.asm"
+INCLUDE "maps/EmberSpa.asm"
+
+SECTION "Map Scripts Boon Island", ROMX ; 28
+INCLUDE "maps/TwoIsland.asm"
+INCLUDE "maps/CapeBrink.asm"
+
+SECTION "Map Scripts Kin Island", ROMX ; 29
+INCLUDE "maps/ThreeIsland.asm"
+INCLUDE "maps/ThreeIslePath.asm"
+INCLUDE "maps/ThreeIslePort.asm"
+INCLUDE "maps/BondBridge.asm"
+INCLUDE "maps/BerryForest.asm"
+
+SECTION "Map Scripts Floe Island", ROMX ; 30
+INCLUDE "maps/FourIsland.asm"
+INCLUDE "maps/IcefallCaveEntrance.asm"
+INCLUDE "maps/IcefallCave1F.asm"
+INCLUDE "maps/IcefallCaveB1F.asm"
+INCLUDE "maps/IcefallCaveBack.asm"
+
+SECTION "Map Scripts Chrono Island", ROMX ; 31
+INCLUDE "maps/FiveIsland.asm"
+INCLUDE "maps/WaterLabyrinth.asm"
+INCLUDE "maps/ResortGorgeous.asm"
+INCLUDE "maps/LostCave.asm"
+INCLUDE "maps/FiveIsleMeadow.asm"
+INCLUDE "maps/RocketWarehouse.asm"
+INCLUDE "maps/MemorialPillar.asm"
+
+SECTION "Map Scripts Fortune Island", ROMX ; 32
+INCLUDE "maps/SixIsland.asm"
+INCLUDE "maps/WaterPathNorth.asm"
+INCLUDE "maps/WaterPathSouth.asm"
+INCLUDE "maps/GreenPath.asm"
+INCLUDE "maps/PatternBush.asm"
+INCLUDE "maps/OutcastIsland.asm"
+INCLUDE "maps/AlteringCave.asm"
+INCLUDE "maps/RuinValley.asm"
+INCLUDE "maps/DottedHole.asm"
+
+SECTION "Map Scripts Quest Island", ROMX ; 33
+INCLUDE "maps/SevenIsland.asm"
+INCLUDE "maps/TrainerTower.asm"
+INCLUDE "maps/CanyonEntrance.asm"
+INCLUDE "maps/SevaultCanyon.asm"
+INCLUDE "maps/TanobyKey.asm"
+INCLUDE "maps/TanobyRuins.asm"
+INCLUDE "maps/TanobyChambers.asm"

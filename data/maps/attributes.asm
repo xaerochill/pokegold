@@ -375,6 +375,125 @@ ENDM
 	connection north, Route10North, ROUTE_10_NORTH, 0
 	connection south, LavenderTown, LAVENDER_TOWN, 0
 
+; KNOT_ISLAND
+	map_attributes OneIsland, ONE_ISLAND, $3D, NORTH | SOUTH
+	connection north, KindleRoad, KINDLE_ROAD, 12
+	connection south, TreasureBeach, TREASURE_BEACH, 0
+
+	map_attributes KindleRoad, KINDLE_ROAD, $3D, NORTH | SOUTH
+	connection north, MtEmber, MT_EMBER, -6
+	connection south, OneIsland, ONE_ISLAND, -12
+
+	map_attributes TreasureBeach, TREASURE_BEACH, $3D, NORTH
+	connection north, OneIsland, ONE_ISLAND, 0
+
+	map_attributes MtEmber, MT_EMBER, $3D, SOUTH
+	connection south, KindleRoad, KINDLE_ROAD, 6
+
+	map_attributes MtEmberInterior, MT_EMBER_INTERIOR, $09, 0
+	map_attributes EmberSpa, EMBER_SPA, $09, 0
+
+; BOON_ISLAND
+	map_attributes TwoIsland, TWO_ISLAND, $69, NORTH
+	connection north, CapeBrink, CAPE_BRINK, 12
+
+	map_attributes CapeBrink, CAPE_BRINK, $3D, SOUTH
+	connection south, TwoIsland, TWO_ISLAND, -12
+
+; KIN_ISLAND
+	map_attributes ThreeIsland, THREE_ISLAND, $05, SOUTH | WEST
+	connection south, ThreeIslePort, THREE_ISLE_PORT, 0
+	connection west, BondBridge, BOND_BRIDGE, 0
+
+	map_attributes ThreeIslePort, THREE_ISLE_PORT, $3D, NORTH
+	connection north, ThreeIsland, THREE_ISLAND, 0
+
+	map_attributes BondBridge, BOND_BRIDGE, $05, EAST
+	connection east, ThreeIsland, THREE_ISLAND, 0
+
+	map_attributes BerryForest, BERRY_FOREST, $00, 0
+
+	map_attributes ThreeIslePath, THREE_ISLE_PATH, $09, 0
+
+; FLOE_ISLAND
+	map_attributes FourIsland, FOUR_ISLAND, $3D, 0
+
+	map_attributes IcefallCaveEntrance, ICEFALL_CAVE_ENTRANCE, $09, 0
+	map_attributes IcefallCave1F, ICEFALL_CAVE_1F, $09, 0
+	map_attributes IcefallCaveB1F, ICEFALL_CAVE_B1F, $09, 0
+	map_attributes IcefallCaveBack, ICEFALL_CAVE_BACK, $09, 0
+
+; CHRONO_ISLAND
+	map_attributes FiveIsland, FIVE_ISLAND, $3D, NORTH | EAST
+	connection north, WaterLabyrinth, WATER_LABYRINTH, -25
+	connection east, FiveIsleMeadow, FIVE_ISLE_MEADOW, 0
+
+	map_attributes FiveIsleMeadow, FIVE_ISLE_MEADOW, $3D, 0 | WEST | EAST
+	connection west, FiveIsland, FIVE_ISLAND, 0
+	connection east, MemorialPillar, MEMORIAL_PILLAR, 13
+
+	map_attributes MemorialPillar, MEMORIAL_PILLAR, $3D, 0 | WEST
+	connection west, FiveIsleMeadow, FIVE_ISLE_MEADOW, -13
+
+	map_attributes WaterLabyrinth, WATER_LABYRINTH, $3D, NORTH | SOUTH
+	connection north, ResortGorgeous, RESORT_GORGEOUS, 27
+	connection south, FiveIsland, FIVE_ISLAND, 25
+
+	map_attributes ResortGorgeous, RESORT_GORGEOUS, $3D, SOUTH
+	connection south, WaterLabyrinth, WATER_LABYRINTH, -27
+
+	map_attributes LostCave, LOST_CAVE, $09, 0
+	map_attributes RocketWarehouse, ROCKET_WAREHOUSE, $00, 0
+
+; FORTUNE_ISLAND
+	map_attributes SixIsland, SIX_ISLAND, $3D, NORTH | SOUTH
+	connection north, WaterPathNorth, WATER_PATH_NORTH, 12
+	connection south, WaterPathSouth, WATER_PATH_SOUTH, 12
+
+	map_attributes WaterPathNorth, WATER_PATH_NORTH, $3D, SOUTH | WEST
+	connection south, SixIsland, SIX_ISLAND, -12
+	connection west, GreenPath, GREEN_PATH, 0
+
+	map_attributes GreenPath, GREEN_PATH, $3D, NORTH | EAST
+	connection north, OutcastIsland, OUTCAST_ISLAND, 0
+	connection east, WaterPathNorth, WATER_PATH_NORTH, 0
+
+	map_attributes OutcastIsland, OUTCAST_ISLAND, $3D, 0
+	connection south, GreenPath, GREEN_PATH, -12
+	
+	map_attributes WaterPathSouth, WATER_PATH_SOUTH, $3D, NORTH | WEST
+	connection north, SixIsland, SIX_ISLAND, -12
+	connection west, RuinValley, RUIN_VALLEY, 5
+
+	map_attributes RuinValley, RUIN_VALLEY, $3D, EAST
+	connection east, WaterPathSouth, WATER_PATH_SOUTH, -5
+
+	map_attributes PatternBush, PATTERN_BUSH, $00, 0
+	map_attributes AlteringCave, ALTERING_CAVE, $09, 0
+	map_attributes DottedHole, DOTTED_HOLE, $09, 0
+
+; QUEST_ISLAND
+	map_attributes SevenIsland, SEVEN_ISLAND, $3D, NORTH | SOUTH
+	connection north, TrainerTower, TRAINER_TOWER, -1
+	connection south, CanyonEntrance, CANYON_ENTRANCE, 0
+
+	map_attributes TrainerTower, TRAINER_TOWER, $3D, SOUTH
+	connection south, SevenIsland, SEVEN_ISLAND, 0
+
+	map_attributes CanyonEntrance, CANYON_ENTRANCE, $3D, NORTH | EAST
+	connection north, SevenIsland, SEVEN_ISLAND, 1
+	connection east, SevaultCanyon, SEVAULT_CANYON, 9
+
+	map_attributes SevaultCanyon, SEVAULT_CANYON, $69, SOUTH | WEST
+	connection south, TanobyRuins, TANOBY_RUINS, -23
+	connection west, CanyonEntrance, CANYON_ENTRANCE, -9
+
+	map_attributes TanobyRuins, TANOBY_RUINS, $3D, NORTH
+	connection north, SevaultCanyon, SEVAULT_CANYON, 23
+
+	map_attributes TanobyKey, TANOBY_KEY, $09, 0
+	map_attributes TanobyChambers, TANOBY_CHAMBERS, $00, 0
+
 	map_attributes Route23, ROUTE_23, $5d, 0
 	map_attributes SproutTower1F, SPROUT_TOWER_1F, $00, 0
 	map_attributes SproutTower2F, SPROUT_TOWER_2F, $00, 0
@@ -575,7 +694,7 @@ ENDM
 	map_attributes PewterMuseumOfScience1F, PEWTER_MUSEUM_OF_SCIENCE_1F, $00, 0
 	map_attributes PewterMuseumOfScience2F, PEWTER_MUSEUM_OF_SCIENCE_2F, $00, 0
 	map_attributes OlivinePort, OLIVINE_PORT, $0a, 0
-	map_attributes VermilionPort, VERMILION_PORT, $0a, 0
+	map_attributes VermilionPort, VERMILION_PORT, $00, 0
 	map_attributes FastShip1F, FAST_SHIP_1F, $00, 0
 	map_attributes FastShipCabins_NNW_NNE_NE, FAST_SHIP_CABINS_NNW_NNE_NE, $00, 0
 	map_attributes FastShipCabins_SW_SSW_NW, FAST_SHIP_CABINS_SW_SSW_NW, $00, 0

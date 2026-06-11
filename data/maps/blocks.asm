@@ -964,3 +964,97 @@ BetaAzaleaTown_Blocks: ; unreferenced
 	INCBIN "maps/unused/BetaAzaleaTown.blk"
 
 ENDSECTION
+
+
+SECTION "Map Blocks Sevii", ROMX
+
+OneIsland_Blocks:
+	INCBIN "maps/OneIsland.blk" ; 27
+TreasureBeach_Blocks:
+	INCBIN "maps/TreasureBeach.blk"
+KindleRoad_Blocks:
+	INCBIN "maps/KindleRoad.blk"
+MtEmber_Blocks:
+	INCBIN "maps/MtEmber.blk"
+MtEmberInterior_Blocks:
+	INCBIN "maps/MtEmberInterior.blk"
+EmberSpa_Blocks:
+	INCBIN "maps/EmberSpa.blk"
+
+TwoIsland_Blocks:
+	INCBIN "maps/TwoIsland.blk" ; 28
+CapeBrink_Blocks:
+	INCBIN "maps/CapeBrink.blk"
+
+ThreeIsland_Blocks:
+	INCBIN "maps/ThreeIsland.blk" ; 29
+ThreeIslePath_Blocks:
+	INCBIN "maps/ThreeIslePath.blk"
+ThreeIslePort_Blocks:
+	INCBIN "maps/ThreeIslePort.blk"
+BondBridge_Blocks:
+	INCBIN "maps/BondBridge.blk"
+BerryForest_Blocks:
+	INCBIN "maps/BerryForest.blk"
+
+FourIsland_Blocks:
+	INCBIN "maps/FourIsland.blk" ; 30
+IcefallCaveEntrance_Blocks:
+	INCBIN "maps/IcefallCaveEntrance.blk"
+IcefallCave1F_Blocks:
+	INCBIN "maps/IcefallCave1F.blk"
+IcefallCaveB1F_Blocks:
+	INCBIN "maps/IcefallCaveB1F.blk"
+IcefallCaveBack_Blocks:
+	INCBIN "maps/IcefallCaveBack.blk"
+
+FiveIsland_Blocks:
+	INCBIN "maps/FiveIsland.blk" ; 31
+WaterLabyrinth_Blocks:
+	INCBIN "maps/WaterLabyrinth.blk"
+ResortGorgeous_Blocks:
+	INCBIN "maps/ResortGorgeous.blk"
+LostCave_Blocks:
+	INCBIN "maps/LostCave.blk"
+FiveIsleMeadow_Blocks:
+	INCBIN "maps/FiveIsleMeadow.blk"
+RocketWarehouse_Blocks:
+	INCBIN "maps/RocketWarehouse.blk"
+MemorialPillar_Blocks:
+	INCBIN "maps/MemorialPillar.blk"
+
+SixIsland_Blocks:
+	INCBIN "maps/SixIsland.blk" ; 32
+WaterPathNorth_Blocks:
+	INCBIN "maps/WaterPathNorth.blk"
+WaterPathSouth_Blocks:
+	INCBIN "maps/WaterPathSouth.blk"
+GreenPath_Blocks:
+	INCBIN "maps/GreenPath.blk"
+PatternBush_Blocks:
+	INCBIN "maps/PatternBush.blk"
+OutcastIsland_Blocks:
+	INCBIN "maps/OutcastIsland.blk"
+AlteringCave_Blocks:
+	INCBIN "maps/AlteringCave.blk"
+RuinValley_Blocks:
+	INCBIN "maps/RuinValley.blk"
+DottedHole_Blocks:
+	INCBIN "maps/DottedHole.blk"
+
+SevenIsland_Blocks:
+	INCBIN "maps/SevenIsland.blk" ; 33
+TrainerTower_Blocks:
+	INCBIN "maps/TrainerTower.blk"
+CanyonEntrance_Blocks:
+	INCBIN "maps/CanyonEntrance.blk"
+SevaultCanyon_Blocks:
+	INCBIN "maps/SevaultCanyon.blk"
+TanobyKey_Blocks:
+	INCBIN "maps/TanobyKey.blk"
+TanobyRuins_Blocks:
+	INCBIN "maps/TanobyRuins.blk"
+TanobyChambers_Blocks:
+	INCBIN "maps/TanobyChambers.blk"
+
+ENDSECTION
