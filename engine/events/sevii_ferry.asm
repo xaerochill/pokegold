@@ -204,6 +204,10 @@ SeviiFerryMenuCancelText::
 	line "you're ready!"
 	done
 
+SeviiFerryDepartText::
+	text "The ship set sail."
+	done
+
 SeviiFerryWarp:
 ; Performs the ferry warp to the destination in wScriptVar (1-8).
 ; Plays the boat sound, fades out, and triggers the map warp.
@@ -217,6 +221,7 @@ SeviiFerryWarp:
 	add hl, bc
 
 	push hl
+	call WaitSFX
 	ld de, SFX_BOAT
 	call PlaySFX
 	call WaitSFX

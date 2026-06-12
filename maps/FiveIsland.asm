@@ -30,6 +30,11 @@ FiveIslandFerryScript:
 	setval 5
 	special SeviiFerryMenu
 	ifequal 0, .Cancel
+	closetext
+	opentext
+	farwritetext SeviiFerryDepartText
+	waitbutton
+	closetext
 	special SeviiFerryWarp
 	end
 
