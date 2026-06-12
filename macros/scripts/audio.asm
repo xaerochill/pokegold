@@ -318,3 +318,36 @@ ENDM
 MACRO sound_ret
 	db sound_ret_cmd
 ENDM
+
+; Compatibility macros for music from pokered, TCG, TCG2, and RBY
+
+MACRO toggle_perfect_pitch
+	db $e8
+ENDM
+
+MACRO speed
+	db $d0, \1
+ENDM
+
+MACRO dec_octave
+	db $d8
+ENDM
+
+MACRO inc_octave
+	db $d7
+ENDM
+
+MACRO channel_volume
+	db $dc, \1
+ENDM
+
+MACRO fade_wave
+	db $dc, \1
+ENDM
+
+MACRO load_wave
+	db \1, \2, \3, \4, \5, \6, \7, \8
+	db \9, \10, \11, \12, \13, \14, \15, \16
+	db \17, \18, \19, \20, \21, \22, \23, \24
+	db \25, \26, \27, \28, \29, \30, \31, \32
+ENDM
