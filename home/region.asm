@@ -1,5 +1,5 @@
 IsInJohto::
-; Return 0 if the player is in Johto, and 1 in Kanto.
+; Return 0 if the player is in Johto, 1 in Kanto, or 2 in Sevii.
 
 	ld a, [wMapGroup]
 	ld b, a
@@ -20,6 +20,8 @@ IsInJohto::
 	call GetWorldMapLocation
 
 .CheckRegion:
+	cp SEVII_LANDMARK
+	jr nc, .Sevii
 	cp KANTO_LANDMARK
 	jr nc, .Kanto
 
@@ -29,6 +31,10 @@ IsInJohto::
 
 .Kanto:
 	ld a, KANTO_REGION
+	ret
+
+.Sevii:
+	ld a, SEVII_REGION
 	ret
 
 SetXYCompareFlags::

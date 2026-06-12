@@ -1776,6 +1776,8 @@ _TownMap:
 
 .dmg
 	ld a, [wTownMapPlayerIconLandmark]
+	cp SEVII_LANDMARK
+	jr nc, .sevii
 	cp KANTO_LANDMARK
 	jr nc, .kanto
 	ld d, KANTO_LANDMARK - 1
@@ -1785,6 +1787,12 @@ _TownMap:
 
 .kanto
 	call TownMap_GetKantoLandmarkLimits
+	call .loop
+	jr .resume
+
+.sevii
+	ld d, LANDMARK_TANOBY_CHAMBERS
+	ld e, LANDMARK_ONE_ISLAND
 	call .loop
 
 .resume
@@ -1859,6 +1867,8 @@ _TownMap:
 
 .InitTilemap:
 	ld a, [wTownMapPlayerIconLandmark]
+	cp SEVII_LANDMARK
+	jr nc, .sevii2
 	cp KANTO_LANDMARK
 	jr nc, .kanto2
 	ld e, JOHTO_REGION
@@ -1866,6 +1876,10 @@ _TownMap:
 
 .kanto2
 	ld e, KANTO_REGION
+	jr .okay_tilemap
+
+.sevii2
+	ld e, SEVII_REGION
 .okay_tilemap
 	farcall PokegearMap
 	ld a, $07
@@ -2276,9 +2290,10 @@ FlyMap:
 ; Kanto's map is only loaded if we've visited Indigo Plateau
 	ld a, KANTO_FLYPOINT ; first Kanto flypoint
 	ld [wStartFlypoint], a
-	ld a, NUM_FLYPOINTS - 1 ; last Kanto flypoint
+	ld a, SEVII_FLYPOINT - 1 ; last Kanto flypoint
 	ld [wEndFlypoint], a
-	ld [wTownMapPlayerIconLandmark], a ; last one is default (Indigo Plateau)
+	ld a, FLY_INDIGO
+	ld [wTownMapPlayerIconLandmark], a ; default to Indigo Plateau
 ; Fill out the map
 	call FillKantoMap
 	call .MapHud

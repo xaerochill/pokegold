@@ -46,9 +46,10 @@ GetLandmarkName::
 INCLUDE "data/maps/landmarks.asm"
 
 RegionCheck:
-; Checks if the player is in Kanto or Johto.
+; Checks if the player is in Johto, Kanto, or Sevii.
 ; If in Johto, returns 0 in e.
 ; If in Kanto, returns 1 in e.
+; If in Sevii, returns 2 in e.
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapNumber]
@@ -67,6 +68,8 @@ RegionCheck:
 	call GetWorldMapLocation
 
 .checkagain
+	cp SEVII_LANDMARK
+	jr nc, .sevii
 	cp KANTO_LANDMARK
 	jr c, .johto
 
@@ -79,4 +82,7 @@ RegionCheck:
 	ret
 .kanto
 	ld e, KANTO_REGION
+	ret
+.sevii
+	ld e, SEVII_REGION
 	ret
