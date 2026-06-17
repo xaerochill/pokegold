@@ -96,4 +96,162 @@ Music:
 	dba Music_LakeOfRageRocketRadio
 	dba Music_Printer
 	dba Music_PostCredits
+; new to Crystal
+	dba Music_Clair
+	dba Music_MobileAdapterMenu
+	dba Music_MobileAdapter
+	dba Music_BuenasPassword
+	dba Music_LookMysticalMan
+	dba Music_BattleTowerTheme
+	dba Music_SuicuneBattle
+	dba Music_BattleTowerLobby
+	dba Music_MobileCenter
+; mons2
+	dba Music_BOUSAN
+	dba Music_M_FLD6
+	dba Music_M_PMC
+	dba Music_M_TITLE3
+	dba Music_M_TOWN12
+	dba Music_M_TOWN17
+	dba Music_M_TSUR1
+	dba Music_DEALER2
+	dba Music_DIGDA01
+	dba Music_ENDING01
+	dba Music_KINCHO01
+	dba Music_KOUKAN
+	dba Music_OHKIDO03
+	dba Music_VICTORY4
+; tcg
+	dba Music_CardPop
+	dba Music_ChallengeHall
+	dba Music_Club1
+	dba Music_Club2
+	dba Music_Club3
+	dba Music_TCGCredits
+	dba Music_DeckMachine
+	dba Music_DuelTheme1
+	dba Music_DuelTheme2
+	dba Music_DuelTheme3
+	dba Music_HallOfHonor
+	dba Music_Imakuni
+	dba Music_Overworld
+	dba Music_PauseMenu
+	dba Music_PCMainMenu
+	dba Music_PokemonDome
+	dba Music_Ronald
+	dba Music_TCGTitleScreen
+; tcg2
+	dba Music_TCG2Credits
+	dba Music_Fort1
+	dba Music_Fort2
+	dba Music_Fort3
+	dba Music_Fort4
+	dba Music_TCG2GameCorner
+	dba Music_GRBlimp
+	dba Music_GRCastle
+	dba Music_GRDuelTheme1
+	dba Music_GRDuelTheme2
+	dba Music_GRDuelTheme3
+	dba Music_GROverworld
+	dba Music_HereComesGR
+	dba Music_Imakuni2
+	dba Music_Ishihara
+	dba Music_TCG2TitleScreen
+; pinball
+	dba Music_FieldSelect
+	dba Music_GastlyInTheGraveyard
+	dba Music_GengarInTheGraveyard
+	dba Music_HiScore
+	dba Music_HurryUpRed
+	dba Music_MeowthStage
+	dba Music_MewtwoStage
+	dba Music_NameEntry
+	dba Music_Options
+	dba Music_Pokedex
+	dba Music_RedField
+	dba Music_SeelStage
+	dba Music_Title
+	dba Music_WhackTheDiglett
+	dba Music_WhackTheDugtrio
+; RB
+	dba Music_Celadon
+	dba Music_Cinnabar
+	dba Music_CinnabarMansion
+	dba Music_Cities1
+	dba Music_Cities2
+	dba Music_Dungeon1
+	dba Music_Dungeon2
+	dba Music_Dungeon3
+	dba Music_FinalBattle
+	dba Music_RBYGameCorner
+	dba Music_RBYGym
+	dba Music_GymLeaderBattle
+	dba Music_RBYIndigoPlateau
+	dba Music_JigglypuffSong
+	dba Music_Lavender
+	dba Music_MeetEvilTrainer
+	dba Music_MeetFemaleTrainer
+	dba Music_MeetMaleTrainer
+	dba Music_MeetProfOak
+	dba Music_MeetRival
+	dba Music_MuseumGuy
+	dba Music_OaksLab
+	dba Music_RBYPalletTown
+	dba Music_Pokecenter
+	dba Music_PokemonTower
+	dba Music_Routes1
+	dba Music_Routes2
+	dba Music_Routes3
+	dba Music_Routes4
+	dba Music_SilphCo
+	dba Music_SSAnne
+	dba Music_TrainerBattle
+	dba Music_Vermilion
+; Yellow
+	dba Music_SurfingPikachu
+	dba Music_MeetJessieJames
+	dba Music_YellowUnusedSong
+	dba Music_WildBattle
+; TPP Crystal 251
+	dba Music_HoOhBattleHGSS
+	dba Music_KantoLegendBattleXY
+	dba Music_LugiaBattleHGSS
+	dba Music_LugiasSong2000
+; JEP Hack
+	dba Music_Stadium2TeamSelect
+; Night Version by TriteHexagon
+	dba Music_NewBarkTownNight
+	dba Music_Route29Night
+	dba Music_CherrygroveCityNight
+	dba Music_Route30Night
+	dba Music_Route36Night
+	dba Music_VioletCityNight
+	dba Music_AzaleaTownNight
+	dba Music_GoldenrodCityNight
+	dba Music_EcruteakCityNight
+	dba Music_Route37Night
+	dba Music_LakeOfRageNight
+	dba Music_Route26Night
+	dba Music_ViridianCityNight
+	dba Music_Route3Night
+	dba Music_Route12Night
+	dba Music_CeladonCityNight
+	dba Music_VermilionCityNight
+	dba Music_PalletTownNight
+	dba Music_Route1Night
+	dba Music_LavenderTownNight
+	dba Music_KantoWildBattleNight
+; Remixes by TriteHexagon
+	dba Music_IcePathHGSS
+	dba Music_UndergroundTunnel
+	dba Music_CeruleanCityGBS
+	dba Music_SeviiIslands
+; Monstarules
+	dba Music_FourIsland
+; mmmmmmmmmmmmmmmm
+	dba Music_Lyra
+	dba Music_SafariZone
+	dba Music_SafariZoneGate
+	dba Music_SpikyEaredPichu
+	dba Music_SummoningDance
 	assert_table_length NUM_MUSIC_SONGS

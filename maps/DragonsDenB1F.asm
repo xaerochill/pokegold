@@ -44,6 +44,7 @@ DragonsDenB1FDragonFangScript:
 	moveobject DRAGONSDENB1F_CLAIR, 34, 21
 .next2
 	appear DRAGONSDENB1F_CLAIR
+	playmusic MUSIC_CLAIR
 	applymovement DRAGONSDENB1F_CLAIR, MovementDragonsDen_ClairWalksToYou
 	turnobject PLAYER, DOWN
 	opentext
@@ -69,6 +70,9 @@ DragonsDenB1FDragonFangScript:
 	closetext
 	applymovement DRAGONSDENB1F_CLAIR, MovementDragonsDen_ClairWalksAway
 	disappear DRAGONSDENB1F_CLAIR
+	special FadeOutMusic
+	pause 30
+	special RestartMapMusic
 	end
 
 .BagFullDragonFang:
