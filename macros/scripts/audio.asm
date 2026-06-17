@@ -322,23 +322,23 @@ ENDM
 ; Compatibility macros for music from pokered, TCG, TCG2, and RBY
 
 MACRO toggle_perfect_pitch
-	db $e8
+	db $f9 ; no-op (was $e8 which now maps to Music_WaveForm)
 ENDM
 
 MACRO speed
-	db $d0, \1
+	db $f3, \1
 ENDM
 
 MACRO dec_octave
-	db $d8
+	db $f2
 ENDM
 
 MACRO inc_octave
-	db $d7
+	db $f1
 ENDM
 
 MACRO channel_volume
-	db $dc, \1
+	db $dc, (\1 << 4)
 ENDM
 
 MACRO fade_wave
@@ -346,8 +346,22 @@ MACRO fade_wave
 ENDM
 
 MACRO load_wave
-	db \1, \2, \3, \4, \5, \6, \7, \8
-	db \9, \10, \11, \12, \13, \14, \15, \16
-	db \17, \18, \19, \20, \21, \22, \23, \24
-	db \25, \26, \27, \28, \29, \30, \31, \32
+	db $f4 ; custom waveform command
+	; 32 wave samples packed into 16 dn nybbles
+	db LOW(\1 << 4 | \2)
+	db LOW(\3 << 4 | \4)
+	db LOW(\5 << 4 | \6)
+	db LOW(\7 << 4 | \8)
+	db LOW(\9 << 4 | \10)
+	db LOW(\11 << 4 | \12)
+	db LOW(\13 << 4 | \14)
+	db LOW(\15 << 4 | \16)
+	db LOW(\17 << 4 | \18)
+	db LOW(\19 << 4 | \20)
+	db LOW(\21 << 4 | \22)
+	db LOW(\23 << 4 | \24)
+	db LOW(\25 << 4 | \26)
+	db LOW(\27 << 4 | \28)
+	db LOW(\29 << 4 | \30)
+	db LOW(\31 << 4 | \32)
 ENDM

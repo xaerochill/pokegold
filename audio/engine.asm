@@ -423,6 +423,8 @@ UpdateChannels:
 	push hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f ; only 0-9 are valid
+	cp $f
+	jr z, .skip_wave_load
 	ld l, a
 	ld h, 0
 	; hl << 4
@@ -466,6 +468,7 @@ endr
 	ldh [rAUD3WAVE_E], a
 	ld a, [hli]
 	ldh [rAUD3WAVE_F], a
+.skip_wave_load
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f0
@@ -1405,9 +1408,9 @@ MusicCommands:
 	dw MusicEE ; unused
 	dw Music_StereoPanning
 	dw Music_SFXToggleNoise
-	dw MusicF1 ; nothing
-	dw MusicF2 ; nothing
-	dw MusicF3 ; nothing
+	dw Music_IncOctave ; inc octave by 1 (TCG compat)
+	dw Music_DecOctave ; dec octave by 1 (TCG compat)
+	dw Music_Speed ; set note length (TCG compat)
 	dw MusicF4 ; nothing
 	dw MusicF5 ; nothing
 	dw MusicF6 ; nothing
@@ -1422,10 +1425,53 @@ MusicCommands:
 	dw Music_Ret
 	assert_table_length $100 - FIRST_MUSIC_CMD
 
-MusicF1:
-MusicF2:
-MusicF3:
+Music_IncOctave:
+; TCG compat: increment octave (higher pitch = lower engine value)
+	ld hl, CHANNEL_OCTAVE
+	add hl, bc
+	ld a, [hl]
+	and a
+	ret z
+	dec a
+	ld [hl], a
+	ret
+
+Music_DecOctave:
+; TCG compat: decrement octave (lower pitch = higher engine value)
+	ld hl, CHANNEL_OCTAVE
+	add hl, bc
+	ld a, [hl]
+	cp 7
+	ret nc
+	inc a
+	ld [hl], a
+	ret
+
+Music_Speed:
+; TCG compat: set note length without volume envelope
+	call GetMusicByte
+	ld hl, CHANNEL_NOTE_LENGTH
+	add hl, bc
+	ld [hl], a
+	ret
+
 MusicF4:
+; TCG compat: custom waveform from music stream
+; Reads 32 wave samples (packed as 16 nybble pairs) into wave RAM
+	push hl
+	push de
+	ld de, rAUD3WAVE_0
+	ld c, 16
+.loop
+	call GetMusicByte
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	pop de
+	pop hl
+	ret
+
 MusicF5:
 MusicF6:
 MusicF7:
@@ -1941,8 +1987,39 @@ Music_VolumeEnvelope:
 ;	hi: volume
 ;   lo: fade
 	call GetMusicByte
+	ld d, a
 	ld hl, CHANNEL_VOLUME_ENVELOPE
 	add hl, bc
+	; for channel 3, merge nybbles instead of overwriting
+	; this allows fade_wave and channel_volume to coexist
+	ld a, [wCurChannel]
+	cp CHAN3
+	ld a, d
+	jr nz, .notCh3
+	; if both nybbles non-zero → full overwrite (from note_type)
+	; if only high nybble → volume command → update high, preserve low
+	; if only low nybble → wave command → update low, preserve high
+	and $f0
+	jr z, .ch3_wave_only
+	ld a, d
+	and $0f
+	jr z, .ch3_volume_only
+	ld a, d
+	ld [hl], a
+	ret
+.ch3_volume_only
+	ld a, [hl]
+	and $0f
+	or d
+	ld [hl], a
+	ret
+.ch3_wave_only
+	ld a, [hl]
+	and $f0
+	or d
+	ld [hl], a
+	ret
+.notCh3
 	ld [hl], a
 	ret
 
