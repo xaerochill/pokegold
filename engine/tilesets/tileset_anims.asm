@@ -52,10 +52,10 @@ TilesetKantoModernAnim::
 TilesetPlateauAnim::
 TilesetSeviiAnim::
 	dw vTiles2 tile $14, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateWaterPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
 	dw NULL,  WaitTileAnimation
@@ -65,9 +65,9 @@ TilesetSeviiAnim::
 
 TilesetJohtoAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateWaterPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
 	dw WhirlpoolFrames1, AnimateWhirlpoolTile
@@ -108,11 +108,11 @@ UnusedTilesetAnim2: ; unreferenced
 
 TilesetPortAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateWaterPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -385,20 +385,19 @@ AnimateWaterTile:
 	ld b, h
 	ld c, l
 
-; A cycle of 4 frames, updating every other tick
-	ld a, [wTileAnimationTimer]
-	and %110
+; period 8, offset to pointer table (2 bytes)
+    ld a, [wTileAnimationTimer]
+    maskbits 8
+    add a
 
-; hl = .WaterTileFrames + a * 8
-; (a was pre-multiplied by 2 from 'and %110')
-	add a
-	add a
-	add a
-	add LOW(.WaterTileFrames)
-	ld l, a
-	ld a, 0
-	adc HIGH(.WaterTileFrames)
-	ld h, a
+	add LOW(.WavesTilePointers)
+    ld l, a
+    ld a, 0
+    adc HIGH(.WavesTilePointers)
+    ld h, a
+
+    ld sp, hl
+    pop hl
 
 ; Write the tile graphic from hl (now sp) to de (now hl)
 	ld sp, hl
@@ -406,7 +405,17 @@ AnimateWaterTile:
 	ld h, d
 	jp WriteTile
 
-.WaterTileFrames:
+.WavesTilePointers:
+    dw .WavesTileFrames + 0 tiles ; 0
+    dw .WavesTileFrames + 1 tiles ; 1
+    dw .WavesTileFrames + 2 tiles ; 2
+    dw .WavesTileFrames + 3 tiles ; 3
+    dw .WavesTileFrames + 4 tiles ; 4
+    dw .WavesTileFrames + 5 tiles ; 5
+    dw .WavesTileFrames + 6 tiles ; 6
+    dw .WavesTileFrames + 7 tiles ; 7
+
+.WavesTileFrames:
 	INCBIN "gfx/tilesets/water/water.2bpp"
 
 AnimateFlowerTile:
@@ -651,7 +660,7 @@ endr
 	ret
 
 AnimateWaterPalette:
-; Transition between color values 0-2 for color 0 in palette 3.
+; Write color 0 of palette 3 to hardware (no shimmer).
 
 ; Don't update the palette on DMG
 	ldh a, [hCGB]
@@ -663,43 +672,12 @@ AnimateWaterPalette:
 	cp %11100100
 	ret nz
 
-; Only update on even ticks
-	ld a, [wTileAnimationTimer]
-	ld l, a
-	and 1 ; odd
-	ret nz
-
 ; Ready for BGPD input
 	ld a, BGPI_AUTOINC palette PAL_BG_WATER color 0
 	ldh [rBGPI], a
 
-; A cycle of 4 colors (0 1 2 1), updating every other tick
-	ld a, l
-	and %110
-	jr z, .color0
-	cp %100
-	jr z, .color2
-
-; Copy one color from hl to rBGPI via rBGPD
-
-; color1
-	ld hl, wBGPals1 palette PAL_BG_WATER color 1
-	ld a, [hli]
-	ldh [rBGPD], a
-	ld a, [hli]
-	ldh [rBGPD], a
-	ret
-
-.color0
+; Always write color 0 to hardware
 	ld hl, wBGPals1 palette PAL_BG_WATER color 0
-	ld a, [hli]
-	ldh [rBGPD], a
-	ld a, [hli]
-	ldh [rBGPD], a
-	ret
-
-.color2
-	ld hl, wBGPals1 palette PAL_BG_WATER color 2
 	ld a, [hli]
 	ldh [rBGPD], a
 	ld a, [hli]
