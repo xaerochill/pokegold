@@ -142,7 +142,7 @@ INCLUDE "gfx/tilesets/gate.pal"
 
 LoadPokeCenterPalette:
 	ld de, wBGPals1
-	ld hl, GatePalette
+	ld hl, PokecenterPalette
 	ld bc, 8 palettes
 	call CopyBytes
 	ret
