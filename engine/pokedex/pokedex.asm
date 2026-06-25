@@ -246,8 +246,12 @@ Pokedex_InitMainScreen:
 	call WaitBGMap
 
 	call Pokedex_ResetBGMapMode
+IF DEF(_DEBUG)
+	; debug: show actual palette on main screen
+ELSE
 	ld a, -1
 	ld [wCurPartySpecies], a
+ENDC
 	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
 	call Pokedex_UpdateCursorOAM
@@ -281,6 +285,10 @@ Pokedex_UpdateMainScreen:
 	xor a
 	ldh [hBGMapMode], a
 	call Pokedex_PrintListing
+IF DEF(_DEBUG)
+	ld a, SCGB_POKEDEX
+	call Pokedex_GetSGBLayout
+ENDC
 	call Pokedex_SetBGMapMode3
 	call Pokedex_ResetBGMapMode
 	ret
