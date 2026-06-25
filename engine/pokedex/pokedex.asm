@@ -332,6 +332,7 @@ Pokedex_InitDexEntryScreen:
 	call Pokedex_LoadCurrentFootprint
 	call Pokedex_DrawDexEntryScreenBG
 	call Pokedex_InitArrowCursor
+	call Pokedex_LoadSelectedMonTiles
 	call Pokedex_GetSelectedMon
 	ld [wPrevDexEntry], a
 	farcall DisplayDexEntry

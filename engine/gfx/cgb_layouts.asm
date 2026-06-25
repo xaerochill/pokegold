@@ -252,8 +252,9 @@ _CGB_Pokedex_Init:
 	ld a, [wCurPartySpecies]
 	cp $ff
 	jr nz, .is_pokemon
-	ld hl, PokedexQuestionMarkPalette
-	call LoadHLPaletteIntoDE ; green question mark palette
+	ld a, PREDEFPAL_PARTY_ICON
+	call GetPredefPal
+	call LoadHLPaletteIntoDE ; greyscale placeholder palette
 	jr .got_palette
 
 .is_pokemon
@@ -276,32 +277,32 @@ _CGB_Pokedex_Resume:
 	ret
 
 PokedexCursorPalette:
-INCLUDE "gfx/pokedex/cursor.pal"
-
-PokedexQuestionMarkPalette:
-INCLUDE "gfx/pokedex/question_mark.pal"
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 21, 21, 21
+	RGB 00, 00, 00
 
 _CGB_BillsPC:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_POKEDEX
 	call GetPredefPal
-	call LoadHLPaletteIntoDE
+	call LoadHLPaletteIntoDE ; palette 0: interface
 	ld a, [wCurPartySpecies]
 	cp $ff
-	jr nz, .GetMonPalette
-	ld hl, BillsPCOrangePalette
-	call LoadHLPaletteIntoDE
-	jr .GotPalette
-
-.GetMonPalette:
+	jr z, .NoMon
 	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
+	call LoadPalette_White_Col1_Col2_Black ; palette 1: mon's true colours
+	jr .GotPalette
+.NoMon:
+	ld a, PREDEFPAL_PARTY_ICON
+	call GetPredefPal
+	call LoadHLPaletteIntoDE ; palette 1: greyscale
 .GotPalette:
 	call WipeAttrmap
 	hlcoord 1, 4, wAttrmap
 	lb bc, 7, 7
-	ld a, $1 ; mon palette
+	ld a, $1
 	call FillBoxCGB
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
@@ -310,30 +311,26 @@ _CGB_BillsPC:
 	ldh [hCGBPalUpdate], a
 	ret
 
-_CGB_Unknown: ; unreferenced
-	ld hl, BillsPCOrangePalette
-	call LoadHLPaletteIntoDE
-	jr .GotPalette
-
-.GetMonPalette: ; unreferenced
+BillsPC_LoadMonPalette:
+	ld de, wBGPals1 + 1 * 8
+	ld a, [wCurPartySpecies]
+	cp $ff
+	jr z, .greyscale
+	and a
+	ret z
 	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-.GotPalette:
-	call WipeAttrmap
-	hlcoord 1, 1, wAttrmap
-	lb bc, 7, 7
-	ld a, $1 ; mon palette
-	call FillBoxCGB
-	call InitPartyMenuOBPals
-	call ApplyAttrmap
+	jr .apply
+.greyscale:
+	ld a, PREDEFPAL_PARTY_ICON
+	call GetPredefPal
+	call LoadHLPaletteIntoDE
+.apply:
 	call ApplyPals
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
-
-BillsPCOrangePalette:
-INCLUDE "gfx/pc/orange.pal"
 
 _CGB_PokedexUnownMode:
 	ld de, wBGPals1
