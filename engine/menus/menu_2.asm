@@ -37,7 +37,7 @@ PlaceMenuItemQuantity:
 	pop hl
 	and a
 	jr nz, .done
-	ld de, $15
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld [hl], '×'
 	inc hl
@@ -252,7 +252,7 @@ Kurt_SelectApricorn:
 	db 1 ; default option
 
 .MenuData:
-	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3
+	db STATICMENU_CURSOR | STATICMENU_WRAP
 	dbw 0, wKurtApricornCount
 	dw .Name
 	dw NULL
