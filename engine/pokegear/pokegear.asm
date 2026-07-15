@@ -2371,13 +2371,19 @@ Pokedex_GetArea:
 	ld hl, vTiles0 tile $78
 	ld c, 4
 	call Request2bpp
+	
 	call LoadTownMapGFX
+	call FillJohtoMap
+	call .PlaceString_MonsNest
+	call TownMapPals
+	hlbgcoord 0, 0, vBGMap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call .PlaceString_MonsNest
 	call TownMapPals
 	hlbgcoord 0, 0
 	call TownMapBGUpdate
+
 	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetDefaultBGPAndOBP
@@ -2460,6 +2466,8 @@ Pokedex_GetArea:
 .redraw
 	call .PlaceString_MonsNest
 	call TownMapPals
+	hlbgcoord 0, 0, vBGMap1
+	call TownMapBGUpdate
 	hlbgcoord 0, 0
 	call TownMapBGUpdate
 
