@@ -230,8 +230,16 @@ INCLUDE "gfx/stats/stats.pal"
 
 _CGB_Pokedex:
 	call _CGB_Pokedex_Init
+	ld a, [wDexDirectionToggle]
+	and a
+	jr nz, .back
 	hlcoord 1, 1, wAttrmap
 	lb bc, 7, 7
+	jr .set_attrmap
+.back
+	hlcoord 1, 1, wAttrmap
+	lb bc, 6, 6
+.set_attrmap
 	ld a, $1
 	call FillBoxCGB
 	jp _CGB_Pokedex_Resume
@@ -259,6 +267,14 @@ _CGB_Pokedex_Init:
 
 .is_pokemon
 	call GetMonPalettePointer
+	ld a, [wDexShinyToggle]
+	and 1
+	jr z, .not_shiny
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+.not_shiny
 	call LoadPalette_White_Col1_Col2_Black ; mon palette
 .got_palette
 	call WipeAttrmap

@@ -15,6 +15,8 @@ NewPokedexEntry:
 	ldh [hSCX], a
 	xor a
 	ld [wPokedexStatus], a
+	ld [wDexShinyToggle], a
+	ld [wDexDirectionToggle], a
 	farcall _NewPokedexEntry
 	call WaitPressAorB_BlinkCursor
 	ld a, [wNamedObjectIndex]

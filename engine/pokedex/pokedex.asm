@@ -273,6 +273,20 @@ Pokedex_UpdateMainScreen:
 	ld a, [hl]
 	and PAD_A
 	jr nz, .a
+	ld a, [hJoyPressed]
+	and PAD_UP
+	jr z, .not_up
+	ld a, [hJoyDown]
+	and PAD_SELECT
+	jp nz, .toggle_shiny_listing
+.not_up
+	ld a, [hJoyPressed]
+	and PAD_DOWN
+	jr z, .not_down
+	ld a, [hJoyDown]
+	and PAD_SELECT
+	jp nz, .toggle_direction_listing
+.not_down
 	ld a, [hl]
 	and PAD_SELECT
 	jr nz, .select
@@ -330,6 +344,22 @@ ENDC
 	ld [wJumptableIndex], a
 	ret
 
+.toggle_shiny_listing
+	call Pokedex_GetSelectedMon
+	ld a, [wDexShinyToggle]
+	and 1
+	xor 1
+	ld [wDexShinyToggle], a
+	ret
+
+.toggle_direction_listing
+	call Pokedex_GetSelectedMon
+	ld a, [wDexDirectionToggle]
+	and 1
+	xor 1
+	ld [wDexDirectionToggle], a
+	ret
+
 Pokedex_InitDexEntryScreen:
 	call LowVolume
 	xor a ; page 1
@@ -368,6 +398,25 @@ Pokedex_UpdateDexEntryScreen:
 	ld a, [hl]
 	and PAD_A
 	jr nz, .do_menu_action
+	ld a, [hJoyPressed]
+	and PAD_UP
+	jr nz, .check_shiny_combo
+	ld a, [hJoyPressed]
+	and PAD_DOWN
+	jr nz, .check_direction_combo
+	jr .normal_nav
+
+.check_shiny_combo
+	ld a, [hJoyDown]
+	and PAD_SELECT
+	jp nz, .toggle_shiny
+
+.check_direction_combo
+	ld a, [hJoyDown]
+	and PAD_SELECT
+	jp nz, .toggle_direction
+
+.normal_nav
 	call Pokedex_NextOrPreviousDexEntry
 	ret nc
 	call Pokedex_IncrementDexPointer
@@ -388,8 +437,29 @@ Pokedex_UpdateDexEntryScreen:
 
 .max_volume
 	call MaxVolume
+	call Pokedex_LoadSelectedMonTiles
+	call Pokedex_PlaceDexEntrySprite
+	ld a, POKEDEX_SCX
+	ldh [hSCX], a
+	ld a, [wCurDexMode]
+	cp DEXMODE_OLD
+	ld a, $4a
+	jr z, .got_hwx
+	ld a, $47
+.got_hwx
+	ldh [hWX], a
+	xor a
+	ldh [hWY], a
 	ld a, [wPrevDexEntryJumptableIndex]
 	ld [wJumptableIndex], a
+	ret
+
+.toggle_shiny
+	call ToggleShinyDexPalette
+	ret
+
+.toggle_direction
+	call ToggleDexSpriteDirection
 	ret
 
 Pokedex_Page:
@@ -1132,7 +1202,7 @@ Pokedex_DrawMainScreenBG:
 	ld [hl], $54
 	hlcoord 8, 16
 	ld [hl], $5b
-	call Pokedex_PlaceFrontpicTopLeftCorner
+	call Pokedex_PlaceDexEntrySprite
 	ret
 
 String_SEEN:
@@ -1174,7 +1244,7 @@ Pokedex_DrawDexEntryScreenBG:
 	hlcoord 0, 17
 	ld de, .MenuItems
 	call Pokedex_PlaceString
-	call Pokedex_PlaceFrontpicTopLeftCorner
+	call Pokedex_PlaceDexEntrySprite
 	ret
 
 .Number: ; unreferenced
@@ -1404,6 +1474,47 @@ Pokedex_PlaceFrontpicAtHL:
 .col
 	ld [hli], a
 	add $7
+	dec c
+	jr nz, .col
+	pop hl
+	ld de, SCREEN_WIDTH
+	add hl, de
+	pop af
+	inc a
+	dec b
+	jr nz, .row
+	ret
+
+Pokedex_PlaceDexEntrySprite:
+	call Pokedex_GetSelectedMon
+	call Pokedex_CheckSeen
+	jr z, .front
+	ld a, [wDexDirectionToggle]
+	and a
+	jr nz, .back
+.front
+	call Pokedex_PlaceFrontpicTopLeftCorner
+	ret
+.back
+	hlcoord 1, 1
+	ld a, $32
+	ld b, 7
+	ld c, 7
+	call Pokedex_FillBox
+	call Pokedex_PlaceBackpicTopLeftCorner
+	ret
+
+Pokedex_PlaceBackpicTopLeftCorner:
+	hlcoord 1, 1
+	xor a
+	ld b, $6
+.row
+	ld c, $6
+	push af
+	push hl
+.col
+	ld [hli], a
+	add $6
 	dec c
 	jr nz, .col
 	pop hl
@@ -2355,6 +2466,33 @@ Pokedex_ApplyUsualPals:
 	call DmgToCgbObjPal0
 	ret
 
+ToggleShinyDexPalette:
+	call Pokedex_GetSelectedMon
+	ld a, [wDexShinyToggle]
+	and 1
+	xor 1
+	ld [wDexShinyToggle], a
+	ld a, [wTempSpecies]
+	ld [wCurPartySpecies], a
+	ld a, SCGB_POKEDEX
+	call Pokedex_GetSGBLayout
+	ret
+
+ToggleDexSpriteDirection:
+	call Pokedex_GetSelectedMon
+	ld a, [wDexDirectionToggle]
+	and 1
+	xor 1
+	ld [wDexDirectionToggle], a
+	call Pokedex_PlaceDexEntrySprite
+	call Pokedex_LoadSelectedMonTiles
+	call WaitBGMap
+	ld a, [wTempSpecies]
+	ld [wCurPartySpecies], a
+	ld a, SCGB_POKEDEX
+	call Pokedex_GetSGBLayout
+	ret
+
 Pokedex_LoadPointer:
 	ld e, a
 	ld d, 0
@@ -2375,8 +2513,17 @@ Pokedex_LoadSelectedMonTiles:
 	ld a, [wTempSpecies]
 	ld [wCurPartySpecies], a
 	call GetBaseData
+	xor a
+	ld [wBoxAlignment], a
+	ld a, [wDexDirectionToggle]
+	and a
+	jr nz, .back
 	ld de, vTiles2
 	predef GetMonFrontpic
+	ret
+.back
+	ld de, vTiles2
+	predef GetMonBackpic
 	ret
 
 .QuestionMark:
@@ -2423,6 +2570,9 @@ Pokedex_LoadAnyFootprint:
 	ret
 
 Pokedex_LoadGFX:
+	xor a
+	ld [wDexShinyToggle], a
+	ld [wDexDirectionToggle], a
 	call DisableLCD
 	ld hl, vTiles2
 	ld bc, $31 tiles

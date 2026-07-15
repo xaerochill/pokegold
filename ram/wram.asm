@@ -296,7 +296,9 @@ wBackupDexListingCursor:: db
 wBackupDexListingPage:: db
 wDexCurLocation:: db
 wPokedexDataEnd::
-	ds 3
+wDexDirectionToggle:: db ; 0=front, 1=back
+wDexShinyToggle:: db     ; 0=normal, 1=shiny
+	ds 1
 
 NEXTU
 ; pokegear
